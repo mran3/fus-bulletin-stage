@@ -1,0 +1,158 @@
+// Colors
+$fus-yellow: #ffc658;
+$fus-light-blue: #8e9fbc;
+$fus-dark-blue: #1f2a44;
+$fus-green: #21412a;
+$fus-gold: #998643;
+
+.fus-yellow {
+  background-color: $fus-yellow;
+}
+.fus-light-blue {
+  background-color: $fus-light-blue;
+}
+.fus-dark-blue {
+  background-color: $fus-dark-blue;
+}
+.fus-green {
+  background-color: $fus-green;
+}
+.fus-gold {
+  background-color: $fus-gold;
+}
+
+body {
+   display: flex;
+   min-height: 100vh;
+   flex-direction: column;
+ }
+
+ main {
+   flex: 1 0 auto;
+   min-height: 100vh;
+ }
+
+header {
+  height: 122px;
+}
+
+nav {
+  height: 122px;
+  .page-title {
+    line-height: 122px;
+    font-size: 48px;
+    font-weight: 300;
+  }
+}
+
+.container {
+  max-width: 5000px;
+
+}
+
+// TODO: Style filters
+#filter-card {
+  .card-content{
+    height: 110px;
+  }
+}
+
+.card {
+  .card-content {
+    .card-title {
+    line-height: 30px;
+    margin-bottom: 15px;
+    }
+    // .content {
+    //   max-height:200px;
+    //   overflow: hidden;
+    // }
+  }
+  .cat-name, .tag-name {
+    color: $fus-yellow;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .more-link {
+    display: none;
+  }
+
+  .full-content{
+    //display: none;
+  }
+}
+
+#tag-container {
+  visibility: hidden;
+}
+
+.isotope-item {
+  width: 23%;
+
+  @media screen and (max-width: 1300px) {
+    width:30%;
+  }
+  @media screen and (max-width: 1200px) {
+    width:47%;
+  }
+  @media screen and (max-width: 760px) {
+    width:98.5%;
+  }
+
+}
+
+.fourths {
+  width: 23%;
+}
+
+.halfsies {
+  width: 48%
+}
+
+.fullish {
+  width: 98.5%;
+}
+
+#post-modal {
+  .cat-name, .tag-name {
+    color: $fus-yellow;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .tag-name {
+    color: $fus-light-blue;
+    &:hover {
+      color: lighten($fus-light-blue, 20%);
+    }
+  }
+
+}
+
+footer.page-footer {
+  margin-top: 0px;
+  padding-top: 0px; }
+  footer.page-footer .row {
+    margin-bottom: 0px;
+    margin-top: 10px; }
+
+.footer-copyright a {
+  margin-right: 10px; }
+
+footer {
+  margin-top: 0px;
+  padding-top: 0px;
+  .row {
+    margin-bottom: 0px;
+    margin-top: 10px;
+  }
+}
+
+.footer-copyright {
+  a {
+    margin-right: 10px;
+  }
+}

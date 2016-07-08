@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>WP-API + Isotope</title>
+  <meta name="description" content="A simple way to pull posts from the WP-API and display them with isotope.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- <link rel="shortcut icon" href="favicon.ico"> -->
+
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="container">
+        <div class="nav-wrapper">
+          <a href="#home" class="page-title">Bulletin</a>
+        </div>
+      </div>
+    </nav>
+</header>
+  <main>
+    <div class="container">
+      <div class="row">
+        <div class="col s12">
+          <div class="card" id="filter-card">
+            <div class="card-content">
+              <div class="col s6">
+                <div class="input-field">
+                  <select class="filters">
+                    <option value="*">All</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col s6">
+                <div class="input-field">
+                  <input id="search" type="search" name="search" required>
+                  <label for="search"><i class="material-icons">search</i></label>
+                  <i id="close-search" class="material-icons">close</i>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12 isotope-container">
+          <!-- Posts load here -->
+
+        </div>
+        </div>
+        <div id="tag-container">
+
+        </div>
+      </div>
+    </div>
+    <!-- Post Modal -->
+  <div id="post-modal" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4>Title</h4>
+      <p>
+        Content
+      </p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+  </div>
+
+  </main>
+
+  <footer class="page-footer">
+   <div class="footer-copyright">
+     <div class="container">
+     © <span id="copyright-date">2016</span> Jesse Weigel
+     </div>
+   </div>
+ </footer>
+ <!--Import Google Icon Font-->
+ <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+ <!-- build:css /css/style.min.css -->
+ <link href="css/materialize.css" rel="stylesheet">
+ <link href="css/style.css" rel="stylesheet">
+ <!-- endbuild -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+<script src="https://npmcdn.com/isotope-layout@3.0/dist/isotope.pkgd.min.js"></script>
+<script type="text/javascript" src="js/imagesLoaded.min.js"></script>
+<script src="bower_components/es6-promise/promise.min.js"></script>
+<script src="bower_components/es6-promise/es6-promise.min.js"></script>
+<!-- build:js /js/app.min.js -->
+<script src="bower_components/fetch/fetch.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+<!-- endbuild -->
+<!-- inject:analytics -->
+<!-- endinject -->
+</body>
+</html>
