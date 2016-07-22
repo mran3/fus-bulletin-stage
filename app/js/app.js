@@ -160,7 +160,7 @@ $(function() {
     function getPosts(filterOpts='', perPage=100, isotopeInit=true) {
       getJSON(`${wpURL}wp-json/wp/v2/posts?${filterOpts}per_page=${perPage}`)
       .then(function(data){
-        renderCards(data, perPage, isotopeInit);
+        renderCards(data, isotopeInit);
       })
       .catch(function(error) {
         console.log(error);
@@ -317,9 +317,6 @@ console.log('hi');
           // make the search request
           $('.isotope-container').html('');
           getPosts(`filter[s]=${val}&`, total, false);
-
-          // setTimeout($container.isotope('destroy'), 2000);
-          // setTimeout(isotopeizeInit, 3000);
 
         }
 
