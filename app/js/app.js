@@ -10,9 +10,9 @@ $(function() {
       layoutMode: 'masonry',
       masonry: {
         gutter: 20,
-        isFitWidth: true,
-        columnWidth: '.card',
-        percentPosition: true
+        isFitWidth: true
+        //columnWidth: '.card',
+        //percentPosition: true
       },
         filter: '*',
         animationOptions: {
@@ -117,6 +117,8 @@ $(function() {
     });
   }
 
+
+
   //Get Categories
 
   getJSON(`${wpURL}wp-json/wp/v2/categories?per_page=100`)
@@ -144,10 +146,16 @@ $(function() {
     .then(
       getImages()
     )
-    .then(
-      getPosts()
-    );
-
+    .then(function(){
+      function tryAgain() {
+        if (Object.keys(images).length !== 0) {
+          getPosts();
+        } else {
+          setTimeout(tryAgain, 200);
+        }
+      }
+      tryAgain();
+    });
   });
 
   //   // Get Categories
@@ -183,44 +191,43 @@ $(function() {
   // );
 
     // Get Posts
-    function getPosts(filterOpts='', perPage=100, isotopeInit=true) {
-      $.ajax( {
-        url: `${wpURL}wp-json/wp/v2/posts?${filterOpts}per_page=${perPage}`,
-        success: function ( data ) {
-          renderCards(data);
 
-        },
-        cache: false
-      } );
+    function getPosts(filterOpts='', perPage=100, isotopeInit=true) {
+      getJSON(`${wpURL}wp-json/wp/v2/posts?${filterOpts}per_page=${perPage}`)
+      .then(function(data){
+        renderCards(data);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
     }
 
 
     // Get Images
     function getImages() {
-      $.ajax({
-        url: wpURL + 'wp-json/wp/v2/media?per_page=100',
-        success: function ( data ) {
-
-          $.each(data, function(i, item){
-            if(item.media_type === "image") {
-              images[item.id] = {
-              //  thumb: item.media_details.sizes.thumbnail.source_url,
-                medium: item.media_details.sizes.medium.source_url,
-                'medium-large': item.media_details.sizes.medium_large.source_url,
-                large: item.media_details.sizes.large.source_url,
-                // 'post-thumb': item.media_details.sizes['post-thumbnail'].source_url,
-                full: item.media_details.sizes.full.source_url
-              };
-            }
-
-          });
-        },
-        cache: false
+      getJSON(`${wpURL}wp-json/wp/v2/media?per_page=100`)
+      .then(function(data){
+        for(let thisImage of data){
+          if(thisImage.media_type === 'image') {
+            images[thisImage.id] = {
+            //  thumb: thisImage.media_details.sizes.thumbnail.source_url,
+              medium: thisImage.media_details.sizes.medium.source_url,
+              'medium-large': thisImage.media_details.sizes.medium_large.source_url,
+              large: thisImage.media_details.sizes.large.source_url,
+              // 'post-thumb': thisImage.media_details.sizes['post-thumbnail'].source_url,
+              full: thisImage.media_details.sizes.full.source_url
+            };
+          }
+        }
+      })
+      .catch(function(error) {
+        console.log(error);
       });
     }
 
   function renderCards(data, isotopeInit=true) {
-   $.each(data, function(i, post){
+    let i = 0;
+    for(let post of data) {
 
      if(post.featured_media !== 0) {
        cardImg = images[post.featured_media].large;
@@ -275,7 +282,8 @@ $(function() {
        });
 
      }
-   });
+     i++;
+   }
  }
 
 
