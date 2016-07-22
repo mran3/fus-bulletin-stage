@@ -53,18 +53,6 @@ nav {
 #tag-container {
   visibility: hidden; }
 
-.isotope-item {
-  width: 23%; }
-  @media screen and (max-width: 1300px) {
-    .isotope-item {
-      width: 30%; } }
-  @media screen and (max-width: 1200px) {
-    .isotope-item {
-      width: 47%; } }
-  @media screen and (max-width: 760px) {
-    .isotope-item {
-      width: 98.5%; } }
-
 .fourths {
   width: 23%; }
 

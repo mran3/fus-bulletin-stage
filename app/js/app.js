@@ -6,13 +6,10 @@ $(function() {
 
   function isotopeize() {
     $container.isotope({
-      itemSelector: '.card',
+      itemSelector: '.col',
       layoutMode: 'masonry',
       masonry: {
-        gutter: 20,
-        isFitWidth: true
-        //columnWidth: '.card',
-        //percentPosition: true
+        columnWidth: '.col',
       },
         filter: '*',
         animationOptions: {
@@ -158,44 +155,12 @@ $(function() {
     });
   });
 
-  //   // Get Categories
-  //   $.ajax( {
-  //     url: wpURL + 'wp-json/wp/v2/categories?per_page=100',
-  //     success: function ( data ) {
-  //
-  //       $.each(data, function(i, category){
-  //         categories[category.id] = category.name;
-  //         $( '.filters' ).append( `<option value=".${category.id}" catID="${category.id}">${category.name}</option>` );
-  //       });
-  //
-  //        $('select').material_select();
-  //     },
-  //     cache: false
-  //   } ).then(
-  //
-  //   // Get Tags
-  //   $.ajax( {
-  //     url: wpURL + 'wp-json/wp/v2/tags?per_page=100',
-  //     success: function ( data ) {
-  //
-  //       $.each(data, function(i, tag){
-  //         tags[tag.id] = tag.name;
-  //       });
-  //     },
-  //     cache: false
-  //   } )
-  // ).then(
-  //   getImages()
-  // ).then(
-  //   getPosts()
-  // );
-
     // Get Posts
 
     function getPosts(filterOpts='', perPage=100, isotopeInit=true) {
       getJSON(`${wpURL}wp-json/wp/v2/posts?${filterOpts}per_page=${perPage}`)
       .then(function(data){
-        renderCards(data);
+        renderCards(data, perPage, isotopeInit);
       })
       .catch(function(error) {
         console.log(error);
@@ -239,18 +204,21 @@ $(function() {
      }
 
      $( '.isotope-container' ).append(
-       `<div class="card isotope-item ${post.categories}">
-          ${cardImgTemp}
-          <div class="card-content" post-id=${post.id}>
-            <div class="card-title">${post.title.rendered}</div>
-            <div class="content excerpt">${post.excerpt.rendered}</div>
-            <div class="content full-content">${post.content.rendered}</div>
-          </div>
-          <div class="card-action">
-            <a class="expand-card">More</a>
+       `<div class="col s12 m4 l3 ${post.categories}">
+         <div class="card isotope-item">
+            ${cardImgTemp}
+            <div class="card-content" post-id=${post.id}>
+              <div class="card-title">${post.title.rendered}</div>
+              <div class="content excerpt">${post.excerpt.rendered}</div>
+              <div class="content full-content">${post.content.rendered}</div>
+            </div>
+            <div class="card-action">
+              <a class="expand-card">More</a>
+            </div>
           </div>
         </div>` );
 
+  //TODO: Convert the followin to use the category names and id's from the pure taxonomy fields
      //Attach Category names to cards
      $.each(post.categories, function(i, category){
        $(`div[post-id="${post.id}"] .content`).prepend(`<div class="cat-name" data-filter=".${category}">${categories[category]}</div>`);
@@ -349,6 +317,9 @@ console.log('hi');
           // make the search request
           $('.isotope-container').html('');
           getPosts(`filter[s]=${val}&`, total, false);
+
+          // setTimeout($container.isotope('destroy'), 2000);
+          // setTimeout(isotopeizeInit, 3000);
 
         }
 
