@@ -1,5 +1,7 @@
 /* jshint esversion: 6 */
 $(function() {
+  var wpURL = 'https://franciscan.university/fus-bulletin/';
+  getImages();
 
   var $container = $('.isotope-container'),
   selector;
@@ -39,36 +41,45 @@ $(function() {
       return false;
     });
 
-    // Category filter (in card)
-    $('.cat-name').click(function(){
-       var selector = $(this).attr('data-filter');
-        $container.isotope({
-            filter: selector,
-            animationOptions: {
-                duration: 750,
-                easing: 'linear',
-                queue: false
-            }
-        });
-        return false;
-    });
+    //Init category card filtering from the category name displayed on the cards
+    initCatCardFilters();
 
-    // Tag filter (in card)
-    $('.tag-name').click(function(){
-
-       var selector = $(this).attr('data-filter');
-        $container.isotope({
-            filter: selector,
-            animationOptions: {
-                duration: 750,
-                easing: 'linear',
-                queue: false
-            }
-        });
-        return false;
-    });
-
+    //Init tags filtering
+    initTagFilters();
   }
+
+function initCatCardFilters() {
+  // Category filter (in card)
+  $('.cat-name').click(function(){
+     var selector = $(this).attr('data-filter');
+      $container.isotope({
+          filter: selector,
+          animationOptions: {
+              duration: 750,
+              easing: 'linear',
+              queue: false
+          }
+      });
+      return false;
+  });
+}
+
+function initTagFilters () {
+  // Tag filter (in card)
+  $('.tag-name').click(function(){
+
+     var selector = $(this).attr('data-filter');
+      $container.isotope({
+          filter: selector,
+          animationOptions: {
+              duration: 750,
+              easing: 'linear',
+              queue: false
+          }
+      });
+      return false;
+  });
+}
 
   //More button on post cards
   function expandCard() {
@@ -78,6 +89,8 @@ $(function() {
     $('#post-modal .modal-content p').html($(this).parent().parent().find('.full-content').html());
     $('#post-modal .full-content, #post-modal .tag-name').show();
     $('#post-modal').openModal();
+    initCatCardFilters();
+    initTagFilters();
     });
 
     //Card Images
@@ -101,8 +114,8 @@ $(function() {
   images = {},
   cardImg,
   cardImgTemp,
-  posts, postTitle, postContent, postCatagories, postTags, categoryName, categoryID, categorySlug, tagName, tagID, tagSlug, catName,
-  wpURL = 'https://franciscan.university/fus-bulletin/';
+  posts, postTitle, postContent, postCatagories, postTags, categoryName, categoryID, categorySlug, tagName, tagID, tagSlug, catName;
+
 
 
   function get(url) {
@@ -138,43 +151,39 @@ $(function() {
   })
   .catch(function(error) {
     console.log(error);
-  })
+  });
+
+  getJSON(`${wpURL}wp-json/wp/v2/tags?per_page=100`)
   .then(function(data){
-    getJSON(`${wpURL}wp-json/wp/v2/tags?per_page=100`)
+    $.each(data, function(i, tag){
+      tags[tag.id] = tag.name;
+    });
+  })
+  .catch(function(error) {
+    console.log(error);
+  });
+
+// Fetch and render posts when images are ready
+  function tryAgain() {
+    if (Object.keys(images).length !== 0) {
+      getPosts();
+    } else {
+      setTimeout(tryAgain, 200);
+    }
+  }
+  tryAgain();
+
+
+  // Get Posts
+  function getPosts(filterOpts='', perPage=100, isotopeInit=true) {
+    getJSON(`${wpURL}wp-json/wp/v2/posts?${filterOpts}per_page=${perPage}`)
     .then(function(data){
-      $.each(data, function(i, tag){
-        tags[tag.id] = tag.name;
-      });
+      renderCards(data, isotopeInit);
     })
     .catch(function(error) {
       console.log(error);
-    })
-    .then(
-      getImages()
-    )
-    .then(function(){
-      function tryAgain() {
-        if (Object.keys(images).length !== 0) {
-          getPosts();
-        } else {
-          setTimeout(tryAgain, 200);
-        }
-      }
-      tryAgain();
     });
-  });
-
-    // Get Posts
-
-    function getPosts(filterOpts='', perPage=100, isotopeInit=true) {
-      getJSON(`${wpURL}wp-json/wp/v2/posts?${filterOpts}per_page=${perPage}`)
-      .then(function(data){
-        renderCards(data, isotopeInit);
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-    }
+  }
 
 
     // Get Images
@@ -212,14 +221,49 @@ $(function() {
        cardImgTemp = '';
      }
 
+    //  Get category data
+    let categoryNames = "";
+    let categoryIds = "";
+    let categoryTemplate = "";
+    if (post.pure_taxonomies.categories !== undefined) {
+       let categoryData = post.pure_taxonomies.categories;
+
+       for(let category of categoryData) {
+         categoryNames = categoryNames + " " + category.name;
+         categoryIds = `${categoryIds} .${category.cat_ID}`;
+         categoryTemplate = `${categoryTemplate} <div class="cat-name" data-filter=".${category.cat_ID}">${category.name}</div>`;
+       }
+     }
+
+    //  Get tag data
+    let tagNames = "";
+    let tagIds = "";
+    let tagTemplate = ""
+    if (post.pure_taxonomies.tags !== undefined) {
+       let tagData = post.pure_taxonomies.tags;
+
+       for(let tag of tagData) {
+         tagNames = tagNames + " " + tag.name;
+         tagIds = `${tagIds} t${tag.term_id}`;
+         tagTemplate = `${tagTemplate} <span class="tag-name" data-filter=.t${tag.term_id}>${tag.name}</span>`;
+       }
+     }
+
      $( '.isotope-container' ).append(
-       `<div class="col s12 m4 l3 ${post.categories}">
-         <div class="card isotope-item">
+       `<div class="col s12 m4 l3 ${post.categories}${tagIds}">
+         <div class="card isotope-item ${tagIds}">
             ${cardImgTemp}
             <div class="card-content" post-id=${post.id}>
               <div class="card-title">${post.title.rendered}</div>
-              <div class="content excerpt">${post.excerpt.rendered}</div>
-              <div class="content full-content">${post.content.rendered}</div>
+              <div class="content excerpt">
+                ${categoryTemplate}
+                ${post.excerpt.rendered}
+              </div>
+              <div class="content full-content">
+              ${categoryTemplate}
+                ${post.content.rendered}
+                ${tagTemplate}
+              </div>
             </div>
             <div class="card-action">
               <a class="expand-card">More</a>
@@ -229,18 +273,20 @@ $(function() {
 
   //TODO: Convert the followin to use the category names and id's from the pure taxonomy fields
      //Attach Category names to cards
-     $.each(post.categories, function(i, category){
-       $(`div[post-id="${post.id}"] .content`).prepend(`<div class="cat-name" data-filter=".${category}">${categories[category]}</div>`);
-     });
+    //  $.each(post.categories, function(i, category){
+    //    $(`div[post-id="${post.id}"] .content`).prepend(`<div class="cat-name" data-filter=".${category}">${categories[category]}</div>`);
+    //  });
+
+
 
      //Attach Tag names to cards
-     $.each(post.tags, function(i, tag){
-       $(`div[post-id="${post.id}"] .content`).append(`<span class="tag-name" data-filter=".t${tag}">${tags[tag]} </span>`);
-
-       //Add tag IDs as classes for filtering
-       $(`div[post-id="${post.id}"]`).parent().addClass(`t${tag}`);
-
-     });
+    //  $.each(post.tags, function(i, tag){
+    //    $(`div[post-id="${post.id}"] .content`).append(`<span class="tag-name" data-filter=".t${tag}">${tags[tag]} </span>`);
+     //
+    //    //Add tag IDs as classes for filtering
+    //    $(`div[post-id="${post.id}"]`).parent().addClass(`t${tag}`);
+     //
+    //  });
 
      if (i === data.length - 1) {
 
