@@ -79,7 +79,15 @@ $(function() {
     $('#post-modal .full-content, #post-modal .tag-name').show();
     $('#post-modal').openModal();
     });
+
+    //Card Images
+    $('.card-image img').click(function(){
+      $(this).parent().parent().find('.expand-card').trigger('click');
+      console.log($(this).parent().parent().find('.expand-card'));
+    });
   }
+
+
 
 //   //On modal close
 // $('.modal-close').click(function(){

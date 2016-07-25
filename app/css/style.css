@@ -131,6 +131,12 @@ nav {
 .card .more-link {
   display: none; }
 
+.card .expand-card {
+  cursor: pointer; }
+
+.card .card-image {
+  cursor: pointer; }
+
 #tag-container {
   visibility: hidden; }
 
