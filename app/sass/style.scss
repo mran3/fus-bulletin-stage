@@ -37,18 +37,41 @@ header {
 }
 
 nav {
-  height: 122px;
+  height: 64px;
   .page-title {
-    line-height: 122px;
-    font-size: 48px;
+    line-height: 64px;
+    font-size: 40px;
     font-weight: 300;
     margin-left: 25px;
+  }
+
+  .button-collapse {
+    margin-left: 16px;
+  }
+}
+
+.side-nav {
+  .logo {
+  height: 90px;
+
+    a {
+      padding: 10px 10px 0px 10px;
+      width: 100%;
+
+      &:hover {
+        background-color: #fff;
+      }
+    }
+
+    img {
+      width: 100%;
+    }
   }
 }
 
 .search-icon {
   cursor: pointer;
-  padding-right: 8px;
+  padding-right: 16px;
 }
 
 .search-nav {
@@ -90,7 +113,8 @@ nav {
 
       input#search {
         height: 100%;
-        font-size: 50px;
+        font-size: 40px;
+        font-weight: 300;
 
         @media screen and (max-width: 993px) {
           font-size: 25px;

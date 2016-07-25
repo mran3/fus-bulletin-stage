@@ -24,28 +24,23 @@ $(function() {
 
     isotopeize();
 
-    // Category filter (dropdown)
-    $('div.filters').change(function(){
-        $('.filters .current').removeClass('current');
-        $(this).addClass('current');
-
-        selector = $('select').val();
-
-
-        $container.isotope({
-            filter: selector,
-            animationOptions: {
-                duration: 750,
-                easing: 'linear',
-                queue: false
-            }
-        });
-        return false;
+    // Category filter (sidebar)
+    $('#mobile-demo .category').click(function(){
+      selector = $(this).attr('catid');
+      $('.button-collapse').sideNav('hide');
+      $container.isotope({
+          filter: selector,
+          animationOptions: {
+              duration: 750,
+              easing: 'linear',
+              queue: false
+          }
+      });
+      return false;
     });
 
     // Category filter (in card)
     $('.cat-name').click(function(){
-
        var selector = $(this).attr('data-filter');
         $container.isotope({
             filter: selector,
@@ -123,6 +118,12 @@ $(function() {
     $.each(data, function(i, category){
       categories[category.id] = category.name;
       $( '.filters' ).append( `<option value=".${category.id}" catID="${category.id}">${category.name}</option>` );
+
+      $('#mobile-demo').append(
+        `
+          <li><a class="category" catID=".${category.id}">${category.name}</a></li>
+        `
+      );
     });
 
      $('select').material_select();
@@ -255,7 +256,9 @@ $(function() {
  }
 
 //Init side nav
-$(".button-collapse").sideNav();
+$(".button-collapse").sideNav({
+  closeOnClick: true,
+});
 
 
  //Search input

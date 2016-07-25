@@ -26,16 +26,28 @@ header {
   height: 122px; }
 
 nav {
-  height: 122px; }
+  height: 64px; }
   nav .page-title {
-    line-height: 122px;
-    font-size: 48px;
+    line-height: 64px;
+    font-size: 40px;
     font-weight: 300;
     margin-left: 25px; }
+  nav .button-collapse {
+    margin-left: 16px; }
+
+.side-nav .logo {
+  height: 90px; }
+  .side-nav .logo a {
+    padding: 10px 10px 0px 10px;
+    width: 100%; }
+    .side-nav .logo a:hover {
+      background-color: #fff; }
+  .side-nav .logo img {
+    width: 100%; }
 
 .search-icon {
   cursor: pointer;
-  padding-right: 8px; }
+  padding-right: 16px; }
 
 .search-nav .nav-wrapper {
   overflow: visible; }
@@ -61,7 +73,8 @@ nav {
     height: 100%; }
     .search-nav .search-form .input-field.search-field input#search {
       height: 100%;
-      font-size: 50px; }
+      font-size: 40px;
+      font-weight: 300; }
       @media screen and (max-width: 993px) {
         .search-nav .search-form .input-field.search-field input#search {
           font-size: 25px; } }
