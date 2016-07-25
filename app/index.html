@@ -10,14 +10,41 @@
 </head>
 <body>
   <header>
-    <nav>
-      <div class="container">
-        <div class="nav-wrapper">
-          <a href="#home" class="page-title">Bulletin</a>
+    <!-- Search Nav -->
+    <nav class="search-nav">
+      <div class="nav-wrapper grey-text text-lighten-4">
+        <div class="search-form">
+          <div class="row">
+            <div class="input-field search-field col s9">
+              <input id="search" type="search" required>
+              <label for="search"><i class="material-icons">search</i></label>
+            </div>
+            <i class="material-icons close-search">close</i>
+          </div>
         </div>
       </div>
     </nav>
-</header>
+
+    <nav class="main-nav">
+        <div class="nav-wrapper">
+          <a href="#home" class="page-title">Bulletin</a>
+          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+          <ul class="right">
+            <!-- Filters go here -->
+            <li><i class="material-icons search-icon">search</i></li>
+          </ul>
+          <ul class="side-nav" id="mobile-demo">
+            <li class="logo">
+              <a id="logo-container" href="home" class="brand-logo">
+                <img src="">
+              </a>
+            </li>
+            <!-- Filters go here too -->
+            
+          </ul>
+        </div>
+    </nav>
+  </header>
   <main>
     <div class="container">
       <div class="row">
@@ -31,14 +58,6 @@
                   </select>
                 </div>
               </div>
-              <div class="col s6">
-                <div class="input-field">
-                  <input id="search" type="search" name="search" required>
-                  <label for="search"><i class="material-icons">search</i></label>
-                  <i id="close-search" class="material-icons">close</i>
-                </div>
-              </div>
-
             </div>
           </div>
         </div>
