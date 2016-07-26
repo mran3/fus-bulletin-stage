@@ -1,4 +1,6 @@
 /* jshint esversion: 6 */
+var testImgArr;
+
 $(function() {
   var wpURL = 'https://franciscan.university/fus-bulletin/';
   getImages();
@@ -190,15 +192,16 @@ function initTagFilters () {
     function getImages() {
       getJSON(`${wpURL}wp-json/wp/v2/media?per_page=100`)
       .then(function(data){
+        testImgArr = data;
         for(let thisImage of data){
           if(thisImage.media_type === 'image') {
             images[thisImage.id] = {
-            //  thumb: thisImage.media_details.sizes.thumbnail.source_url,
-              medium: thisImage.media_details.sizes.medium.source_url,
-              'medium-large': thisImage.media_details.sizes.medium_large.source_url,
-              large: thisImage.media_details.sizes.large.source_url,
-              // 'post-thumb': thisImage.media_details.sizes['post-thumbnail'].source_url,
-              full: thisImage.media_details.sizes.full.source_url
+              thumb: thisImage.media_details.sizes.thumbnail.source_url || "",
+              medium: thisImage.media_details.sizes.medium.source_url || "",
+              'medium-large': thisImage.media_details.sizes.medium_large.source_url || "",
+              large: thisImage.media_details.sizes.large.source_url || "",
+              // 'post-thumb': (function(){if(thisImage.media_details.sizes.hasOwnProperty('post-thumbnail')){return thisImage.media_details.sizes['post-thumbnail'].source_url !== undefined}else{return ""}})(),
+              full: thisImage.media_details.sizes.full.source_url || ""
             };
           }
         }
@@ -208,19 +211,34 @@ function initTagFilters () {
       });
     }
 
+  // function checkUndefined(objName, keyName, valPath){
+  //   if (valPath.hasOwnProperty(keyName)) {
+  //     objName[]
+  //   } else {
+  //     ""
+  //   }
+  // }
+
   function renderCards(data, isotopeInit=true) {
     let i = 0;
+    let cardImgArr;
     for(let post of data) {
 
      if(post.featured_media !== 0) {
-       cardImg = images[post.featured_media].large;
-       cardImgTemp = `<div class="card-image">
+      cardImgArr = testImgArr.filter(function( obj ) { return obj.id == post.featured_media });
+      if(cardImgArr[0].media_details.sizes.hasOwnProperty('post-thumbnail')) {
+        cardImg = cardImgArr[0].media_details.sizes['post-thumbnail'].source_url;
+      } else {
+        cardImg = cardImgArr[0].media_details.sizes.large.source_url;
+      }
+       //images[post.featured_media].large;
+      cardImgTemp = `<div class="card-image">
                            <img src="${cardImg}"/>
                          </div>`;
      } else {
        cardImgTemp = '';
      }
-
+     console.log(cardImg);
     //  Get category data
     let categoryNames = "";
     let categoryIds = "";
