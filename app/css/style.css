@@ -14,6 +14,7 @@
   background-color: #998643; }
 
 body {
+  background-color: #e8e8e8;
   display: flex;
   min-height: 100vh;
   flex-direction: column; }
@@ -36,7 +37,7 @@ nav {
     margin-left: 16px; }
 
 .side-nav .logo {
-  height: 90px; }
+  height: 110px; }
   .side-nav .logo a {
     padding: 10px 10px 0px 10px;
     width: 100%; }
@@ -44,6 +45,19 @@ nav {
       background-color: #fff; }
   .side-nav .logo img {
     width: 100%; }
+
+.side-nav li {
+  line-height: 48px; }
+  .side-nav li a {
+    height: 48px;
+    line-height: 48px; }
+
+header, main, footer {
+  padding-left: 300px; }
+
+@media only screen and (max-width: 992px) {
+  header, main, footer {
+    padding-left: 0; } }
 
 .search-icon {
   cursor: pointer;

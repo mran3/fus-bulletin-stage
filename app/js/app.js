@@ -91,14 +91,24 @@ function initTagFilters () {
 
     currentPath = window.location.pathname;
     console.log(currentPath);
-    $('#post-modal .modal-content h4').text($(this).parent().parent().find('.card-title').text());
-    $('#post-modal .modal-content p').html($(this).parent().parent().find('.full-content').html());
-    $('#post-modal .full-content, #post-modal .tag-name').show();
-    $('#post-modal').openModal();
+    // $('#post-modal .modal-content h4').text($(this).parent().parent().find('.card-title').text());
+    // $('#post-modal .modal-content p').html($(this).parent().parent().find('.full-content').html());
+    // $('#post-modal .full-content, #post-modal .tag-name').show();
+    //$('#post-modal').openModal();
+    let slug = $(this).attr('slug');
+    let currentView = $('.isotope-container').html();
+    getPosts(`filter[name]=${slug}&`, 1, false);
     let stateObj = {foo: 'bar'}
-    history.pushState(stateObj, "teststate", $(this).attr('slug'));
+
+    $('.isotope-container').html('');
+
+    history.pushState(stateObj, "teststate", slug);
     initCatCardFilters();
     initTagFilters();
+
+    $('.modal-content h4').text($(this).parent().parent().find('.card-title').text());
+    $('.modal-content p').html($(this).parent().parent().find('.full-content').html());
+    $('.full-content, .tag-name').show();
     });
 
     //Card Images
@@ -114,16 +124,16 @@ $('#post-modal .modal-close, .lean-overlay').click(function(){
   history.pushState(stateObj, "oldstate", currentPath);
 });
 
-
+// Fires when the url changes
   window.onpopstate = function() {
 
     console.log('pop');
   }
 
-$('.expand-card').leanModal({
-  ready: function() { alert('Ready'); },
-  complete: function() {console.log('closed');}
-});
+// $('.expand-card').leanModal({
+//   ready: function() { alert('Ready'); },
+//   complete: function() {console.log('closed');}
+// });
 
 //   //On modal close
 // $('.modal-close').click(function(){
@@ -295,7 +305,7 @@ $('.expand-card').leanModal({
      }
 
      $( '.isotope-container' ).append(
-       `<div class="col s12 m4 l3 ${post.categories}${tagIds}">
+       `<div class="col s12 m6 l12 ${post.categories}${tagIds}">
          <div class="card isotope-item ${tagIds}">
             ${cardImgTemp}
             <div class="card-content" post-id=${post.id}>
@@ -357,6 +367,7 @@ $('.expand-card').leanModal({
 //Init side nav
 $(".button-collapse").sideNav({
   closeOnClick: true,
+  menuWidth: 300
 });
 
 

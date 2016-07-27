@@ -22,6 +22,7 @@ $fus-gold: #998643;
 }
 
 body {
+  background-color: #e8e8e8;
    display: flex;
    min-height: 100vh;
    flex-direction: column;
@@ -52,7 +53,7 @@ nav {
 
 .side-nav {
   .logo {
-  height: 90px;
+  height: 110px;
 
     a {
       padding: 10px 10px 0px 10px;
@@ -67,7 +68,27 @@ nav {
       width: 100%;
     }
   }
+
+  li {
+    line-height: 48px;
+
+    a {
+      height: 48px;
+      line-height: 48px;
+    }
+  }
 }
+
+// Offset for fixed side-nav
+header, main, footer {
+      padding-left: 300px;
+    }
+
+    @media only screen and (max-width : 992px) {
+      header, main, footer {
+        padding-left: 0;
+      }
+    }
 
 .search-icon {
   cursor: pointer;
