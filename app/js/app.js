@@ -84,51 +84,45 @@ function initTagFilters () {
 }
 
   //More button on post cards
-  var currentPath;
-  function expandCard() {
-
-  $('.expand-card').click(function(){
-
-    currentPath = window.location.pathname;
-    console.log(currentPath);
-    // $('#post-modal .modal-content h4').text($(this).parent().parent().find('.card-title').text());
-    // $('#post-modal .modal-content p').html($(this).parent().parent().find('.full-content').html());
-    // $('#post-modal .full-content, #post-modal .tag-name').show();
-    //$('#post-modal').openModal();
-    let slug = $(this).attr('slug');
-    let currentView = $('.isotope-container').html();
-    getPosts(`filter[name]=${slug}&`, 1, false);
-    let stateObj = {foo: 'bar'}
-
-    $('.isotope-container').html('');
-
-    history.pushState(stateObj, "teststate", slug);
-    initCatCardFilters();
-    initTagFilters();
-
-    $('.modal-content h4').text($(this).parent().parent().find('.card-title').text());
-    $('.modal-content p').html($(this).parent().parent().find('.full-content').html());
-    $('.full-content, .tag-name').show();
-    });
-
-    //Card Images
-    $('.card-image img').click(function(){
-      $(this).parent().parent().find('.expand-card').trigger('click');
-      console.log($(this).parent().parent().find('.expand-card'));
-    });
-  }
-
-$('#post-modal .modal-close, .lean-overlay').click(function(){
-  $('#post-modal').closeModal();
-  let stateObj = {old: 'state'};
-  history.pushState(stateObj, "oldstate", currentPath);
-});
-
-// Fires when the url changes
-  window.onpopstate = function() {
-
-    console.log('pop');
-  }
+//   var currentPath;
+//   function expandCard() {
+//
+//   $('.expand-card').click(function(){
+//
+//     currentPath = window.location.hash;
+//     //console.log(currentPath);
+//     // $('#post-modal .modal-content h4').text($(this).parent().parent().find('.card-title').text());
+//     // $('#post-modal .modal-content p').html($(this).parent().parent().find('.full-content').html());
+//     // $('#post-modal .full-content, #post-modal .tag-name').show();
+//     //$('#post-modal').openModal();
+//     let slug = $(this).attr('slug');
+//     let currentView = $('.isotope-container').html();
+//     getPosts(`filter[name]=${slug}&`, 1, false);
+//     let stateObj = {foo: 'bar'};
+//
+//     $('.isotope-container').html('');
+//
+//     window.location.hash = slug;
+//     initCatCardFilters();
+//     initTagFilters();
+//
+//     $('.modal-content h4').text($(this).parent().parent().find('.card-title').text());
+//     $('.modal-content p').html($(this).parent().parent().find('.full-content').html());
+//     $('.full-content, .tag-name').show();
+//     });
+//
+//     //Card Images
+//     $('.card-image img').click(function(){
+//       $(this).parent().parent().find('.expand-card').trigger('click');
+//       console.log($(this).parent().parent().find('.expand-card'));
+//     });
+//   }
+//
+// $('#post-modal .modal-close, .lean-overlay').click(function(){
+//   $('#post-modal').closeModal();
+//   let stateObj = {old: 'state'};
+//   window.location.hash = currentPath;
+// });
 
 // $('.expand-card').leanModal({
 //   ready: function() { alert('Ready'); },
@@ -204,8 +198,28 @@ $('#post-modal .modal-close, .lean-overlay').click(function(){
       setTimeout(tryAgain, 200);
     }
   }
-  tryAgain();
+  //tryAgain();
 
+  var path = window.location.hash.split("#")[1];
+  // Fires when the url changes
+    window.onhashchange = function(event) {
+      path = window.location.hash.split("#")[1];
+      $('.isotope-container').html('');
+      if (window.location.hash !== "") {
+        $('.isotope-container').html('');
+        getPosts(`filter[name]=${path}&`, 1, false);
+      } else {
+        tryAgain();
+      }
+      console.log(path);
+    };
+
+    if (window.location.hash !== "") {
+      $('.isotope-container').html('');
+      getPosts(`filter[name]=${path}&`, 1, false);
+    } else {
+      tryAgain();
+    }
 
   // Get Posts
   function getPosts(filterOpts='', perPage=100, isotopeInit=true) {
@@ -321,7 +335,7 @@ $('#post-modal .modal-close, .lean-overlay').click(function(){
               </div>
             </div>
             <div class="card-action">
-              <a class="expand-card" slug="${post.slug}">More</a>
+              <a class="expand-card" href="#${post.slug}" slug="${post.slug}">More</a>
             </div>
           </div>
         </div>` );
