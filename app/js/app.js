@@ -84,13 +84,19 @@ function initTagFilters () {
 }
 
   //More button on post cards
+  var currentPath;
   function expandCard() {
+
   $('.expand-card').click(function(){
 
+    currentPath = window.location.pathname;
+    console.log(currentPath);
     $('#post-modal .modal-content h4').text($(this).parent().parent().find('.card-title').text());
     $('#post-modal .modal-content p').html($(this).parent().parent().find('.full-content').html());
     $('#post-modal .full-content, #post-modal .tag-name').show();
     $('#post-modal').openModal();
+    let stateObj = {foo: 'bar'}
+    history.pushState(stateObj, "teststate", $(this).attr('slug'));
     initCatCardFilters();
     initTagFilters();
     });
@@ -102,7 +108,22 @@ function initTagFilters () {
     });
   }
 
+$('#post-modal .modal-close, .lean-overlay').click(function(){
+  $('#post-modal').closeModal();
+  let stateObj = {old: 'state'};
+  history.pushState(stateObj, "oldstate", currentPath);
+});
 
+
+  window.onpopstate = function() {
+
+    console.log('pop');
+  }
+
+$('.expand-card').leanModal({
+  ready: function() { alert('Ready'); },
+  complete: function() {console.log('closed');}
+});
 
 //   //On modal close
 // $('.modal-close').click(function(){
@@ -193,6 +214,8 @@ function initTagFilters () {
       getJSON(`${wpURL}wp-json/wp/v2/media?per_page=100`)
       .then(function(data){
         testImgArr = data;
+        // This function is now unnecessary, but still here because getPosts wont run until the image var has data
+
         for(let thisImage of data){
           if(thisImage.media_type === 'image') {
             images[thisImage.id] = {
@@ -224,13 +247,17 @@ function initTagFilters () {
     let cardImgArr;
     for(let post of data) {
 
+      // Get media url for this post from data saved as cardImgArr
      if(post.featured_media !== 0) {
       cardImgArr = testImgArr.filter(function( obj ) { return obj.id == post.featured_media });
+      //Check to make sure the desired image size exists
       if(cardImgArr[0].media_details.sizes.hasOwnProperty('post-thumbnail')) {
         cardImg = cardImgArr[0].media_details.sizes['post-thumbnail'].source_url;
       } else {
+        //If not load another size
         cardImg = cardImgArr[0].media_details.sizes.large.source_url;
       }
+        //This was were the image url initially came from
        //images[post.featured_media].large;
       cardImgTemp = `<div class="card-image">
                            <img src="${cardImg}"/>
@@ -238,7 +265,7 @@ function initTagFilters () {
      } else {
        cardImgTemp = '';
      }
-     console.log(cardImg);
+
     //  Get category data
     let categoryNames = "";
     let categoryIds = "";
@@ -284,7 +311,7 @@ function initTagFilters () {
               </div>
             </div>
             <div class="card-action">
-              <a class="expand-card">More</a>
+              <a class="expand-card" slug="${post.slug}">More</a>
             </div>
           </div>
         </div>` );
