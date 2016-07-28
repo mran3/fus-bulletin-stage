@@ -145,6 +145,27 @@ header, main, footer {
 .card .card-image {
   cursor: pointer; }
 
+.card.horizontal {
+  display: flex; }
+  .card.horizontal.small .card-image, .card.horizontal.medium .card-image, .card.horizontal.large .card-image {
+    height: 100%;
+    max-height: none;
+    overflow: visible; }
+    .card.horizontal.small .card-image img, .card.horizontal.medium .card-image img, .card.horizontal.large .card-image img {
+      height: 100%; }
+  .card.horizontal .card-image {
+    max-width: 50%; }
+    .card.horizontal .card-image img {
+      max-width: 100%;
+      width: auto; }
+  .card.horizontal .card-stacked {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    position: relative; }
+    .card.horizontal .card-stacked .card-content {
+      flex-grow: 1; }
+
 #tag-container {
   visibility: hidden; }
 

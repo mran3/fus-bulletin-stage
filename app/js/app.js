@@ -198,8 +198,9 @@ function initTagFilters () {
       setTimeout(tryAgain, 200);
     }
   }
-  //tryAgain();
 
+
+// Router
   var path = window.location.hash.split("#")[1];
   // Fires when the url changes
     window.onhashchange = function(event) {
@@ -220,6 +221,7 @@ function initTagFilters () {
     } else {
       tryAgain();
     }
+
 
   // Get Posts
   function getPosts(filterOpts='', perPage=100, isotopeInit=true) {
@@ -269,8 +271,12 @@ function initTagFilters () {
   function renderCards(data, isotopeInit=true) {
     let i = 0;
     let cardImgArr;
-    for(let post of data) {
 
+    // Check to see if multiple posts will be rendered
+    if (data.length > 1) {
+
+      //if so, then render post cards
+    for(let post of data) {
       // Get media url for this post from data saved as cardImgArr
      if(post.featured_media !== 0) {
       cardImgArr = testImgArr.filter(function( obj ) { return obj.id == post.featured_media });
@@ -337,23 +343,6 @@ function initTagFilters () {
 
         $(`div[post-id="${post.id}"] .more-link`).attr('href', `#${post.slug}`);
 
-  //TODO: Convert the followin to use the category names and id's from the pure taxonomy fields
-     //Attach Category names to cards
-    //  $.each(post.categories, function(i, category){
-    //    $(`div[post-id="${post.id}"] .content`).prepend(`<div class="cat-name" data-filter=".${category}">${categories[category]}</div>`);
-    //  });
-
-
-
-     //Attach Tag names to cards
-    //  $.each(post.tags, function(i, tag){
-    //    $(`div[post-id="${post.id}"] .content`).append(`<span class="tag-name" data-filter=".t${tag}">${tags[tag]} </span>`);
-     //
-    //    //Add tag IDs as classes for filtering
-    //    $(`div[post-id="${post.id}"]`).parent().addClass(`t${tag}`);
-     //
-    //  });
-
      if (i === data.length - 1) {
 
        $('.isotope-container').imagesLoaded(function(){
@@ -369,6 +358,144 @@ function initTagFilters () {
      }
      i++;
    }
+  } else {
+    //if data contained only one post, render single post view
+    for(let post of data) {
+      // Get media url for this post from data saved as cardImgArr
+     if(post.featured_media !== 0) {
+      cardImgArr = testImgArr.filter(function( obj ) { return obj.id == post.featured_media });
+      //Check to make sure the desired image size exists
+      if(cardImgArr[0].media_details.sizes.hasOwnProperty('post-thumbnail')) {
+        cardImg = cardImgArr[0].media_details.sizes['post-thumbnail'].source_url;
+      } else {
+        //If not load another size
+        cardImg = cardImgArr[0].media_details.sizes.large.source_url;
+      }
+        //This was were the image url initially came from
+       //images[post.featured_media].large;
+      cardImgTemp = `<div class="card-image">
+                           <img src="${cardImg}"/>
+                         </div>`;
+     } else {
+       cardImgTemp = '';
+     }
+
+    //  Get category data
+    let categoryNames = "";
+    let categoryIds = "";
+    let categoryTemplate = "";
+    if (post.pure_taxonomies.categories !== undefined) {
+       let categoryData = post.pure_taxonomies.categories;
+
+       for(let category of categoryData) {
+         categoryNames = categoryNames + " " + category.name;
+         categoryIds = `${categoryIds} .${category.cat_ID}`;
+         categoryTemplate = `${categoryTemplate} <div class="cat-name" data-filter=".${category.cat_ID}">${category.name}</div>`;
+       }
+     }
+
+    //  Get tag data
+    let tagNames = "";
+    let tagIds = "";
+    let tagTemplate = ""
+    if (post.pure_taxonomies.tags !== undefined) {
+       let tagData = post.pure_taxonomies.tags;
+
+       for(let tag of tagData) {
+         tagNames = tagNames + " " + tag.name;
+         tagIds = `${tagIds} t${tag.term_id}`;
+         tagTemplate = `${tagTemplate} <span class="tag-name" data-filter=.t${tag.term_id}>${tag.name},</span>`;
+       }
+     }
+
+     $( '.isotope-container' ).append(
+       `<div class="col s12 m6 l12 ${post.categories}${tagIds}">
+         <div class="card isotope-item ${tagIds}">
+            ${cardImgTemp}
+            <div class="card-content" post-id=${post.id}>
+              <div class="card-title">
+                <a href="#${post.slug}">${post.title.rendered}</a>
+              </div>
+              <div class="content excerpt">
+                ${categoryTemplate}
+                ${post.content.rendered}
+              </div>
+            </div>
+            <div class="card-action">
+              <h6>Tags</h6>
+              ${tagTemplate}
+            </div>
+          </div>
+        </div>` );
+
+        $(`div[post-id="${post.id}"] .more-link`).attr('href', `#${post.slug}`);
+
+    //  if (i === data.length - 1) {
+     //
+    //    $('.isotope-container').imagesLoaded(function(){
+    //      if (isotopeInit === true) {
+    //       isotopeizeInit();
+     //
+    //      } else {
+    //        $container.isotope('destroy');
+    //        isotopeizeInit();
+    //      }
+    //    });
+     //
+    //  }
+     i++;
+
+     //Add related posts
+     getJSON(`${wpURL}wp-json/wp/v2/posts/?filter[category_name]=${post.pure_taxonomies.categories[0].slug}&per_page=3`)
+     .then(function(data){
+       for(let relatedPost of data) {
+         if(relatedPost.featured_media !== 0) {
+          cardImgArr = testImgArr.filter(function( obj ) { return obj.id == relatedPost.featured_media });
+          //Check to make sure the desired image size exists
+          if(cardImgArr[0].media_details.sizes.hasOwnProperty('post-thumbnail')) {
+            cardImg = cardImgArr[0].media_details.sizes['post-thumbnail'].source_url;
+          } else {
+            //If not load another size
+            cardImg = cardImgArr[0].media_details.sizes.large.source_url;
+          }
+            //This was were the image url initially came from
+           //images[post.featured_media].large;
+          cardImgTemp = `<div class="card-image">
+                               <img src="${cardImg}"/>
+                             </div>`;
+         } else {
+           cardImgTemp = '';
+         }
+
+
+         let relatedPostsTemp = `
+         <div class="col s12 m4">
+           <div class="card horizontal">
+             ${cardImgTemp}
+             <div class="card-stacked">
+               <div class="card-content">
+                 <p>I am a very simple card. I am good at containing small bits of information.</p>
+               </div>
+               <div class="card-action">
+                 <a href="#">This is a link</a>
+               </div>
+             </div>
+           </div>
+         </div>
+         `
+         $('#related-posts').append(relatedPostsTemp);
+       }
+     })
+     .catch(function(error) {
+       console.log(error);
+     });
+
+     }
+
+   }
+
+
+
  }
 
 //Init side nav

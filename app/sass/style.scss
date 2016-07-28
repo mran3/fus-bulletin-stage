@@ -228,6 +228,42 @@ header, main, footer {
   .card-image {
     cursor: pointer;
   }
+
+  // Horizontal Cards
+&.horizontal {
+  &.small, &.medium, &.large {
+    .card-image {
+      height: 100%;
+      max-height: none;
+      overflow: visible;
+
+      img {
+        height: 100%;
+      }
+    }
+  }
+
+  display: flex;
+
+  .card-image {
+    max-width: 50%;
+    img {
+      max-width: 100%;
+      width: auto;
+    }
+  }
+
+  .card-stacked {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    position: relative;
+
+    .card-content {
+      flex-grow: 1;
+    }
+  }
+}
 }
 
 #tag-container {
