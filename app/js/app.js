@@ -314,7 +314,7 @@ function initTagFilters () {
        for(let tag of tagData) {
          tagNames = tagNames + " " + tag.name;
          tagIds = `${tagIds} t${tag.term_id}`;
-         tagTemplate = `${tagTemplate} <span class="tag-name" data-filter=.t${tag.term_id}>${tag.name}</span>`;
+         tagTemplate = `${tagTemplate} <span class="tag-name" data-filter=.t${tag.term_id}>${tag.name},</span>`;
        }
      }
 
@@ -323,22 +323,19 @@ function initTagFilters () {
          <div class="card isotope-item ${tagIds}">
             ${cardImgTemp}
             <div class="card-content" post-id=${post.id}>
-              <div class="card-title">${post.title.rendered}</div>
+              <div class="card-title">
+                <a href="#${post.slug}">${post.title.rendered}</a>
+              </div>
               <div class="content excerpt">
                 ${categoryTemplate}
                 ${post.excerpt.rendered}
               </div>
-              <div class="content full-content">
-              ${categoryTemplate}
-                ${post.content.rendered}
-                ${tagTemplate}
-              </div>
             </div>
-            <div class="card-action">
-              <a class="expand-card" href="#${post.slug}" slug="${post.slug}">More</a>
-            </div>
+
           </div>
         </div>` );
+
+        $(`div[post-id="${post.id}"] .more-link`).attr('href', `#${post.slug}`);
 
   //TODO: Convert the followin to use the category names and id's from the pure taxonomy fields
      //Attach Category names to cards
@@ -358,10 +355,6 @@ function initTagFilters () {
     //  });
 
      if (i === data.length - 1) {
-
-       expandCard();
-       $('.full-content').hide();
-       $('.tag-name').hide();
 
        $('.isotope-container').imagesLoaded(function(){
          if (isotopeInit === true) {

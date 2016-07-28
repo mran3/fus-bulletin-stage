@@ -142,12 +142,6 @@ header, main, footer {
   .card .cat-name:hover, .card .tag-name:hover {
     cursor: pointer; }
 
-.card .more-link {
-  display: none; }
-
-.card .expand-card {
-  cursor: pointer; }
-
 .card .card-image {
   cursor: pointer; }
 
