@@ -137,6 +137,9 @@ header, main, footer {
   line-height: 30px;
   margin-bottom: 15px; }
 
+.card .card-content .post-date {
+  display: block; }
+
 .card .cat-name, .card .tag-name {
   color: #ffc658; }
   .card .cat-name:hover, .card .tag-name:hover {

@@ -205,13 +205,11 @@ function initCatCardFilters() {
   viewType, viewTypePath;
 
 
-  if (path.includes('/') === true) {
+  if (path !== undefined && path.includes('/') === true) {
     viewType = path.split("/")[0];
     viewTypePath = path.split("/")[1];
 
   }
-  viewType = path.split("/")[0],
-  viewTypePath = path.split("/")[1];
 
   // Fires when the url changes
     window.onhashchange = function(event) {
@@ -231,7 +229,7 @@ function initCatCardFilters() {
     };
 
     $('.isotope-container, #related-posts, .related-posts-row h3').html('');
-    if (path.includes('/') === true) {
+    if (path !== undefined && path.includes('/') === true) {
       viewType = path.split("/")[0];
       viewTypePath = path.split("/")[1];
       getPosts(`filter[${viewType}]=${viewTypePath}&`, 20, false);
@@ -293,7 +291,7 @@ function initCatCardFilters() {
     let cardImgArr;
 
     // Check to see if multiple posts will be rendered
-    if (window.location.hash.includes('/') === true || window.location.hash.split('#')[1] === "") {
+    if (window.location.hash.includes('/') === true || window.location.hash.split('#')[1] === "" || window.location.hash === "") {
 
       //if so, then render post cards
     for(let post of data) {
@@ -428,6 +426,7 @@ function initCatCardFilters() {
           ${tagTemplate} <a href="#tag/${tag.slug}" class="tag-link"><span class="tag-name" data-filter=.t${tag.term_id}>${tag.name},</span></a>`;
        }
      }
+     let thisDate = new Date(post.date);
 
      $( '.isotope-container' ).append(
        `<div class="col s12 m6 l12 ${post.categories}${tagIds}">
@@ -436,6 +435,7 @@ function initCatCardFilters() {
             <div class="card-content" post-id=${post.id}>
               <div class="card-title">
                 <a href="#${post.slug}">${post.title.rendered}</a>
+                <span class="post-date">${thisDate.getMonth()}/${thisDate.getDate()}/${thisDate.getFullYear()}</span>
               </div>
               <div class="content excerpt">
                 ${categoryTemplate}
