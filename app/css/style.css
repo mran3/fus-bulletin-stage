@@ -142,6 +142,9 @@ header, main, footer {
   .card .cat-name:hover, .card .tag-name:hover {
     cursor: pointer; }
 
+.card .card-action .tag-link {
+  margin-right: 8px !important; }
+
 .card .card-image {
   cursor: pointer; }
 
@@ -165,9 +168,6 @@ header, main, footer {
     position: relative; }
     .card.horizontal .card-stacked .card-content {
       flex-grow: 1; }
-
-#tag-container {
-  visibility: hidden; }
 
 .fourths {
   width: 23%; }

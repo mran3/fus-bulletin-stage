@@ -225,6 +225,13 @@ header, main, footer {
     }
   }
 
+  .card-action {
+    .tag-link {
+      margin-right: 8px !important;
+    }
+  }
+
+
   .card-image {
     cursor: pointer;
   }
@@ -264,10 +271,6 @@ header, main, footer {
     }
   }
 }
-}
-
-#tag-container {
-  visibility: hidden;
 }
 
 // .isotope-item {

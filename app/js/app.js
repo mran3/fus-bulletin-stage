@@ -47,7 +47,7 @@ $(function() {
     initCatCardFilters();
 
     //Init tags filtering
-    initTagFilters();
+  //  initTagFilters();
   }
 
 function initCatCardFilters() {
@@ -66,22 +66,22 @@ function initCatCardFilters() {
   });
 }
 
-function initTagFilters () {
-  // Tag filter (in card)
-  $('.tag-name').click(function(){
-
-     var selector = $(this).attr('data-filter');
-      $container.isotope({
-          filter: selector,
-          animationOptions: {
-              duration: 750,
-              easing: 'linear',
-              queue: false
-          }
-      });
-      return false;
-  });
-}
+// function initTagFilters () {
+//   // Tag filter (in card)
+//   $('.tag-name').click(function(){
+//
+//      var selector = $(this).attr('data-filter');
+//       $container.isotope({
+//           filter: selector,
+//           animationOptions: {
+//               duration: 750,
+//               easing: 'linear',
+//               queue: false
+//           }
+//       });
+//       return false;
+//   });
+// }
 
   //More button on post cards
 //   var currentPath;
@@ -169,7 +169,7 @@ function initTagFilters () {
 
       $('#mobile-demo').append(
         `
-          <li><a class="category" catID=".${category.id}" href="#category/${category.slug}">${category.name}</a></li>
+          <li><a class="category" catID=".${category.id}" href="#category_name/${category.slug}">${category.name}</a></li>
         `
       );
     });
@@ -211,7 +211,7 @@ function initTagFilters () {
         viewType = path.split("/")[0];
         viewTypePath = path.split("/")[1];
         console.log(viewType + " " + viewTypePath );
-        getPosts(`filter[${viewType}_name]=${viewTypePath}&`, 20, false);
+        getPosts(`filter[${viewType}]=${viewTypePath}&`, 20, false);
 
       } else if (window.location.hash !== "") {
         getPosts(`filter[name]=${path}&`, 1, false);
@@ -410,7 +410,8 @@ function initTagFilters () {
        for(let tag of tagData) {
          tagNames = tagNames + " " + tag.name;
          tagIds = `${tagIds} t${tag.term_id}`;
-         tagTemplate = `${tagTemplate} <span class="tag-name" data-filter=.t${tag.term_id}>${tag.name},</span>`;
+         tagTemplate = `
+          ${tagTemplate} <a href="#tag/${tag.slug}" class="tag-link"><span class="tag-name" data-filter=.t${tag.term_id}>${tag.name},</span></a>`;
        }
      }
 
