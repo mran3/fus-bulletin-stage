@@ -201,7 +201,18 @@ function initCatCardFilters() {
 
 
 // Router
-  var path = window.location.hash.split("#")[1];
+  var path = window.location.hash.split("#")[1],
+  viewType, viewTypePath;
+
+
+  if (path.includes('/') === true) {
+    viewType = path.split("/")[0];
+    viewTypePath = path.split("/")[1];
+
+  }
+  viewType = path.split("/")[0],
+  viewTypePath = path.split("/")[1];
+
   // Fires when the url changes
     window.onhashchange = function(event) {
       path = window.location.hash.split("#")[1];
@@ -210,7 +221,6 @@ function initCatCardFilters() {
       if (path.includes('/') === true) {
         viewType = path.split("/")[0];
         viewTypePath = path.split("/")[1];
-        console.log(viewType + " " + viewTypePath );
         getPosts(`filter[${viewType}]=${viewTypePath}&`, 20, false);
 
       } else if (window.location.hash !== "") {
@@ -218,11 +228,15 @@ function initCatCardFilters() {
       } else {
         tryAgain();
       }
-      console.log(path);
     };
 
-    if (window.location.hash !== "") {
-      $('.isotope-container, #related-posts, .related-posts-row h3').html('');
+    $('.isotope-container, #related-posts, .related-posts-row h3').html('');
+    if (path.includes('/') === true) {
+      viewType = path.split("/")[0];
+      viewTypePath = path.split("/")[1];
+      getPosts(`filter[${viewType}]=${viewTypePath}&`, 20, false);
+
+    } else if (window.location.hash !== "") {
       getPosts(`filter[name]=${path}&`, 1, false);
     } else {
       tryAgain();
