@@ -205,7 +205,7 @@ function initCatCardFilters() {
   // Fires when the url changes
     window.onhashchange = function(event) {
       path = window.location.hash.split("#")[1];
-      $('.isotope-container, #related-posts, .related-posts-row').html('');
+      $('.isotope-container, #related-posts, .related-posts-row h3').html('');
 
       if (path.includes('/') === true) {
         viewType = path.split("/")[0];
@@ -222,7 +222,7 @@ function initCatCardFilters() {
     };
 
     if (window.location.hash !== "") {
-      $('.isotope-container, #related-posts, .related-posts-row').html('');
+      $('.isotope-container, #related-posts, .related-posts-row h3').html('');
       getPosts(`filter[name]=${path}&`, 1, false);
     } else {
       tryAgain();
@@ -490,6 +490,7 @@ function initCatCardFilters() {
          </div>
          `
          $('#related-posts').append(relatedPostsTemp);
+         $('.related-posts-row h3').text('You may also be interested in...');
        }
      })
      .catch(function(error) {
