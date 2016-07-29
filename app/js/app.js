@@ -604,7 +604,8 @@ console.log('3chars');
 console.log('hi');
           // make the search request
           $('.isotope-container').html('');
-          getPosts(`filter[s]=${val}&`, total, false);
+          //getPosts(`filter[s]=${val}&`, total, false);
+          window.location.hash = `s/${val}`;
 
         }
 
