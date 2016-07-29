@@ -28,20 +28,20 @@ $(function() {
 
     isotopeize();
 
-    // Category filter (sidebar)
-    $('#mobile-demo .category').click(function(){
-      selector = $(this).attr('catid');
-      $('.button-collapse').sideNav('hide');
-      $container.isotope({
-          filter: selector,
-          animationOptions: {
-              duration: 750,
-              easing: 'linear',
-              queue: false
-          }
-      });
-      return false;
-    });
+    // // Category filter (sidebar)
+    // $('#mobile-demo .category').click(function(){
+    //   selector = $(this).attr('catid');
+    //   $('.button-collapse').sideNav('hide');
+    //   $container.isotope({
+    //       filter: selector,
+    //       animationOptions: {
+    //           duration: 750,
+    //           easing: 'linear',
+    //           queue: false
+    //       }
+    //   });
+    //   return false;
+    // });
 
     //Init category card filtering from the category name displayed on the cards
     initCatCardFilters();
@@ -169,7 +169,7 @@ function initTagFilters () {
 
       $('#mobile-demo').append(
         `
-          <li><a class="category" catID=".${category.id}">${category.name}</a></li>
+          <li><a class="category" catID=".${category.id}" href="#category/${category.slug}">${category.name}</a></li>
         `
       );
     });
@@ -205,9 +205,15 @@ function initTagFilters () {
   // Fires when the url changes
     window.onhashchange = function(event) {
       path = window.location.hash.split("#")[1];
-      $('.isotope-container').html('');
-      if (window.location.hash !== "") {
-        $('.isotope-container').html('');
+      $('.isotope-container, #related-posts, .related-posts-row').html('');
+
+      if (path.includes('/') === true) {
+        viewType = path.split("/")[0];
+        viewTypePath = path.split("/")[1];
+        console.log(viewType + " " + viewTypePath );
+        getPosts(`filter[${viewType}_name]=${viewTypePath}&`, 20, false);
+
+      } else if (window.location.hash !== "") {
         getPosts(`filter[name]=${path}&`, 1, false);
       } else {
         tryAgain();
@@ -216,7 +222,7 @@ function initTagFilters () {
     };
 
     if (window.location.hash !== "") {
-      $('.isotope-container').html('');
+      $('.isotope-container, #related-posts, .related-posts-row').html('');
       getPosts(`filter[name]=${path}&`, 1, false);
     } else {
       tryAgain();
@@ -273,7 +279,7 @@ function initTagFilters () {
     let cardImgArr;
 
     // Check to see if multiple posts will be rendered
-    if (data.length > 1) {
+    if (window.location.hash.includes('/') === true || window.location.hash.split('#')[1] === "") {
 
       //if so, then render post cards
     for(let post of data) {
@@ -430,19 +436,19 @@ function initTagFilters () {
 
         $(`div[post-id="${post.id}"] .more-link`).attr('href', `#${post.slug}`);
 
-    //  if (i === data.length - 1) {
-     //
-    //    $('.isotope-container').imagesLoaded(function(){
-    //      if (isotopeInit === true) {
-    //       isotopeizeInit();
-     //
-    //      } else {
-    //        $container.isotope('destroy');
-    //        isotopeizeInit();
-    //      }
-    //    });
-     //
-    //  }
+     if (i === data.length - 1) {
+
+       $('.isotope-container').imagesLoaded(function(){
+         if (isotopeInit === true) {
+          isotopeizeInit();
+
+         } else {
+           $container.isotope('destroy');
+           isotopeizeInit();
+         }
+       });
+
+     }
      i++;
 
      //Add related posts
@@ -470,17 +476,16 @@ function initTagFilters () {
 
          let relatedPostsTemp = `
          <div class="col s12 m4">
-           <div class="card horizontal">
+          <a href="#${relatedPost.slug}">
+           <div class="card hoverable">
              ${cardImgTemp}
              <div class="card-stacked">
                <div class="card-content">
-                 <p>I am a very simple card. I am good at containing small bits of information.</p>
-               </div>
-               <div class="card-action">
-                 <a href="#">This is a link</a>
+                 <p>${relatedPost.title.rendered}</p>
                </div>
              </div>
            </div>
+           </a>
          </div>
          `
          $('#related-posts').append(relatedPostsTemp);
@@ -500,7 +505,7 @@ function initTagFilters () {
 
 //Init side nav
 $(".button-collapse").sideNav({
-  closeOnClick: true,
+  //closeOnClick: true,
   menuWidth: 300
 });
 
