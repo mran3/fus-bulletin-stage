@@ -216,7 +216,7 @@ function initCatCardFilters() {
       path = window.location.hash.split("#")[1];
       $('.isotope-container, #related-posts, .related-posts-row h3').html('');
 
-      if (path.includes('/') === true) {
+      if (path !== undefined && path.includes('/') === true) {
         viewType = path.split("/")[0];
         viewTypePath = path.split("/")[1];
         getPosts(`filter[${viewType}]=${viewTypePath}&`, 20, false);
@@ -297,19 +297,16 @@ function initCatCardFilters() {
     for(let post of data) {
       // Get media url for this post from data saved as cardImgArr
      if(post.featured_media !== 0) {
-      cardImgArr = testImgArr.filter(function( obj ) { return obj.id == post.featured_media });
-      //Check to make sure the desired image size exists
-      if(cardImgArr[0].media_details.sizes.hasOwnProperty('post-thumbnail')) {
-        cardImg = cardImgArr[0].media_details.sizes['post-thumbnail'].source_url;
-      } else {
-        //If not load another size
-        cardImg = cardImgArr[0].media_details.sizes.large.source_url;
-      }
+
+      let thumb = post.better_featured_image.media_details.sizes.thumbnail.source_url;
+      let medium = post.better_featured_image.media_details.sizes.medium.source_url;
+      let mediumLarge = post.better_featured_image.media_details.sizes.medium_large.source_url;
+      let large = post.better_featured_image.media_details.sizes.large.source_url;
         //This was were the image url initially came from
        //images[post.featured_media].large;
       cardImgTemp = `<div class="card-image">
-                           <img src="${cardImg}"/>
-                         </div>`;
+                       <img src="${thumb}" sizes="(max-width: 600px) 95vw, 50vw" srcset="${thumb} 150w, ${medium} 300w, ${mediumLarge} 700w, ${large} 1000w" />
+                    </div>`;
      } else {
        cardImgTemp = '';
      }
@@ -381,19 +378,15 @@ function initCatCardFilters() {
     for(let post of data) {
       // Get media url for this post from data saved as cardImgArr
      if(post.featured_media !== 0) {
-      cardImgArr = testImgArr.filter(function( obj ) { return obj.id == post.featured_media });
-      //Check to make sure the desired image size exists
-      if(cardImgArr[0].media_details.sizes.hasOwnProperty('post-thumbnail')) {
-        cardImg = cardImgArr[0].media_details.sizes['post-thumbnail'].source_url;
-      } else {
-        //If not load another size
-        cardImg = cardImgArr[0].media_details.sizes.large.source_url;
-      }
-        //This was were the image url initially came from
-       //images[post.featured_media].large;
-      cardImgTemp = `<div class="card-image">
-                           <img src="${cardImg}"/>
-                         </div>`;
+       let thumb = post.better_featured_image.media_details.sizes.thumbnail.source_url;
+       let medium = post.better_featured_image.media_details.sizes.medium.source_url;
+       let mediumLarge = post.better_featured_image.media_details.sizes.medium_large.source_url;
+       let large = post.better_featured_image.media_details.sizes.large.source_url;
+         //This was were the image url initially came from
+        //images[post.featured_media].large;
+       cardImgTemp = `<div class="card-image">
+                        <img src="${thumb}" sizes="(max-width: 993px) 95vw, 75vw" srcset="${thumb} 150w, ${medium} 300w, ${mediumLarge} 700w, ${large} 1000w" />
+                     </div>`;
      } else {
        cardImgTemp = '';
      }
@@ -452,17 +445,7 @@ function initCatCardFilters() {
         $(`div[post-id="${post.id}"] .more-link`).attr('href', `#${post.slug}`);
 
      if (i === data.length - 1) {
-
-       $('.isotope-container').imagesLoaded(function(){
-         if (isotopeInit === true) {
-          isotopeizeInit();
-
-         } else {
            $container.isotope('destroy');
-           isotopeizeInit();
-         }
-       });
-
      }
      i++;
 
@@ -471,23 +454,17 @@ function initCatCardFilters() {
      .then(function(data){
        for(let relatedPost of data) {
          if(relatedPost.featured_media !== 0) {
-          cardImgArr = testImgArr.filter(function( obj ) { return obj.id == relatedPost.featured_media });
-          //Check to make sure the desired image size exists
-          if(cardImgArr[0].media_details.sizes.hasOwnProperty('post-thumbnail')) {
-            cardImg = cardImgArr[0].media_details.sizes['post-thumbnail'].source_url;
-          } else {
-            //If not load another size
-            cardImg = cardImgArr[0].media_details.sizes.large.source_url;
-          }
+           thumb = relatedPost.better_featured_image.media_details.sizes.thumbnail.source_url;
+           medium = relatedPost.better_featured_image.media_details.sizes.medium.source_url;
+
             //This was were the image url initially came from
            //images[post.featured_media].large;
           cardImgTemp = `<div class="card-image">
-                               <img src="${cardImg}"/>
+                               <img src="${medium}"/>
                              </div>`;
          } else {
            cardImgTemp = '';
          }
-
 
          let relatedPostsTemp = `
          <div class="col s12 m4">
