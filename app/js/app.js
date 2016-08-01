@@ -507,34 +507,44 @@ $(".button-collapse").sideNav({
   var $searchInput,
     searchLen;
 
-  $('.search-nav').addClass('hide-nav');
+  // $('.search-nav').addClass('hide-nav');
 
-  $('.search-icon, .mobile-search-item').click(function(){
-    //Hide navs
-    $('nav').removeClass('show-nav').addClass('hide-nav');
+  // $('.search-icon, .mobile-search-item').click(function(){
+  //   //Hide navs
+  //   $('nav').removeClass('show-nav').addClass('hide-nav');
+  //
+  //   //Show search nav
+  //   $('.search-nav').removeClass('hide-nav').addClass('show-nav');
+  //   //Init select input
+  //   $('.search-nav select').material_select();
+  //
+  //
+  //
+  // });
+  //
+  // $('.search-nav .close-search, .section').not('.search-view').click(function(){
+  //   if ($('.search-nav').hasClass('show-nav') === true) {
+  //     //Hide nav
+  //     $('nav').removeClass('show-nav').addClass('hide-nav');
+  //
+  //     //Show main nav
+  //     $('.main-nav').removeClass('hide-nav').addClass('show-nav');
+  //   }
+  // });
 
-    //Show search nav
-    $('.search-nav').removeClass('hide-nav').addClass('show-nav');
-    //Init select input
-    $('.search-nav select').material_select();
-
-    //Put cursor in search input
-    $searchInput = $('#search');
-    $searchInput.focus();
-
+  $('.search-form').hide();
+  $('.search-icon').click(function(){
+    $('.page-title, nav ul.right, nav .button-collapse').hide();
+    $('.search-form').show();
+    // Put cursor in search input
+      $searchInput = $('#search');
+      $searchInput.focus();
   });
 
-  $('.search-nav .close-search, .section').not('.search-view').click(function(){
-    if ($('.search-nav').hasClass('show-nav') === true) {
-      //Hide nav
-      $('nav').removeClass('show-nav').addClass('hide-nav');
-
-      //Show main nav
-      $('.main-nav').removeClass('hide-nav').addClass('show-nav');
-    }
+  $('.search-nav .close-search').click(function(){
+    $('.page-title, nav ul.right, nav .button-collapse').show();
+    $('.search-form').hide();
   });
-
-
 
   //Search input
   // adapted from https://github.com/bearded-avenger/wp-live-search/blob/master/public/assets/js/wp-live-search.js
