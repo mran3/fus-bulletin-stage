@@ -3,7 +3,7 @@ var testImgArr;
 
 $(function() {
   var wpURL = 'https://franciscan.university/fus-bulletin/';
-  getImages();
+//  getImages();
 
   var $container = $('.isotope-container'),
   selector;
@@ -191,13 +191,13 @@ function initCatCardFilters() {
   });
 
 // Fetch and render posts when images are ready
-  function tryAgain() {
-    if (Object.keys(images).length !== 0) {
-      getPosts();
-    } else {
-      setTimeout(tryAgain, 200);
-    }
-  }
+  // function tryAgain() {
+  //   if (Object.keys(images).length !== 0) {
+  //     getPosts();
+  //   } else {
+  //     setTimeout(tryAgain, 200);
+  //   }
+  // }
 
 
 // Router
@@ -219,12 +219,14 @@ function initCatCardFilters() {
       if (path !== undefined && path.includes('/') === true) {
         viewType = path.split("/")[0];
         viewTypePath = path.split("/")[1];
+        // $('.isotope-container').html(`<h3>${viewTypePath}</h3>`);
         getPosts(`filter[${viewType}]=${viewTypePath}&`, 20, false);
+
 
       } else if (window.location.hash !== "") {
         getPosts(`filter[name]=${path}&`, 1, false);
       } else {
-        tryAgain();
+        getPosts();
       }
     };
 
@@ -237,9 +239,8 @@ function initCatCardFilters() {
     } else if (window.location.hash !== "") {
       getPosts(`filter[name]=${path}&`, 1, false);
     } else {
-      tryAgain();
+      getPosts();
     }
-
 
   // Get Posts
   function getPosts(filterOpts='', perPage=100, isotopeInit=true) {
@@ -254,29 +255,29 @@ function initCatCardFilters() {
 
 
     // Get Images
-    function getImages() {
-      getJSON(`${wpURL}wp-json/wp/v2/media?per_page=100`)
-      .then(function(data){
-        testImgArr = data;
-        // This function is now unnecessary, but still here because getPosts wont run until the image var has data
-
-        for(let thisImage of data){
-          if(thisImage.media_type === 'image') {
-            images[thisImage.id] = {
-              thumb: thisImage.media_details.sizes.thumbnail.source_url || "",
-              medium: thisImage.media_details.sizes.medium.source_url || "",
-              'medium-large': thisImage.media_details.sizes.medium_large.source_url || "",
-              large: thisImage.media_details.sizes.large.source_url || "",
-              // 'post-thumb': (function(){if(thisImage.media_details.sizes.hasOwnProperty('post-thumbnail')){return thisImage.media_details.sizes['post-thumbnail'].source_url !== undefined}else{return ""}})(),
-              full: thisImage.media_details.sizes.full.source_url || ""
-            };
-          }
-        }
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-    }
+    // function getImages() {
+    //   getJSON(`${wpURL}wp-json/wp/v2/media?per_page=100`)
+    //   .then(function(data){
+    //     testImgArr = data;
+    //     // This function is now unnecessary, but still here because getPosts wont run until the image var has data
+    //
+    //     for(let thisImage of data){
+    //       if(thisImage.media_type === 'image') {
+    //         images[thisImage.id] = {
+    //           thumb: thisImage.media_details.sizes.thumbnail.source_url || "",
+    //           medium: thisImage.media_details.sizes.medium.source_url || "",
+    //           'medium-large': thisImage.media_details.sizes.medium_large.source_url || "",
+    //           large: thisImage.media_details.sizes.large.source_url || "",
+    //           // 'post-thumb': (function(){if(thisImage.media_details.sizes.hasOwnProperty('post-thumbnail')){return thisImage.media_details.sizes['post-thumbnail'].source_url !== undefined}else{return ""}})(),
+    //           full: thisImage.media_details.sizes.full.source_url || ""
+    //         };
+    //       }
+    //     }
+    //   })
+    //   .catch(function(error) {
+    //     console.log(error);
+    //   });
+    // }
 
   // function checkUndefined(objName, keyName, valPath){
   //   if (valPath.hasOwnProperty(keyName)) {
@@ -293,6 +294,10 @@ function initCatCardFilters() {
     // Check to see if multiple posts will be rendered
     if (window.location.hash.includes('/') === true || window.location.hash.split('#')[1] === "" || window.location.hash === "") {
 
+      if (data[0] === undefined) {
+        $('.isotope-container').html('<h3>No matching posts</h3>');
+      } else {
+
       //if so, then render post cards
     for(let post of data) {
       // Get media url for this post from data saved as cardImgArr
@@ -305,7 +310,7 @@ function initCatCardFilters() {
         //This was were the image url initially came from
        //images[post.featured_media].large;
       cardImgTemp = `<div class="card-image">
-                       <img src="${thumb}" sizes="(max-width: 600px) 95vw, 50vw" srcset="${thumb} 150w, ${medium} 300w, ${mediumLarge} 700w, ${large} 1000w" />
+                       <img sizes="(max-width: 600px) 95vw, 50vw" srcset="${thumb} 150w, ${medium} 300w, ${mediumLarge} 700w, ${large} 1000w"  src="${medium}"/>
                     </div>`;
      } else {
        cardImgTemp = '';
@@ -359,20 +364,56 @@ function initCatCardFilters() {
         $(`div[post-id="${post.id}"] .more-link`).attr('href', `#${post.slug}`);
 
      if (i === data.length - 1) {
+      //  $('.isotope-container').imagesLoaded(function(){
+      //    setTimeout(function(){
+      //      if (isotopeInit === true) {
+      //       isotopeizeInit();
+      //      } else {
+      //        isotopeizeInit();
+      //        $container.isotope('destroy');
+      //        isotopeizeInit();
+      //      }
+      //    }, 100);
+      //  });
 
-       $('.isotope-container').imagesLoaded(function(){
-         if (isotopeInit === true) {
-          isotopeizeInit();
+       function waitForComputedSrcset (images, timeout, $dfd) {
+          $dfd = $dfd || $.Deferred();
+          console.log('waitForComputedSrcset');
+          var computed = 0,
+              length = images.length;
 
-         } else {
-           $container.isotope('destroy');
-           isotopeizeInit();
+          for (var i = 0; i < length; i++) {
+              if (images[i].hasOwnProperty('currentSrc') && !! !images[i].currentSrc) {
+                  window.setTimeout(this.waitForComputedSrcset.bind(this, images, timeout, $dfd), timeout);
+                  return $dfd;
+              }
+              computed++;
+          }
+          return (length === computed) ? $dfd.resolve(images) : $dfd;
+      }
+
+      var images = document.getElementsByTagName('img');
+
+      $.when(waitForComputedSrcset(images, 50))
+        .done(function(computedImages){
+
+        var length = images.length;
+          for (var i = 0; i < length; i++) {
+           if (images[i].hasOwnProperty('currentSrc') && !! !images[i].currentSrc) {
+            images[i].src = images[i].currentSrc;
          }
-       });
+        }
+
+        console.info('imagesComputed', computedImages);
+        imagesLoaded(images,function(instance){
+           console.info('imagesLoaded', instance);
+        });
+      });
 
      }
      i++;
    }
+  }
   } else {
     //if data contained only one post, render single post view
     for(let post of data) {
@@ -385,7 +426,7 @@ function initCatCardFilters() {
          //This was were the image url initially came from
         //images[post.featured_media].large;
        cardImgTemp = `<div class="card-image">
-                        <img src="${thumb}" sizes="(max-width: 993px) 95vw, 75vw" srcset="${thumb} 150w, ${medium} 300w, ${mediumLarge} 700w, ${large} 1000w" />
+                        <img  sizes="(max-width: 993px) 95vw, 75vw" srcset="${thumb} 150w, ${medium} 300w, ${mediumLarge} 700w, ${large} 1000w" src="${thumb}" />
                      </div>`;
      } else {
        cardImgTemp = '';
@@ -504,33 +545,7 @@ $(".button-collapse").sideNav({
 
 
  //Search input
-  var $searchInput,
-    searchLen;
-
-  // $('.search-nav').addClass('hide-nav');
-
-  // $('.search-icon, .mobile-search-item').click(function(){
-  //   //Hide navs
-  //   $('nav').removeClass('show-nav').addClass('hide-nav');
-  //
-  //   //Show search nav
-  //   $('.search-nav').removeClass('hide-nav').addClass('show-nav');
-  //   //Init select input
-  //   $('.search-nav select').material_select();
-  //
-  //
-  //
-  // });
-  //
-  // $('.search-nav .close-search, .section').not('.search-view').click(function(){
-  //   if ($('.search-nav').hasClass('show-nav') === true) {
-  //     //Hide nav
-  //     $('nav').removeClass('show-nav').addClass('hide-nav');
-  //
-  //     //Show main nav
-  //     $('.main-nav').removeClass('hide-nav').addClass('show-nav');
-  //   }
-  // });
+  var $searchInput;
 
   $('.search-form').hide();
   $('.search-icon').click(function(){
