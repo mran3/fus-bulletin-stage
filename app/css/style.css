@@ -222,6 +222,9 @@ header, main, footer {
     .card.horizontal .card-stacked .card-content {
       flex-grow: 1; }
 
+.single-post .card .card-image {
+  cursor: default; }
+
 .fourths {
   width: 23%; }
 

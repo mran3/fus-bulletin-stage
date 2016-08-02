@@ -296,7 +296,9 @@ function infiniteScroll() {
 
          path = window.location.hash.split("#")[1];
 
-       if (path !== undefined && path.includes('/') === true) {
+        if ($('.single-post').length > 0) {
+
+        } else if (path !== undefined && path.includes('/') === true) {
          viewType = path.split("/")[0];
          viewTypePath = path.split("/")[1];
          // $('.isotope-container').html(`<h3>${viewTypePath}</h3>`);
@@ -370,7 +372,7 @@ function infiniteScroll() {
         //This was were the image url initially came from
        //images[post.featured_media].large;
       cardImgTemp = `<div class="card-image">
-                       <img sizes="(max-width: 600px) 95vw, 50vw" srcset="${thumb} 150w, ${medium} 300w, ${mediumLarge} 700w, ${large} 1000w"  src="${medium}"/>
+                       <a href="#${post.slug}"><img sizes="(max-width: 600px) 95vw, 50vw" srcset="${thumb} 150w, ${medium} 300w, ${mediumLarge} 700w, ${large} 1000w"  src="${medium}"/></a>
                     </div>`;
      } else {
        cardImgTemp = '';
