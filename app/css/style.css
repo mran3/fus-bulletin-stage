@@ -137,15 +137,25 @@ header, main, footer {
 
 .container {
   max-width: 5000px; }
+  .container .row {
+    max-width: 1000px;
+    margin: 0 auto; }
 
 @media screen and (min-width: 2000px) {
   .isotope-container .col.l4 {
     width: 25%; } }
 
 .masonry {
-  column-count: 4;
-  column-gap: 1em; }
+  column-count: 6;
+  column-gap: 1em;
+  max-width: 3000px !important; }
+  @media screen and (max-width: 2300px) {
+    .masonry {
+      column-count: 5; } }
   @media screen and (max-width: 2000px) {
+    .masonry {
+      column-count: 4; } }
+  @media screen and (max-width: 1500px) {
     .masonry {
       column-count: 3; } }
   @media screen and (max-width: 1100px) {

@@ -211,6 +211,11 @@ header, main, footer {
 .container {
   max-width: 5000px;
 
+  .row {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
 }
 
 .isotope-container {
@@ -222,10 +227,19 @@ header, main, footer {
 }
 
 .masonry {
-  column-count: 4;
+  column-count: 6;
   column-gap: 1em;
+  max-width: 3000px !important;
+
+  @media screen and (max-width: 2300px) {
+    column-count: 5;
+  }
 
   @media screen and (max-width: 2000px) {
+    column-count: 4;
+  }
+
+  @media screen and (max-width: 1500px) {
     column-count: 3;
   }
 
