@@ -15,6 +15,7 @@ $(function() {
     $(this).hide();
     $('.list-btn').show();
     $('.isotope-container .col').not('.single-post').removeClass(cardSize);
+    $('.isotope-container').addClass('masonry');
     cardSize = 's12 m6 l4';
     $('.isotope-container .col').not('.single-post').addClass(cardSize);
 
@@ -24,6 +25,7 @@ $(function() {
     $(this).hide();
     $('.grid-btn').show();
     $('.isotope-container .col').not('.single-post').removeClass(cardSize);
+    $('.isotope-container').removeClass('masonry');
     cardSize = 's12 m12 l12';
     $('.isotope-container .col').not('.single-post').addClass(cardSize);
   });

@@ -31,6 +31,10 @@ body {
  main {
    flex: 1 0 auto;
    min-height: 100vh;
+
+   .container {
+     width: 90%;
+   }
  }
 
 header {
@@ -53,6 +57,10 @@ nav {
   .grid-btn, .list-btn {
     cursor: pointer;
     margin-right: 8px;
+
+    @media screen and (max-width: 600px) {
+      display: none!important;
+    }
   }
 }
 
@@ -212,6 +220,36 @@ header, main, footer {
     }
   }
 }
+
+.masonry {
+  column-count: 4;
+  column-gap: 1em;
+
+  @media screen and (max-width: 2000px) {
+    column-count: 3;
+  }
+
+  @media screen and (max-width: 1100px) {
+    column-count: 2;
+  }
+
+  @media screen and (max-width: 600px) {
+    column-count: 1;
+  }
+
+  .col {
+    display: inline-block !important;
+    float: none !important;
+    margin: 0 0 1em !important;
+    padding: 0 !important;
+    width: 100% !important;
+
+    .card {
+      margin: 0 !important;
+    }
+  }
+}
+
 
 // TODO: Style filters
 #filter-card {

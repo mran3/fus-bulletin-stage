@@ -22,6 +22,8 @@ body {
 main {
   flex: 1 0 auto;
   min-height: 100vh; }
+  main .container {
+    width: 90%; }
 
 header {
   height: 122px; }
@@ -38,6 +40,9 @@ nav {
   nav .grid-btn, nav .list-btn {
     cursor: pointer;
     margin-right: 8px; }
+    @media screen and (max-width: 600px) {
+      nav .grid-btn, nav .list-btn {
+        display: none !important; } }
 
 .side-nav .logo {
   height: 110px; }
@@ -136,6 +141,27 @@ header, main, footer {
 @media screen and (min-width: 2000px) {
   .isotope-container .col.l4 {
     width: 25%; } }
+
+.masonry {
+  column-count: 4;
+  column-gap: 1em; }
+  @media screen and (max-width: 2000px) {
+    .masonry {
+      column-count: 3; } }
+  @media screen and (max-width: 1100px) {
+    .masonry {
+      column-count: 2; } }
+  @media screen and (max-width: 600px) {
+    .masonry {
+      column-count: 1; } }
+  .masonry .col {
+    display: inline-block !important;
+    float: none !important;
+    margin: 0 0 1em !important;
+    padding: 0 !important;
+    width: 100% !important; }
+    .masonry .col .card {
+      margin: 0 !important; }
 
 #filter-card .card-content {
   height: 110px; }
