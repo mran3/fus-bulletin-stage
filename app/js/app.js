@@ -344,16 +344,20 @@ function initCatCardFilters() {
        }
      }
 
+     let thisDate = new Date(post.date);
+
      $( '.isotope-container' ).append(
        `<div class="col s12 m6 l12 ${post.categories}${tagIds}">
          <div class="card isotope-item ${tagIds}">
             ${cardImgTemp}
             <div class="card-content" post-id=${post.id}>
               <div class="card-title">
+              ${categoryTemplate}
                 <a href="#${post.slug}">${post.title.rendered}</a>
+                  <span class="post-date">${thisDate.getMonth()}/${thisDate.getDate()}/${thisDate.getFullYear()}</span>
               </div>
               <div class="content excerpt">
-                ${categoryTemplate}
+
                 ${post.excerpt.rendered}
               </div>
             </div>
@@ -375,6 +379,8 @@ function initCatCardFilters() {
       //      }
       //    }, 100);
       //  });
+
+
 
        function waitForComputedSrcset (images, timeout, $dfd) {
           $dfd = $dfd || $.Deferred();
@@ -468,11 +474,12 @@ function initCatCardFilters() {
             ${cardImgTemp}
             <div class="card-content" post-id=${post.id}>
               <div class="card-title">
+              ${categoryTemplate}
                 <a href="#${post.slug}">${post.title.rendered}</a>
                 <span class="post-date">${thisDate.getMonth()}/${thisDate.getDate()}/${thisDate.getFullYear()}</span>
               </div>
               <div class="content excerpt">
-                ${categoryTemplate}
+
                 ${post.content.rendered}
               </div>
             </div>
