@@ -545,7 +545,7 @@ function infiniteScroll() {
      i++;
 
      //Add related posts
-     getJSON(`${wpURL}wp-json/wp/v2/posts/?filter[category_name]=${post.pure_taxonomies.categories[0].slug}&per_page=4&exclude=${post.id}`)
+     getJSON(`${wpURL}wp-json/wp/v2/posts/?filter[category_name]=${post.pure_taxonomies.categories[0].slug}&per_page=3&exclude=${post.id}`)
      .then(function(data){
        for(let relatedPost of data) {
          if(relatedPost.featured_media !== 0) {
