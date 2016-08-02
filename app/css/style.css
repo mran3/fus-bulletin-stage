@@ -35,6 +35,9 @@ nav {
     margin-left: 25px; }
   nav .button-collapse {
     margin-left: 16px; }
+  nav .grid-btn, nav .list-btn {
+    cursor: pointer;
+    margin-right: 8px; }
 
 .side-nav .logo {
   height: 110px; }
@@ -129,6 +132,10 @@ header, main, footer {
 
 .container {
   max-width: 5000px; }
+
+@media screen and (min-width: 2000px) {
+  .isotope-container .col.l4 {
+    width: 25%; } }
 
 #filter-card .card-content {
   height: 110px; }

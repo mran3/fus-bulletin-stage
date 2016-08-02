@@ -49,6 +49,11 @@ nav {
   .button-collapse {
     margin-left: 16px;
   }
+
+  .grid-btn, .list-btn {
+    cursor: pointer;
+    margin-right: 8px;
+  }
 }
 
 .side-nav {
@@ -198,6 +203,14 @@ header, main, footer {
 .container {
   max-width: 5000px;
 
+}
+
+.isotope-container {
+  .col.l4 {
+    @media screen and (min-width: 2000px) {
+      width: 25%;
+    }
+  }
 }
 
 // TODO: Style filters

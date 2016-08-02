@@ -6,7 +6,29 @@ $(function() {
 //  getImages();
 
   var $container = $('.isotope-container'),
+  cardSize = 's12 m12 l12',
   selector;
+
+  //Layout Buttons
+  $('.list-btn').hide();
+  $('.grid-btn').click(function(){
+    $(this).hide();
+    $('.list-btn').show();
+    $('.isotope-container .col').not('.single-post').removeClass(cardSize);
+    cardSize = 's12 m6 l4';
+    $('.isotope-container .col').not('.single-post').addClass(cardSize);
+
+  });
+
+  $('.list-btn').click(function(){
+    $(this).hide();
+    $('.grid-btn').show();
+    $('.isotope-container .col').not('.single-post').removeClass(cardSize);
+    cardSize = 's12 m12 l12';
+    $('.isotope-container .col').not('.single-post').addClass(cardSize);
+  });
+
+  //Isotope
 
   function isotopeize() {
     $container.isotope({
@@ -369,7 +391,7 @@ function infiniteScroll() {
      let thisDate = new Date(post.date);
 
      $( '.isotope-container' ).append(
-       `<div class="col s12 m6 l12 ${post.categories}${tagIds}">
+       `<div class="col ${cardSize} ${post.categories}${tagIds}">
          <div class="card isotope-item ${tagIds}">
             ${cardImgTemp}
             <div class="card-content" post-id=${post.id}>
@@ -493,7 +515,7 @@ function infiniteScroll() {
      let thisDate = new Date(post.date);
 
      $( '.isotope-container' ).append(
-       `<div class="col s12 m6 l12 ${post.categories}${tagIds}">
+       `<div class="col s12 ${post.categories}${tagIds} single-post">
          <div class="card isotope-item ${tagIds}">
             ${cardImgTemp}
             <div class="card-content" post-id=${post.id}>
