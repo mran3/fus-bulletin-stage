@@ -370,7 +370,7 @@ function infiniteScroll() {
        for(let category of categoryData) {
          categoryNames = categoryNames + " " + category.name;
          categoryIds = `${categoryIds} .${category.cat_ID}`;
-         categoryTemplate = `${categoryTemplate} <div class="cat-name" data-filter=".${category.cat_ID}">${category.name}</div>`;
+         categoryTemplate = `${categoryTemplate} <a href="#category_name/${category.slug}"> <div class="cat-name" data-filter=".${category.cat_ID}">${category.name}</div></a>`;
        }
      }
 
@@ -494,7 +494,7 @@ function infiniteScroll() {
        for(let category of categoryData) {
          categoryNames = categoryNames + " " + category.name;
          categoryIds = `${categoryIds} .${category.cat_ID}`;
-         categoryTemplate = `${categoryTemplate} <div class="cat-name" data-filter=".${category.cat_ID}">${category.name}</div>`;
+         categoryTemplate = `${categoryTemplate} <a href="#category_name/${category.slug}"> <div class="cat-name" data-filter=".${category.cat_ID}">${category.name}</div></a>`;
        }
      }
 
