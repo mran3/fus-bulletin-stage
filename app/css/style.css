@@ -133,6 +133,10 @@ header, main, footer {
 #filter-card .card-content {
   height: 110px; }
 
+.preloader-wrapper.big {
+  margin: 50px auto;
+  display: block; }
+
 .card .card-content .card-title {
   line-height: 30px;
   margin-bottom: 15px; }

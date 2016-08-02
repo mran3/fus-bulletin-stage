@@ -180,6 +180,8 @@ function initCatCardFilters() {
     console.log(error);
   });
 
+//get tags
+//TODO: get the top 20 most popular tags
   getJSON(`${wpURL}wp-json/wp/v2/tags?per_page=100`)
   .then(function(data){
     $.each(data, function(i, tag){
@@ -213,6 +215,9 @@ function initCatCardFilters() {
 
   // Fires when the url changes
     window.onhashchange = function(event) {
+      window.scrollTo(0,0);
+
+      $('.preloader-wrapper').show();
       path = window.location.hash.split("#")[1];
       $('.isotope-container, #related-posts, .related-posts-row h3').html('');
 
@@ -220,7 +225,7 @@ function initCatCardFilters() {
         viewType = path.split("/")[0];
         viewTypePath = path.split("/")[1];
         // $('.isotope-container').html(`<h3>${viewTypePath}</h3>`);
-        getPosts(`filter[${viewType}]=${viewTypePath}&`, 20, false);
+        getPosts(`filter[${viewType}]=${viewTypePath}&`, 10, false);
 
 
       } else if (window.location.hash !== "") {
@@ -234,7 +239,7 @@ function initCatCardFilters() {
     if (path !== undefined && path.includes('/') === true) {
       viewType = path.split("/")[0];
       viewTypePath = path.split("/")[1];
-      getPosts(`filter[${viewType}]=${viewTypePath}&`, 20, false);
+      getPosts(`filter[${viewType}]=${viewTypePath}&`, 10, false);
 
     } else if (window.location.hash !== "") {
       getPosts(`filter[name]=${path}&`, 1, false);
@@ -243,16 +248,32 @@ function initCatCardFilters() {
     }
 
   // Get Posts
-  function getPosts(filterOpts='', perPage=100, isotopeInit=true) {
+  function getPosts(filterOpts='', perPage=10, isotopeInit=true, isInfinite=false) {
     getJSON(`${wpURL}wp-json/wp/v2/posts?${filterOpts}per_page=${perPage}`)
     .then(function(data){
-      renderCards(data, isotopeInit);
+      renderCards(data, isotopeInit, isInfinite);
     })
     .catch(function(error) {
       console.log(error);
     });
   }
 
+
+//Infinite scroll
+let offsetCount = 10;
+function infiniteScroll() {
+
+  $(window).scroll(function() {
+     if($(window).scrollTop() + $(window).height() > $(document).height() - 500) {
+       $(window).unbind('scroll');
+         console.log("near bottom!");
+
+         getPosts(`offset=${offsetCount}&`, 10, true, true);
+
+         offsetCount = offsetCount + 10;
+     }
+  });
+}
 
     // Get Images
     // function getImages() {
@@ -287,14 +308,15 @@ function initCatCardFilters() {
   //   }
   // }
 
-  function renderCards(data, isotopeInit=true) {
+  function renderCards(data, isotopeInit=true, isInfinite) {
     let i = 0;
     let cardImgArr;
 
     // Check to see if multiple posts will be rendered
     if (window.location.hash.includes('/') === true || window.location.hash.split('#')[1] === "" || window.location.hash === "") {
 
-      if (data[0] === undefined) {
+      if (data[0] === undefined && isInfinite === false) {
+        $('.preloader-wrapper').hide();
         $('.isotope-container').html('<h3>No matching posts</h3>');
       } else {
 
@@ -368,6 +390,8 @@ function initCatCardFilters() {
         $(`div[post-id="${post.id}"] .more-link`).attr('href', `#${post.slug}`);
 
      if (i === data.length - 1) {
+       $('.preloader-wrapper').hide();
+       infiniteScroll();
       //  $('.isotope-container').imagesLoaded(function(){
       //    setTimeout(function(){
       //      if (isotopeInit === true) {
@@ -381,40 +405,40 @@ function initCatCardFilters() {
       //  });
 
 
-
-       function waitForComputedSrcset (images, timeout, $dfd) {
-          $dfd = $dfd || $.Deferred();
-          console.log('waitForComputedSrcset');
-          var computed = 0,
-              length = images.length;
-
-          for (var i = 0; i < length; i++) {
-              if (images[i].hasOwnProperty('currentSrc') && !! !images[i].currentSrc) {
-                  window.setTimeout(this.waitForComputedSrcset.bind(this, images, timeout, $dfd), timeout);
-                  return $dfd;
-              }
-              computed++;
-          }
-          return (length === computed) ? $dfd.resolve(images) : $dfd;
-      }
-
-      var images = document.getElementsByTagName('img');
-
-      $.when(waitForComputedSrcset(images, 50))
-        .done(function(computedImages){
-
-        var length = images.length;
-          for (var i = 0; i < length; i++) {
-           if (images[i].hasOwnProperty('currentSrc') && !! !images[i].currentSrc) {
-            images[i].src = images[i].currentSrc;
-         }
-        }
-
-        console.info('imagesComputed', computedImages);
-        imagesLoaded(images,function(instance){
-           console.info('imagesLoaded', instance);
-        });
-      });
+      //
+      //  function waitForComputedSrcset (images, timeout, $dfd) {
+      //     $dfd = $dfd || $.Deferred();
+      //     console.log('waitForComputedSrcset');
+      //     var computed = 0,
+      //         length = images.length;
+      //
+      //     for (var i = 0; i < length; i++) {
+      //         if (images[i].hasOwnProperty('currentSrc') && !! !images[i].currentSrc) {
+      //             window.setTimeout(this.waitForComputedSrcset.bind(this, images, timeout, $dfd), timeout);
+      //             return $dfd;
+      //         }
+      //         computed++;
+      //     }
+      //     return (length === computed) ? $dfd.resolve(images) : $dfd;
+      // }
+      //
+      // var images = document.getElementsByTagName('img');
+      //
+      // $.when(waitForComputedSrcset(images, 50))
+      //   .done(function(computedImages){
+      //
+      //   var length = images.length;
+      //     for (var i = 0; i < length; i++) {
+      //      if (images[i].hasOwnProperty('currentSrc') && !! !images[i].currentSrc) {
+      //       images[i].src = images[i].currentSrc;
+      //    }
+      //   }
+      //
+      //   console.info('imagesComputed', computedImages);
+      //   imagesLoaded(images,function(instance){
+      //      console.info('imagesLoaded', instance);
+      //   });
+      // });
 
      }
      i++;
@@ -494,6 +518,7 @@ function initCatCardFilters() {
 
      if (i === data.length - 1) {
            $container.isotope('destroy');
+           $('.preloader-wrapper').hide();
      }
      i++;
 
@@ -592,7 +617,7 @@ $(".button-collapse").sideNav({
       val = $.trim($(this).val()),
       valEqual = val == $(this).val(),
       notEmpty = '' !== val,
-      total = 100,
+      total = 10,
       searchURL = `${wpURL}wp-json/wp/v2/posts?filter[s]=${val}&per_page=${total}`;
 
     // 600ms delay so we dont exectute excessively
@@ -625,7 +650,6 @@ console.log('3chars');
           // TODO: see function below
 					// // remove the close
 					// destroyClose();
-console.log('hi');
           // make the search request
           $('.isotope-container').html('');
           //getPosts(`filter[s]=${val}&`, total, false);
