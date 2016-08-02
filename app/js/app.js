@@ -238,6 +238,8 @@ function initCatCardFilters() {
   // Fires when the url changes
     window.onhashchange = function(event) {
       window.scrollTo(0,0);
+      //Reset offset for infinite scroll
+      offsetCount = 10;
 
       $('.preloader-wrapper').show();
       path = window.location.hash.split("#")[1];
@@ -282,7 +284,7 @@ function initCatCardFilters() {
 
 
 //Infinite scroll
-let offsetCount = 10;
+  let offsetCount = 10;
 function infiniteScroll() {
 
   $(window).scroll(function() {
@@ -290,9 +292,21 @@ function infiniteScroll() {
        $(window).unbind('scroll');
          console.log("near bottom!");
 
-         getPosts(`offset=${offsetCount}&`, 10, true, true);
+         path = window.location.hash.split("#")[1];
 
+       if (path !== undefined && path.includes('/') === true) {
+         viewType = path.split("/")[0];
+         viewTypePath = path.split("/")[1];
+         // $('.isotope-container').html(`<h3>${viewTypePath}</h3>`);
+         getPosts(`filter[${viewType}]=${viewTypePath}&offset=${offsetCount}&`, 10, true, true);
          offsetCount = offsetCount + 10;
+
+       } else {
+         getPosts(`offset=${offsetCount}&`, 10, true, true);
+         offsetCount = offsetCount + 10;
+       }
+
+
      }
   });
 }
