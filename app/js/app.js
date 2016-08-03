@@ -633,7 +633,8 @@ $(".button-collapse").sideNav({
 
   $('.search-form').hide();
   $('.search-icon').click(function(){
-    $('.page-title, nav ul.right, nav .button-collapse').hide();
+    $('.page-title, nav ul.right').hide();
+    $('nav .button-collapse').css('transform', 'translateX(-200%)');
     $('.search-form').show();
     // Put cursor in search input
       $searchInput = $('#search');
@@ -641,7 +642,8 @@ $(".button-collapse").sideNav({
   });
 
   $('.search-nav .close-search').click(function(){
-    $('.page-title, nav ul.right, nav .button-collapse').show();
+    $('.page-title, nav ul.right').show();
+    $('nav .button-collapse').css('transform', 'translateX(0)');
     $('.search-form').hide();
   });
 
