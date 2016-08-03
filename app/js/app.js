@@ -225,6 +225,13 @@ function initCatCardFilters() {
   //   }
   // }
 
+  //Check if the view is single post and add or remove container classes
+  if ($('.single-post') > 0) {
+    $('.container').addClass('single');
+  } else {
+    $('.container').removeClass('single');
+  }
+
 
 // Router
   var path = window.location.hash.split("#")[1],
@@ -240,6 +247,7 @@ function initCatCardFilters() {
   // Fires when the url changes
     window.onhashchange = function(event) {
       window.scrollTo(0,0);
+
       //Reset offset for infinite scroll
       offsetCount = 10;
 
@@ -431,6 +439,8 @@ function infiniteScroll() {
 
      if (i === data.length - 1) {
        $('.preloader-wrapper').hide();
+        $('.container').removeClass('single');
+        $('.grid-btn, .list-btn').css('visibility', 'visible');
        infiniteScroll();
       //  $('.isotope-container').imagesLoaded(function(){
       //    setTimeout(function(){
@@ -559,6 +569,8 @@ function infiniteScroll() {
      if (i === data.length - 1) {
            $container.isotope('destroy');
            $('.preloader-wrapper').hide();
+           $('.container').addClass('single');
+           $('.grid-btn, .list-btn').css('visibility', 'hidden');
      }
      i++;
 

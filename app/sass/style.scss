@@ -264,6 +264,13 @@ header, main, footer {
   }
 }
 
+.single {
+  
+  .masonry {
+    column-count: 1;
+  }
+}
+
 
 // TODO: Style filters
 #filter-card {

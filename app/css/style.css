@@ -173,6 +173,9 @@ header, main, footer {
     .masonry .col .card {
       margin: 0 !important; }
 
+.single .masonry {
+  column-count: 1; }
+
 #filter-card .card-content {
   height: 110px; }
 
