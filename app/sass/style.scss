@@ -32,7 +32,7 @@ body {
    flex: 1 0 auto;
    min-height: 100vh;
 
-   .container {
+   .container.w90 {
      width: 90%;
    }
  }
@@ -257,7 +257,8 @@ header, main, footer {
     margin: 0 0 1em !important;
     padding: 0 !important;
     width: 100% !important;
-
+    break-inside: avoid;
+    
     .card {
       margin: 0 !important;
     }
@@ -265,7 +266,7 @@ header, main, footer {
 }
 
 .single {
-  
+
   .masonry {
     column-count: 1;
   }

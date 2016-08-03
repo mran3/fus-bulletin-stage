@@ -18,6 +18,7 @@ $(function() {
     $('.isotope-container').addClass('masonry');
     cardSize = 's12 m6 l4';
     $('.isotope-container .col').not('.single-post').addClass(cardSize);
+    $('.container').addClass('w90');
 
   });
 
@@ -28,6 +29,7 @@ $(function() {
     $('.isotope-container').removeClass('masonry');
     cardSize = 's12 m12 l12';
     $('.isotope-container .col').not('.single-post').addClass(cardSize);
+    $('.container').removeClass('w90');
   });
 
   //Isotope
