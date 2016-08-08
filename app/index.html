@@ -1,15 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="js/auth0-variables.js"> </script>
+    <script src="http://cdn.auth0.com/js/lock-passwordless-2.2.3.min.js"></script>
+    <script src="js/passwordless.js"> </script>
+
+
   <meta charset="utf-8">
-  <title>WP-API + Isotope</title>
-  <meta name="description" content="A simple way to pull posts from the WP-API and display them with isotope.">
+  <title>Bulletin</title>
+  <meta name="description" content="The official employee bulletin for Franciscan University of Steubenville">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <!-- <link rel="shortcut icon" href="favicon.ico"> -->
 
 </head>
 <body>
   <header>
+    <ul id="dropdown1" class="dropdown-content">
+      <li><a class="logout">Logout</a></li>
+      <!-- <li><a href="#!">two</a></li>
+      <li class="divider"></li>
+      <li><a href="#!">three</a></li> -->
+    </ul>
     <nav class="main-nav search-nav">
         <div class="nav-wrapper">
           <div class="search-form">
@@ -27,6 +39,7 @@
             <li><i class="material-icons search-icon tooltipped" data-position="left" data-delay="50" data-tooltip="Search">search</i></li>
             <li><i class="material-icons grid-btn tooltipped" data-position="left" data-delay="50" data-tooltip="Grid View">view_quilt</i></li>
             <li><i class="material-icons list-btn tooltipped" data-position="left" data-delay="50" data-tooltip="List View">view_stream</i></li>
+            <li><i class="material-icons more-btn dropdown-button" data-activates="dropdown1" style="display: none">more_vert</i></li>
           </ul>
           <ul class="side-nav fixed" id="mobile-demo">
             <li class="logo">
@@ -82,11 +95,11 @@
       </div>
     </div>
     <div class="container">
-      <div class="row isotope-container">
+      <div class="row isotope-container" style="visibility: hidden">
           <!-- Posts load here -->
 
       </div>
-      <div class="row related-posts-row">
+      <div class="row related-posts-row" style="visibility: hidden">
         <h3></h3>
         <div id="related-posts">
           <!-- Related posts load here -->
@@ -122,7 +135,7 @@
  <link href="css/materialize.css" rel="stylesheet">
  <link href="css/style.css" rel="stylesheet">
  <!-- endbuild -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
 <script src="https://npmcdn.com/isotope-layout@3.0/dist/isotope.pkgd.min.js"></script>
 <script type="text/javascript" src="js/imagesLoaded.min.js"></script>

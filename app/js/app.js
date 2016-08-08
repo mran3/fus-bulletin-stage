@@ -1,4 +1,36 @@
 /* jshint esversion: 6 */
+
+//Auth0 setup
+
+// var lock = null;
+// $(document).ready(function() {
+//    lock = new Auth0LockPasswordless('UVkcQQBwjXbfyTHXeUrzXiCr20i2pasT', 'jesseweigel.auth0.com', {
+//        auth: {
+//            params: { scope: 'openid email' } //Details: https://auth0.com/docs/scopes
+//        }
+//    });
+//
+//    var userProfile;
+//
+//    $('.btn-login').click(function(e) {
+//      e.preventDefault();
+//      lock.magiclink();
+//    });
+//
+//    lock.on("authenticated", function(authResult) {
+//   lock.getProfile(authResult.idToken, function(error, profile) {
+//     if (error) {
+//       // Handle error
+//       return;
+//     }
+//
+//     localStorage.setItem('id_token', authResult.idToken);
+//   });
+// });
+//
+// });
+
+
 var testImgArr;
 
 $(function() {

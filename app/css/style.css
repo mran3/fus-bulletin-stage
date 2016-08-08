@@ -43,6 +43,9 @@ nav {
     @media screen and (max-width: 600px) {
       nav .grid-btn, nav .list-btn {
         display: none !important; } }
+  nav .more-btn {
+    cursor: pointer;
+    margin-right: 8px; }
 
 .side-nav .logo {
   height: 110px; }
