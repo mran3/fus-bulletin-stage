@@ -5,12 +5,6 @@
       AUTH0_DOMAIN
     );
 
-    // // Put this in an if statement that checks localStorage
-    // function login(){
-    //   lock.magiclink();
-    // }
-    //Call the login function
-
     $(document).ready(function() {
      var globalProfile = localStorage.getItem('profile') || JSON.parse(localStorage.getItem('profile'));
       var globalToken = localStorage.getItem('id_token');
@@ -68,9 +62,9 @@
         if (globalToken && globalProfile){
           loggedIn(globalProfile, globalToken);
         } else {
-          lock.magiclink();
+          lock.magiclink(options);
         }
-      }, 100);
+      }, 200);
 
 
     });

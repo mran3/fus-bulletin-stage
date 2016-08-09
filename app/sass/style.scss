@@ -21,6 +21,55 @@ $fus-gold: #998643;
   background-color: $fus-gold;
 }
 
+//Auth0 Styles
+
+.auth0-lock.auth0-lock .auth0-lock-widget {
+  border-radius: 3px;
+}
+
+.auth0-lock.auth0-lock .auth0-lock-widget-container {
+  border-radius: 2px;
+}
+
+.auth0-lock.auth0-lock .auth0-lock-cred-pane {
+  border-radius: 2px;
+}
+
+.auth0-lock.auth0-lock.auth0-lock-opened .auth0-lock-header-bg .auth0-lock-header-bg-blur {
+  opacity: 1;
+  background-size: contain;
+}
+
+.auth0-lock.auth0-lock .auth0-lock-header-bg .auth0-lock-header-bg-blur {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  -webkit-filter: none;
+  -ms-filter: none;
+  filter: none;
+}
+
+.auth0-lock.auth0-lock .auth0-lock-header-logo {
+  display: none;
+}
+
+.auth0-lock.auth0-lock .auth0-lock-input-wrap .auth0-lock-input {
+  margin: 0;
+  background-color: #fff;
+}
+
+.auth0-lock.auth0-lock input:focus, .auth0-lock.auth0-lock button:focus {
+  border-bottom: 1px solid #9e9e9e;
+  box-shadow: none;
+}
+
+.auth0-lock.auth0-lock .auth0-lock-submit {
+    border-radius: 0 0 2px 2px;
+}
+
+.auth0-lock.auth0-lock .auth0-lock-confirmation p {
+  text-align: center;
+}
+
 body {
   background-color: #e8e8e8;
    display: flex;
