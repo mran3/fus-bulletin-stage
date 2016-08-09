@@ -46,6 +46,10 @@ nav {
   nav .more-btn {
     cursor: pointer;
     margin-right: 8px; }
+  nav ul li a.logout:hover {
+    background-color: transparent; }
+  nav .dropdown-content li:hover {
+    background-color: transparent; }
 
 .side-nav .logo {
   height: 110px; }
