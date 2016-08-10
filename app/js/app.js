@@ -31,7 +31,7 @@
 // });
 
 
-var testImgArr;
+var testImgArr, postType;
 
 $(function() {
   var wpURL = 'https://franciscan.university/fus-bulletin/';
@@ -330,28 +330,28 @@ function initCatCardFilters() {
 //Infinite scroll
   let offsetCount = 10;
 function infiniteScroll() {
-
   $(window).scroll(function() {
      if($(window).scrollTop() + $(window).height() > $(document).height() - 500) {
        $(window).unbind('scroll');
-         console.log("near bottom!");
+       console.log(`before timeout ${postType}`);
+       setTimeout(function(){
+         console.log(postType);
+           path = window.location.hash.split("#")[1];
 
-         path = window.location.hash.split("#")[1];
+          if (postType === 'single') {
+            console.log('is single');
+          } else if (path !== undefined && path.includes('/') === true) {
+           viewType = path.split("/")[0];
+           viewTypePath = path.split("/")[1];
+           // $('.isotope-container').html(`<h3>${viewTypePath}</h3>`);
+           getPosts(`filter[${viewType}]=${viewTypePath}&offset=${offsetCount}&`, 10, true, true);
+           offsetCount = offsetCount + 10;
 
-        if ($('.single-post').length > 0) {
-
-        } else if (path !== undefined && path.includes('/') === true) {
-         viewType = path.split("/")[0];
-         viewTypePath = path.split("/")[1];
-         // $('.isotope-container').html(`<h3>${viewTypePath}</h3>`);
-         getPosts(`filter[${viewType}]=${viewTypePath}&offset=${offsetCount}&`, 10, true, true);
-         offsetCount = offsetCount + 10;
-
-       } else {
-         getPosts(`offset=${offsetCount}&`, 10, true, true);
-         offsetCount = offsetCount + 10;
-       }
-
+         } else {
+           getPosts(`offset=${offsetCount}&`, 10, true, true);
+           offsetCount = offsetCount + 10;
+         }
+       }, 200);
 
      }
   });
@@ -403,6 +403,8 @@ function infiniteScroll() {
       } else {
 
       //if so, then render post cards
+
+      postType = 'multiple';
     for(let post of data) {
       // Get media url for this post from data saved as cardImgArr
      if(post.featured_media !== 0) {
@@ -530,6 +532,7 @@ function infiniteScroll() {
   }
   } else {
     //if data contained only one post, render single post view
+    postType = 'single';
     for(let post of data) {
       // Get media url for this post from data saved as cardImgArr
      if(post.featured_media !== 0) {
