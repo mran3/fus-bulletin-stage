@@ -230,6 +230,16 @@ function initCatCardFilters() {
           <li><a class="category" catID=".${category.id}" href="#category_name/${category.slug}">${category.name}</a></li>
         `
       );
+
+      if (i === data.length - 1) {
+        $('#mobile-demo').append(
+          `
+             <li><div class="divider"></div></li>
+            <li class="modal-trigger" data-target="modal1"><a >Submit Announcement</a></li>
+          `
+        );
+         $('.modal-trigger').leanModal();
+      }
     });
 
      $('select').material_select();

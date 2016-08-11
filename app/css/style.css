@@ -270,6 +270,10 @@ header, main, footer {
     .card.horizontal .card-stacked .card-content {
       flex-grow: 1; }
 
+.card.highlight {
+  background-color: #1f2a44;
+  color: #fff; }
+
 .single-post .card .card-image {
   cursor: default; }
 

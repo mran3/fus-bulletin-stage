@@ -378,7 +378,6 @@ header, main, footer {
     }
   }
 
-
   .card-image {
     cursor: pointer;
   }
@@ -418,6 +417,11 @@ header, main, footer {
     }
   }
 }
+}
+
+.card.highlight {
+  background-color: $fus-dark-blue;
+  color:#fff;
 }
 
 .single-post {
