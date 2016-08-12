@@ -110,16 +110,16 @@
   <!-- Submission Modal -->
     <div id="modal1" class="modal bottom-sheet">
       <div class="modal-content">
-        <h4>Submit Your Announcement</h4>
+        <h4 class="center">Submit Your Announcement</h4>
         <div class="row">
-          <form class="col s12">
+          <form id="announcement-form" class="col s12">
             <div class="row">
-              <div class="input-field col s6">
+              <div class="input-field col s12">
                 <i class="material-icons prefix">mode_edit</i>
-                <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-                <label for="icon_prefix2">First Name</label>
+                <textarea id="announcement-text" class="materialize-textarea"></textarea>
+                <label for="announcement-text">Announcement</label>
               </div>
-              <div class="file-field input-field">
+              <div class="file-field input-field col s12">
                <div class="btn">
                  <span>File</span>
                  <input type="file" multiple>
@@ -133,7 +133,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+        <a id="announcement-submit" class="modal-action waves-effect  btn-flat">Submit</a>
       </div>
     </div>
 
@@ -142,12 +142,12 @@
      <a class="btn-floating btn-large">
        <i class="large material-icons modal-trigger" data-target="modal1">add</i>
      </a>
-     <ul>
+     <!-- <ul>
        <li><a class="btn-floating red" ><i class="material-icons">insert_chart</i></a></li>
        <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
        <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
        <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
-     </ul>
+     </ul> -->
    </div>
   </main>
 
