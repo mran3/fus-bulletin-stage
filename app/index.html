@@ -112,7 +112,7 @@
       <div class="modal-content">
         <h4 class="center">Submit Your Announcement</h4>
         <div class="row">
-          <form id="announcement-form" class="col s12">
+          <form id="announcement-form" class="col s12" enctype="multipart/form-data" action="upload.php" method="post">
             <div class="row">
               <div class="input-field col s12">
                 <i class="material-icons prefix">mode_edit</i>
@@ -122,7 +122,7 @@
               <div class="file-field input-field col s12">
                <div class="btn">
                  <span>File</span>
-                 <input id="uploads" type="file" multiple>
+                 <input id="uploads" name="upload[]" type="file" multiple>
                </div>
                <div class="file-path-wrapper">
                  <input class="file-path validate" type="text" placeholder="Upload one or more files">

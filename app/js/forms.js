@@ -66,16 +66,35 @@ $("#modal1 #announcement-submit").click(function(event){
 
     // Callback handler that will be called on success
     request.done(function (response, textStatus, jqXHR){
-        // Log a message to the console
-        console.log("Hooray, it worked!");
-        console.log(response);
-        console.log(textStatus);
-        console.log(jqXHR);
-        $("#announcement-form input, #announcement-form textarea").val("");
-        //$("#announcement-form input:checkbox").prop('checked', "");
-        $('#modal1 .modal-content').hide();
-        $('#modal1 .success').show();
 
+      var formData = new FormData();
+        if($('#uploads').val()) {
+            var fileList = $('#uploads')[0].files;
+            for(var x=0;x<fileList.length;x++) {
+                formData.append('upload[]', fileList[x]);
+            }
+            formData.append('ajax', true);
+        }
+
+        fetch('http://test1.franciscan.university/upload/upload.php', {
+            method:'POST',
+            body:formData
+        }).then(function(res) {
+            console.log('Status', res);
+            // Log a message to the console
+            console.log("Hooray, it worked!");
+            console.log(response);
+            console.log(textStatus);
+            console.log(jqXHR);
+            $("#announcement-form input, #announcement-form textarea").val("");
+            //$("#announcement-form input:checkbox").prop('checked', "");
+            $('#modal1 .modal-content').hide();
+            $('#modal1 .success').show();
+        }).catch(function(e) {
+            console.log('File Upload Error',e);
+            $('#modal1 modal-content').hide();
+            $('#modal1 .failure').show();
+        });
     });
 
     // Callback handler that will be called on failure
