@@ -84,7 +84,7 @@ $("#modal1 #announcement-submit").click(function(event){
                 return myXhr;
             },
             success: function (data) {
-                alert("Data Uploaded: "+data);
+                console.log("Data Uploaded: "+data);
             },
             data: formData,
             cache: false,
