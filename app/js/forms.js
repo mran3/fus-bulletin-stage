@@ -76,7 +76,23 @@ $("#modal1 #announcement-submit").click(function(event){
             formData.append('ajax', true);
         }
 
-        fetch('http://test1.franciscan.university/upload/upload.php', {
+        $.ajax({
+            url: 'https://script.google.com/macros/s/AKfycbxZIsj-3jcq9KzJBM-q9eoyZcN5y1ITqXsa_H4tIaCyu26sGMA3/exec',
+            type: 'POST',
+            xhr: function() {
+                var myXhr = $.ajaxSettings.xhr();
+                return myXhr;
+            },
+            success: function (data) {
+                alert("Data Uploaded: "+data);
+            },
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+
+        fetch('https://script.google.com/macros/s/AKfycbxZIsj-3jcq9KzJBM-q9eoyZcN5y1ITqXsa_H4tIaCyu26sGMA3/exec', {
             method:'POST',
             body:formData
         }).then(function(res) {
