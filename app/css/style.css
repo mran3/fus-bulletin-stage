@@ -54,7 +54,9 @@ body {
   background-color: #e8e8e8;
   display: flex;
   min-height: 100vh;
-  flex-direction: column; }
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
 
 main {
   flex: 1 0 auto;
