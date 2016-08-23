@@ -189,6 +189,26 @@ header, main, footer {
   .container .load-more-row {
     text-align: center; }
 
+.scroll-to-top {
+  position: fixed;
+  bottom: 0;
+  margin-left: 8px;
+  width: 75px; }
+  .scroll-to-top i {
+    color: #fff;
+    font-size: 48px;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.25); }
+
+.scroll-to-top.slide-out {
+  transform: translateY(200%);
+  transition: transform 500ms ease-in-out; }
+
+.scroll-to-top.slide-in {
+  transform: translateY(0);
+  transition: transform 500ms ease-in-out; }
+
 @media screen and (min-width: 2000px) {
   .isotope-container .col.l4 {
     width: 25%; } }

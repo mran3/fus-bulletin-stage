@@ -41,6 +41,33 @@ $(function() {
   cardSize = 's12 m12 l12',
   selector;
 
+  //Scroll to top btn
+  $('.scroll-to-top i').click(function(){
+    $('html, body').animate({
+          scrollTop: 0
+        }, 1000);
+        return false;
+  });
+
+  if($(window).scrollTop() > 1500 ) {
+    $('.scroll-to-top').removeClass('slide-out').addClass('slide-in');
+  } else {
+    $('.scroll-to-top').removeClass('slide-in').addClass('slide-out');
+  }
+
+  function scrollToTop() {
+
+    $(window).scroll(function() {
+       if($(window).scrollTop() > 1500 ) {
+         $('.scroll-to-top').removeClass('slide-out').addClass('slide-in');
+       } else {
+         $('.scroll-to-top').removeClass('slide-in').addClass('slide-out');
+       }
+     });
+  }
+
+  scrollToTop();
+
   //Layout Buttons
   $('.list-btn').hide();
   $('.grid-btn').click(function(){
@@ -343,6 +370,7 @@ function infiniteScroll() {
   $(window).scroll(function() {
      if($(window).scrollTop() + $(window).height() > $(document).height() - 500) {
        $(window).unbind('scroll');
+       scrollToTop(); //Must call this here to keep it working after the unbind
        console.log(`before timeout ${postType}`);
        setTimeout(function(){
          console.log(postType);
@@ -463,7 +491,7 @@ function infiniteScroll() {
     //  Get tag data
     let tagNames = "";
     let tagIds = "";
-    let tagTemplate = ""
+    let tagTemplate = "";
     if (post.pure_taxonomies.tags !== undefined) {
        let tagData = post.pure_taxonomies.tags;
 
