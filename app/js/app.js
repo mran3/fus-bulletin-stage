@@ -358,8 +358,22 @@ function infiniteScroll() {
            offsetCount = offsetCount + 10;
 
          } else {
-           getPosts(`offset=${offsetCount}&`, 10, true, true);
-           offsetCount = offsetCount + 10;
+          //  getPosts(`offset=${offsetCount}&`, 10, true, true);
+          //  offsetCount = offsetCount + 10;
+          $('.isotope-container').after(`
+            <div class="row load-more-row">
+              <div class="btn btn-large load-more">Load More</div>
+            </div>
+            `);
+          $('.load-more').click(function(){
+            getPosts(`offset=${offsetCount}&`, 10, true, true);
+            offsetCount = offsetCount + 10;
+            $(this).parent().remove();
+          });
+
+           // Load new posts, but with a class of hidden
+           // If post with hidden class exist, then add the button to show more
+           // On click, show the new posts
          }
        }, 200);
 
@@ -576,7 +590,7 @@ function infiniteScroll() {
     //  Get tag data
     let tagNames = "";
     let tagIds = "";
-    let tagTemplate = ""
+    let tagTemplate = "";
     if (post.pure_taxonomies.tags !== undefined) {
        let tagData = post.pure_taxonomies.tags;
 
@@ -651,7 +665,7 @@ function infiniteScroll() {
            </div>
            </a>
          </div>
-         `
+         `;
          $('#related-posts').append(relatedPostsTemp);
          $('.related-posts-row h3').text('You may also be interested in...');
        }
@@ -661,11 +675,7 @@ function infiniteScroll() {
      });
 
      }
-
    }
-
-
-
  }
 
 //Init side nav

@@ -186,6 +186,8 @@ header, main, footer {
   .container .row {
     max-width: 1000px;
     margin: 0 auto; }
+  .container .load-more-row {
+    text-align: center; }
 
 @media screen and (min-width: 2000px) {
   .isotope-container .col.l4 {
