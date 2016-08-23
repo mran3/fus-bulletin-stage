@@ -64,54 +64,68 @@ $("#modal1 #announcement-submit").click(function(event){
         data: serializedData
     });
 
+        // Callback handler that will be called on success
+   request.done(function (response, textStatus, jqXHR){
+       // Log a message to the console
+       console.log("Hooray, it worked!");
+       console.log(response);
+       console.log(textStatus);
+       console.log(jqXHR);
+       $("#announcement-form input, #announcement-form textarea").val("");
+       //$("#announcement-form input:checkbox").prop('checked', "");
+       $('#modal1 .modal-content').hide();
+       $('#modal1 .success').show();
+
+   });
+
     // Callback handler that will be called on success
-    request.done(function (response, textStatus, jqXHR){
-
-      var formData = new FormData();
-        if($('#uploads').val()) {
-            var fileList = $('#uploads')[0].files;
-            for(var x=0;x<fileList.length;x++) {
-                formData.append('upload[]', fileList[x]);
-            }
-            formData.append('ajax', true);
-        }
-
-        $.ajax({
-            url: 'https://script.google.com/macros/s/AKfycbxZIsj-3jcq9KzJBM-q9eoyZcN5y1ITqXsa_H4tIaCyu26sGMA3/exec',
-            type: 'POST',
-            xhr: function() {
-                var myXhr = $.ajaxSettings.xhr();
-                return myXhr;
-            },
-            success: function (data) {
-                console.log("Data Uploaded: "+data);
-            },
-            data: formData,
-            cache: false,
-            contentType: false,
-            processData: false
-        });
-
-        fetch('https://script.google.com/macros/s/AKfycbxZIsj-3jcq9KzJBM-q9eoyZcN5y1ITqXsa_H4tIaCyu26sGMA3/exec', {
-            method:'POST',
-            body:formData
-        }).then(function(res) {
-            console.log('Status', res);
-            // Log a message to the console
-            console.log("Hooray, it worked!");
-            console.log(response);
-            console.log(textStatus);
-            console.log(jqXHR);
-            $("#announcement-form input, #announcement-form textarea").val("");
-            //$("#announcement-form input:checkbox").prop('checked', "");
-            $('#modal1 .modal-content').hide();
-            $('#modal1 .success').show();
-        }).catch(function(e) {
-            console.log('File Upload Error',e);
-            $('#modal1 modal-content').hide();
-            $('#modal1 .failure').show();
-        });
-    });
+    // request.done(function (response, textStatus, jqXHR){
+    //
+    //   var formData = new FormData();
+    //     if($('#uploads').val()) {
+    //         var fileList = $('#uploads')[0].files;
+    //         for(var x=0;x<fileList.length;x++) {
+    //             formData.append('upload[]', fileList[x]);
+    //         }
+    //         formData.append('ajax', true);
+    //     }
+    //
+    //     $.ajax({
+    //         url: 'https://script.google.com/macros/s/AKfycbxZIsj-3jcq9KzJBM-q9eoyZcN5y1ITqXsa_H4tIaCyu26sGMA3/exec',
+    //         type: 'POST',
+    //         xhr: function() {
+    //             var myXhr = $.ajaxSettings.xhr();
+    //             return myXhr;
+    //         },
+    //         success: function (data) {
+    //             console.log("Data Uploaded: "+data);
+    //         },
+    //         data: formData,
+    //         cache: false,
+    //         contentType: false,
+    //         processData: false
+    //     });
+    //
+    //     fetch('https://script.google.com/macros/s/AKfycbxZIsj-3jcq9KzJBM-q9eoyZcN5y1ITqXsa_H4tIaCyu26sGMA3/exec', {
+    //         method:'POST',
+    //         body:formData
+    //     }).then(function(res) {
+    //         console.log('Status', res);
+    //         // Log a message to the console
+    //         console.log("Hooray, it worked!");
+    //         console.log(response);
+    //         console.log(textStatus);
+    //         console.log(jqXHR);
+    //         $("#announcement-form input, #announcement-form textarea").val("");
+    //         //$("#announcement-form input:checkbox").prop('checked', "");
+    //         $('#modal1 .modal-content').hide();
+    //         $('#modal1 .success').show();
+    //     }).catch(function(e) {
+    //         console.log('File Upload Error',e);
+    //         $('#modal1 modal-content').hide();
+    //         $('#modal1 .failure').show();
+    //     });
+    // });
 
     // Callback handler that will be called on failure
     request.fail(function (jqXHR, textStatus, errorThrown){
