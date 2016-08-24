@@ -152,6 +152,19 @@ nav {
     a {
       height: 48px;
       line-height: 48px;
+
+      i {
+        height: 48px;
+        line-height: 48px;
+        float: left;
+        margin-right: 8px;
+      }
+    }
+
+    .input-field label {
+      top: 0.8rem;
+      left: 0.75rem;
+      font-size: 1rem;
     }
   }
 }
@@ -297,6 +310,8 @@ header, main, footer {
     border-radius: 4px;
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.25);
+    width: 48px;
+    transform: rotate(90deg);
   }
 }
 

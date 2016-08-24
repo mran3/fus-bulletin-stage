@@ -105,6 +105,15 @@ nav {
   .side-nav li a {
     height: 48px;
     line-height: 48px; }
+    .side-nav li a i {
+      height: 48px;
+      line-height: 48px;
+      float: left;
+      margin-right: 8px; }
+  .side-nav li .input-field label {
+    top: 0.8rem;
+    left: 0.75rem;
+    font-size: 1rem; }
 
 header, main, footer {
   padding-left: 300px; }
@@ -199,7 +208,9 @@ header, main, footer {
     font-size: 48px;
     border-radius: 4px;
     cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.25); }
+    background-color: rgba(0, 0, 0, 0.25);
+    width: 48px;
+    transform: rotate(90deg); }
 
 .scroll-to-top.slide-out {
   transform: translateY(200%);

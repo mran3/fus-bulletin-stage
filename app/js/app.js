@@ -261,15 +261,54 @@ function initCatCardFilters() {
       if (i === data.length - 1) {
         $('#mobile-demo').append(
           `
+            <li><div class="divider"></div></li>
+             <li class="no-padding">
+               <ul class="collapsible collapsible-accordion">
+                 <li>
+                   <a class="collapsible-header"><i class="material-icons">access_time</i>Filter by Date</a>
+                   <div class="collapsible-body">
+                    <ul>
+                      <li>
+                   <div class="row">
+                     <div class="input-field col s6">
+                       <select>
+                         <option value="" disabled selected>Choose your option</option>
+                         <option value="1">Option 1</option>
+                         <option value="2">Option 2</option>
+                         <option value="3">Option 3</option>
+                       </select>
+                       <label>Month</label>
+                     </div>
+                     <div class="input-field col s6">
+                       <select>
+                         <option value="" disabled selected>Choose your option</option>
+                         <option value="1">Option 1</option>
+                         <option value="2">Option 2</option>
+                         <option value="3">Option 3</option>
+                       </select>
+                       <label>Year</label>
+                     </div>
+                   </div>
+                   </li>
+                   </ul>
+                 </li>
+               </ul>
+             </li>
+
+
+
+
              <li><div class="divider"></div></li>
             <li class="modal-trigger" data-target="modal1"><a >Submit Announcement</a></li>
           `
         );
          $('.modal-trigger').leanModal();
+         $('select').material_select();
+         $('.collapsible').collapsible({
+            accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+          });
       }
     });
-
-     $('select').material_select();
   })
   .catch(function(error) {
     console.log(error);
