@@ -41,6 +41,24 @@ $(function() {
   cardSize = 's12 m12 l12',
   selector;
 
+
+  //Date filter
+  function dateFilter() {
+    let month;
+    let year;
+
+    $('.date-filter select').on('change', function() {
+      month = $('.month select').val();
+      year = $('.year select').val();
+      console.log('change' + month + year);
+      if( month !== null && year !== null) {
+        console.log('notnull');
+        window.location.hash = `date/${year}/${month}`;
+      }
+    });
+
+  }
+
   //Scroll to top btn
   $('.scroll-to-top i').click(function(){
     $('html, body').animate({
@@ -259,32 +277,44 @@ function initCatCardFilters() {
       );
 
       if (i === data.length - 1) {
+        //Add the rest of the side nav items
         $('#mobile-demo').append(
           `
             <li><div class="divider"></div></li>
              <li class="no-padding">
-               <ul class="collapsible collapsible-accordion">
+               <ul class="collapsible collapsible-accordion date-filter">
                  <li>
                    <a class="collapsible-header"><i class="material-icons">access_time</i>Filter by Date</a>
                    <div class="collapsible-body">
                     <ul>
                       <li>
                    <div class="row">
-                     <div class="input-field col s6">
+                     <div class="input-field col s6 month">
                        <select>
-                         <option value="" disabled selected>Choose your option</option>
-                         <option value="1">Option 1</option>
-                         <option value="2">Option 2</option>
-                         <option value="3">Option 3</option>
+                       <option value="" disabled selected>Month</option>
+                         <option value="1">January</option>
+                         <option value="2">February</option>
+                         <option value="3">March</option>
+                         <option value="4">April</option>
+                         <option value="5">May</option>
+                         <option value="6">June</option>
+                         <option value="7">July</option>
+                         <option value="8">August</option>
+                         <option value="9">September</option>
+                         <option value="10">October</option>
+                         <option value="11">November</option>
+                         <option value="12">December</option>
                        </select>
                        <label>Month</label>
                      </div>
-                     <div class="input-field col s6">
+                     <div class="input-field col s6 year">
                        <select>
-                         <option value="" disabled selected>Choose your option</option>
-                         <option value="1">Option 1</option>
-                         <option value="2">Option 2</option>
-                         <option value="3">Option 3</option>
+                         <option value="" disabled selected>Year</option>
+                         <option value="2016">2016</option>
+                         <option value="2017">2017</option>
+                         <option value="2018">2018</option>
+                         <option value="2019">2019</option>
+                         <option value="2020">2020</option>
                        </select>
                        <label>Year</label>
                      </div>
@@ -294,10 +324,6 @@ function initCatCardFilters() {
                  </li>
                </ul>
              </li>
-
-
-
-
              <li><div class="divider"></div></li>
             <li class="modal-trigger" data-target="modal1"><a >Submit Announcement</a></li>
           `
@@ -307,6 +333,7 @@ function initCatCardFilters() {
          $('.collapsible').collapsible({
             accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
           });
+        dateFilter();
       }
     });
   })
@@ -366,11 +393,21 @@ function initCatCardFilters() {
       $('.isotope-container, #related-posts, .related-posts-row h3').html('');
 
       if (path !== undefined && path.includes('/') === true) {
+
+        //TODO: this may end up being better as a switch statement
         viewType = path.split("/")[0];
         viewTypePath = path.split("/")[1];
-        // $('.isotope-container').html(`<h3>${viewTypePath}</h3>`);
-        getPosts(`filter[${viewType}]=${viewTypePath}&`, 10, false);
 
+        //Handles date filtering
+        if (viewType.toLowerCase() === 'date') {
+          let year = viewTypePath;
+          let month = path.split("/")[2];
+
+          getPosts(`filter[year]=${year}&filter[monthnum]=${month}&`, 10, false);
+        } else {
+          // $('.isotope-container').html(`<h3>${viewTypePath}</h3>`);
+          getPosts(`filter[${viewType}]=${viewTypePath}&`, 10, false);
+        }
 
       } else if (window.location.hash !== "") {
         getPosts(`filter[name]=${path}&`, 1, false);
@@ -383,7 +420,16 @@ function initCatCardFilters() {
     if (path !== undefined && path.includes('/') === true) {
       viewType = path.split("/")[0];
       viewTypePath = path.split("/")[1];
-      getPosts(`filter[${viewType}]=${viewTypePath}&`, 10, false);
+      //Handles date filtering
+      if (viewType.toLowerCase() === 'date') {
+        let year = viewTypePath;
+        let month = path.split("/")[2];
+
+        getPosts(`filter[year]=${year}&filter[monthnum]=${month}&`, 10, false);
+      } else {
+        // $('.isotope-container').html(`<h3>${viewTypePath}</h3>`);
+        getPosts(`filter[${viewType}]=${viewTypePath}&`, 10, false);
+      }
 
     } else if (window.location.hash !== "") {
       getPosts(`filter[name]=${path}&`, 1, false);
@@ -421,7 +467,17 @@ function infiniteScroll() {
            viewType = path.split("/")[0];
            viewTypePath = path.split("/")[1];
            // $('.isotope-container').html(`<h3>${viewTypePath}</h3>`);
-           getPosts(`filter[${viewType}]=${viewTypePath}&offset=${offsetCount}&`, 10, true, true);
+           //Handles date filtering
+           if (viewType.toLowerCase() === 'date') {
+             let year = viewTypePath;
+             let month = path.split("/")[2];
+
+             getPosts(`filter[year]=${year}&filter[monthnum]=${month}&offset=${offsetCount}&`, 10, true, true);
+           } else {
+             // $('.isotope-container').html(`<h3>${viewTypePath}</h3>`);
+             getPosts(`filter[${viewType}]=${viewTypePath}&offset=${offsetCount}&`, 10, true, true);
+           }
+
            offsetCount = offsetCount + 10;
 
          } else {

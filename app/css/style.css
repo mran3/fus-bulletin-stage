@@ -110,10 +110,13 @@ nav {
       line-height: 48px;
       float: left;
       margin-right: 8px; }
+  .side-nav li .input-field .select-wrapper input.select-dropdown {
+    color: rgba(0, 0, 0, 0.57); }
   .side-nav li .input-field label {
     top: 0.8rem;
     left: 0.75rem;
-    font-size: 1rem; }
+    font-size: 1rem;
+    display: none; }
 
 header, main, footer {
   padding-left: 300px; }

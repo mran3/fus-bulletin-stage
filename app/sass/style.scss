@@ -161,10 +161,20 @@ nav {
       }
     }
 
-    .input-field label {
-      top: 0.8rem;
-      left: 0.75rem;
-      font-size: 1rem;
+    .input-field {
+
+      .select-wrapper {
+        input.select-dropdown {
+          color: rgba(0, 0, 0, 0.57);
+        }
+      }
+
+      label {
+        top: 0.8rem;
+        left: 0.75rem;
+        font-size: 1rem;
+        display: none;
+      }
     }
   }
 }
