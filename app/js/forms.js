@@ -74,6 +74,7 @@ $("#modal1 #announcement-submit").click(function(event){
        $("#announcement-form input, #announcement-form textarea").val("");
        //$("#announcement-form input:checkbox").prop('checked', "");
        $('#modal1 .modal-content').hide();
+       $('#announcement-submit').hide();
        $('#modal1 .success').show();
 
    });
@@ -138,9 +139,11 @@ $("#modal1 #announcement-submit").click(function(event){
         // HACK - check if browser is Safari - and redirect even if fail b/c we know the form submits.
         if (navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0){
           $('#modal1 modal-content').hide();
+          $('#announcement-submit').hide();
           $('#modal1 .success').show();
         } else {
           $('#modal1 modal-content').hide();
+          $('#announcement-submit').hide();
           $('#modal1 .failure').show();
         }
     });
