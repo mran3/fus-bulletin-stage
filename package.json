@@ -9,6 +9,8 @@
   "author": "Jesse Weigel",
   "license": "ISC",
   "devDependencies": {
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-stage-3": "^6.5.0",
     "browser-sync": "^2.12.8",
     "flightplan": "^0.6.14",
     "gulp": "^3.9.1",
