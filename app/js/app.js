@@ -38,7 +38,7 @@ $(function() {
 //  getImages();
 
   var $container = $('.isotope-container'),
-  cardSize = 's12 m12 l12',
+  //cardSize = 's12 m12 l12',
   selector;
 
 
@@ -91,22 +91,26 @@ $(function() {
   $('.grid-btn').click(function(){
     $(this).hide();
     $('.list-btn').show();
-    $('.isotope-container .col').not('.single-post').removeClass(cardSize);
-    $('.isotope-container').addClass('masonry');
-    cardSize = 's12 m6 l4';
-    $('.isotope-container .col').not('.single-post').addClass(cardSize);
+    //$('.isotope-container .col').not('.single-post').removeClass(cardSize);
+    $('.isotope-container').removeClass('notMasonry');
+    $('.isotope-container').addClass('isMasonry');
+  //  cardSize = 's12 m6 l4';
+  //  $('.isotope-container .col').not('.single-post').addClass(cardSize);
     $('.container').addClass('w90');
+    isotopeize();
 
   });
 
   $('.list-btn').click(function(){
     $(this).hide();
     $('.grid-btn').show();
-    $('.isotope-container .col').not('.single-post').removeClass(cardSize);
-    $('.isotope-container').removeClass('masonry');
-    cardSize = 's12 m12 l12';
-    $('.isotope-container .col').not('.single-post').addClass(cardSize);
+    //$('.isotope-container .col').not('.single-post').removeClass(cardSize);
+    $('.isotope-container').removeClass('isMasonry');
+    $('.isotope-container').addClass('notMasonry');
+
+  //  $('.isotope-container .col').not('.single-post').addClass(cardSize);
     $('.container').removeClass('w90');
+    $('.isotope-container').isotope('destroy');
   });
 
   //Isotope
@@ -483,20 +487,23 @@ function infiniteScroll() {
          } else {
           //  getPosts(`offset=${offsetCount}&`, 10, true, true);
           //  offsetCount = offsetCount + 10;
+          if($('.load-more').length === 0) {
           $('.isotope-container').after(`
             <div class="row load-more-row">
               <div class="btn btn-large load-more">Load More</div>
             </div>
             `);
+          }
           $('.load-more').click(function(){
             getPosts(`offset=${offsetCount}&`, 10, true, true);
             offsetCount = offsetCount + 10;
             $(this).parent().remove();
-          });
+            if ($('.isMasonry').length > 0) {
+              $('.isotope-container').isotope('destroy');
+              isotopeize();
+            }
 
-           // Load new posts, but with a class of hidden
-           // If post with hidden class exist, then add the button to show more
-           // On click, show the new posts
+          });
          }
        }, 200);
 
@@ -600,7 +607,7 @@ function infiniteScroll() {
      let thisDate = new Date(post.date);
 
      $( '.isotope-container' ).append(
-       `<div class="col ${cardSize} ${post.categories}${tagIds}">
+       `<div class="col ${post.categories}${tagIds}">
          <div class="card isotope-item ${tagIds}">
             ${cardImgTemp}
             <div class="card-content" post-id=${post.id}>
@@ -625,6 +632,14 @@ function infiniteScroll() {
         $('.container').removeClass('single');
         $('.grid-btn, .list-btn').css('visibility', 'visible');
        infiniteScroll();
+
+         $('.isotope.container').imagesLoaded(function(){
+           if ($('.isMasonry').length > 0) {
+             $('.isotope-container').isotope('destroy');
+             isotopeize();
+           }
+         });
+
       //  $('.isotope-container').imagesLoaded(function(){
       //    setTimeout(function(){
       //      if (isotopeInit === true) {
@@ -727,7 +742,7 @@ function infiniteScroll() {
      let thisDate = new Date(post.date);
 
      $( '.isotope-container' ).append(
-       `<div class="col s12 ${post.categories}${tagIds} single-post">
+       `<div class="col ${post.categories}${tagIds} single-post">
          <div class="card isotope-item ${tagIds}">
             ${cardImgTemp}
             <div class="card-content" post-id=${post.id}>

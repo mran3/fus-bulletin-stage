@@ -46,6 +46,7 @@ $fus-gold: #998643;
   -webkit-filter: none;
   -ms-filter: none;
   filter: none;
+  display: block;
 }
 
 .auth0-lock.auth0-lock .auth0-lock-header-logo {
@@ -298,7 +299,7 @@ header, main, footer {
 .container {
   max-width: 5000px;
 
-  .row {
+  .row.notMasonry {
     max-width: 1000px;
     margin: 0 auto;
   }
@@ -344,49 +345,43 @@ header, main, footer {
   }
 }
 
-.masonry {
-  column-count: 6;
-  column-gap: 1em;
-  max-width: 3000px !important;
-
-  @media screen and (max-width: 2300px) {
-    column-count: 5;
-  }
-
-  @media screen and (max-width: 2000px) {
-    column-count: 4;
-  }
-
-  @media screen and (max-width: 1500px) {
-    column-count: 3;
-  }
-
-  @media screen and (max-width: 1100px) {
-    column-count: 2;
-  }
-
-  @media screen and (max-width: 600px) {
-    column-count: 1;
-  }
+.isMasonry {
+  //column-count: 6;
+  //column-gap: 1em;
+  max-width: 3000px;
 
   .col {
-    display: inline-block !important;
-    float: none !important;
-    margin: 0 0 1em !important;
-    padding: 0 !important;
-    width: 100% !important;
-    break-inside: avoid;
+    // display: inline-block !important;
+    // float: none !important;
+    // margin: 0 0 1em !important;
+    // padding: 0 !important;
+    // width: 100% !important;
+    // break-inside: avoid;
+    width: 16%;
 
-    .card {
-      margin: 0 !important;
+    @media screen and (max-width: 2300px) {
+      width: 20%;
     }
-  }
-}
 
-.single {
+    @media screen and (max-width: 2000px) {
+      width: 25%;
+    }
 
-  .masonry {
-    column-count: 1;
+    @media screen and (max-width: 1500px) {
+      width: 33%;
+    }
+
+    @media screen and (max-width: 1100px) {
+      width: 50%;
+    }
+
+    @media screen and (max-width: 600px) {
+      width: 100%;
+    }
+
+    // .card {
+    //   margin: 0 !important;
+    // }
   }
 }
 
@@ -478,6 +473,14 @@ header, main, footer {
 .card.highlight {
   background-color: $fus-dark-blue;
   color:#fff;
+}
+
+.single {
+  .container {
+    .row {
+      max-width: 1000px;
+    }
+  }
 }
 
 .single-post {
