@@ -326,6 +326,9 @@ header, main, footer {
   #post-modal .tag-name:hover {
     color: #ced5e2; }
 
+.modal.bottom-sheet {
+  max-height: 80%; }
+
 footer.page-footer {
   margin-top: 0px;
   padding-top: 0px; }
