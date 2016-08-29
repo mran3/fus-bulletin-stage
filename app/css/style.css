@@ -333,6 +333,18 @@ header, main, footer {
 .modal.bottom-sheet {
   max-height: 80%; }
 
+.preloader-wrapper.big .spinner-blue {
+  border-color: #1f2a44; }
+
+.preloader-wrapper.big .spinner-yellow {
+  border-color: #8e9fbc; }
+
+.preloader-wrapper.big .spinner-red {
+  border-color: #21412a; }
+
+.preloader-wrapper.big .spinner-green {
+  border-color: #ffc658; }
+
 footer.page-footer {
   margin-top: 0px;
   padding-top: 0px; }

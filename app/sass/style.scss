@@ -548,6 +548,26 @@ header, main, footer {
   max-height: 80%;
 }
 
+// Preloader
+.preloader-wrapper.big {
+  .spinner-blue {
+    border-color: $fus-dark-blue;
+  }
+
+
+  .spinner-yellow {
+    border-color: $fus-light-blue;
+  }
+
+  .spinner-red {
+    border-color: $fus-green;
+  }
+
+  .spinner-green {
+    border-color: $fus-yellow;
+  }
+}
+
 footer.page-footer {
   margin-top: 0px;
   padding-top: 0px; }
