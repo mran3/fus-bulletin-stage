@@ -538,6 +538,12 @@ header, main, footer {
 
 }
 
+.material-tooltip {
+  @media screen and (max-width: 992px) {
+    visibility: hidden;
+  }
+}
+
 .modal.bottom-sheet {
   max-height: 80%;
 }

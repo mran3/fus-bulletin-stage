@@ -326,6 +326,10 @@ header, main, footer {
   #post-modal .tag-name:hover {
     color: #ced5e2; }
 
+@media screen and (max-width: 992px) {
+  .material-tooltip {
+    visibility: hidden; } }
+
 .modal.bottom-sheet {
   max-height: 80%; }
 
