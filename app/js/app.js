@@ -820,9 +820,16 @@ function infiniteScroll() {
    }
  }
 
+ // Close side nav on tap for mobile but not wide screens
+let windowsize = $(window).width();
+let closeOnClickVal = false;
+ if (windowsize < 992) {
+   closeOnClickVal = true;
+ }
+
 //Init side nav
 $(".button-collapse").sideNav({
-  //closeOnClick: true,
+  closeOnClick: closeOnClickVal,
   menuWidth: 300
 });
 
