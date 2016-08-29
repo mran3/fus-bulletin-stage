@@ -379,7 +379,7 @@ function initCatCardFilters() {
   viewType, viewTypePath;
 
 
-  if (path !== undefined && path.includes('/') === true) {
+  if (path !== undefined && path.indexOf('/') >= 0) {
     viewType = path.split("/")[0];
     viewTypePath = path.split("/")[1];
 
@@ -396,7 +396,7 @@ function initCatCardFilters() {
       path = window.location.hash.split("#")[1];
       $('.isotope-container, #related-posts, .related-posts-row h3').html('');
 
-      if (path !== undefined && path.includes('/') === true) {
+      if (path !== undefined && path.indexOf('/') >= 0) {
 
         //TODO: this may end up being better as a switch statement
         viewType = path.split("/")[0];
@@ -421,7 +421,7 @@ function initCatCardFilters() {
     };
 
     $('.isotope-container, #related-posts, .related-posts-row h3').html('');
-    if (path !== undefined && path.includes('/') === true) {
+    if (path !== undefined && path.indexOf('/') >= 0) {
       viewType = path.split("/")[0];
       viewTypePath = path.split("/")[1];
       //Handles date filtering
@@ -467,7 +467,7 @@ function infiniteScroll() {
 
           if (postType === 'single') {
             console.log('is single');
-          } else if (path !== undefined && path.includes('/') === true) {
+          } else if (path !== undefined && path.indexOf('/') >= 0) {
            viewType = path.split("/")[0];
            viewTypePath = path.split("/")[1];
            // $('.isotope-container').html(`<h3>${viewTypePath}</h3>`);
@@ -549,7 +549,7 @@ function infiniteScroll() {
     let cardImgArr;
 
     // Check to see if multiple posts will be rendered
-    if (window.location.hash.includes('/') === true || window.location.hash.split('#')[1] === "" || window.location.hash === "") {
+    if (window.location.hash.indexOf('/') >= 0 || window.location.hash.split('#')[1] === "" || window.location.hash === "") {
 
       if (data[0] === undefined && isInfinite === false) {
         $('.preloader-wrapper').hide();
@@ -693,6 +693,10 @@ function infiniteScroll() {
    }
   }
   } else {
+
+    //Remove load more btn
+    $('.load-more').remove();
+
     //if data contained only one post, render single post view
     postType = 'single';
     for(let post of data) {
