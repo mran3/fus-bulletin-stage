@@ -18,7 +18,6 @@ $(function() {
       let email = $(this).val();
       if (email.toLowerCase().indexOf('@franciscan.edu') !== -1) {
         $('.auth0-lock-submit').removeAttr('disabled');
-        console.log('!');
       }
     });
   }, 500);
@@ -144,7 +143,7 @@ if (globalToken) {
 
   //Get Categories
 
-  getJSON(`${wpURL}wp-json/wp/v2/categories?per_page=100`)
+  getJSON(`${wpURL}wp-json/wp/v2/categories?per_page=100&fields=id,name,slug`)
   .then(function(data){
     $.each(data, function(i, category){
       categories[category.id] = category.name;
@@ -223,15 +222,15 @@ if (globalToken) {
 
 //get tags
 //TODO: get the top 20 most popular tags
-  getJSON(`${wpURL}wp-json/wp/v2/tags?per_page=100`)
-  .then(function(data){
-    $.each(data, function(i, tag){
-      tags[tag.id] = tag.name;
-    });
-  })
-  .catch(function(error) {
-    console.log(error);
-  });
+  // getJSON(`${wpURL}wp-json/wp/v2/tags?per_page=100`)
+  // .then(function(data){
+  //   $.each(data, function(i, tag){
+  //     tags[tag.id] = tag.name;
+  //   });
+  // })
+  // .catch(function(error) {
+  //   console.log(error);
+  // });
 
   //Check if the view is single post and add or remove container classes
   if ($('.single-post') > 0) {
@@ -312,7 +311,7 @@ if (globalToken) {
 
   // Get Posts
   function getPosts(filterOpts='', perPage=10, isotopeInit=true, isInfinite=false) {
-    getJSON(`${wpURL}wp-json/wp/v2/posts?${filterOpts}per_page=${perPage}`)
+    getJSON(`${wpURL}wp-json/wp/v2/posts?${filterOpts}per_page=${perPage}&fields=id,title,better_featured_image,slug,pure_taxonomies,date,excerpt,content,featured_media`)
     .then(function(data){
       renderCards(data, isotopeInit, isInfinite);
     })
@@ -564,7 +563,7 @@ function infiniteScroll() {
      i++;
 
      //Add related posts
-     getJSON(`${wpURL}wp-json/wp/v2/posts/?filter[category_name]=${post.pure_taxonomies.categories[0].slug}&per_page=3&exclude=${post.id}`)
+     getJSON(`${wpURL}wp-json/wp/v2/posts/?filter[category_name]=${post.pure_taxonomies.categories[0].slug}&per_page=3&exclude=${post.id}&fields=featured_media,better_featured_image,slug,title`)
      .then(function(data){
        for(let relatedPost of data) {
          if(relatedPost.featured_media !== 0) {
