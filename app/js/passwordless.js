@@ -35,7 +35,9 @@
           }
         });
 
-        //window.location.hash = '';
+        window.location.hash = 'lol';
+        window.location.hash = '';
+
 
       }
 
