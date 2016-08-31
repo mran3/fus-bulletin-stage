@@ -145,7 +145,8 @@ if (globalToken) {
 
   getJSON(`${wpURL}wp-json/wp/v2/categories?per_page=100&fields=id,name,slug`)
   .then(function(data){
-    $.each(data, function(i, category){
+    let i = 0;
+    for(let category of data) {
       categories[category.id] = category.name;
       $( '.filters' ).append( `<option value=".${category.id}" catID="${category.id}">${category.name}</option>` );
 
@@ -214,7 +215,9 @@ if (globalToken) {
           });
         dateFilter();
       }
-    });
+
+      i++;
+    }
   })
   .catch(function(error) {
     console.log(error);
