@@ -36,7 +36,10 @@
         });
 
         window.location.hash = 'lol';
-        window.location.hash = '';
+        setTimeout(function(){
+          window.location.hash = '';
+        }, 200);
+
 
       }
 
