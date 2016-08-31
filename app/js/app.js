@@ -30,6 +30,14 @@
 //
 // });
 
+function get(url) {
+  if (globalToken) {
+    return fetch(url, {
+      method: 'get'
+    });
+  }
+}
+
 
 var testImgArr, postType;
 
@@ -252,11 +260,11 @@ function initCatCardFilters() {
 
 
 
-  function get(url) {
-    return fetch(url, {
-      method: 'get'
-    });
-  }
+  // function get(url) {
+  //   return fetch(url, {
+  //     method: 'get'
+  //   });
+  // }
 
   function getJSON(url) {
     return get(url).then(function(response) {
@@ -387,7 +395,9 @@ function initCatCardFilters() {
 
   // Fires when the url changes
     window.onhashchange = function(event) {
+      $('.isotope-container').html('');
       window.scrollTo(0,0);
+      $('.load-more-row').remove();
 
       //Reset offset for infinite scroll
       offsetCount = 10;
@@ -451,7 +461,6 @@ function initCatCardFilters() {
       console.log(error);
     });
   }
-
 
 //Infinite scroll
   let offsetCount = 10;
