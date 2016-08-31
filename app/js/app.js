@@ -1,44 +1,5 @@
 /* jshint esversion: 6 */
 
-//Auth0 setup
-
-// var lock = null;
-// $(document).ready(function() {
-//    lock = new Auth0LockPasswordless('UVkcQQBwjXbfyTHXeUrzXiCr20i2pasT', 'jesseweigel.auth0.com', {
-//        auth: {
-//            params: { scope: 'openid email' } //Details: https://auth0.com/docs/scopes
-//        }
-//    });
-//
-//    var userProfile;
-//
-//    $('.btn-login').click(function(e) {
-//      e.preventDefault();
-//      lock.magiclink();
-//    });
-//
-//    lock.on("authenticated", function(authResult) {
-//   lock.getProfile(authResult.idToken, function(error, profile) {
-//     if (error) {
-//       // Handle error
-//       return;
-//     }
-//
-//     localStorage.setItem('id_token', authResult.idToken);
-//   });
-// });
-//
-// });
-
-function get(url) {
-  if (globalToken) {
-    return fetch(url, {
-      method: 'get'
-    });
-  }
-}
-
-
 var testImgArr, postType;
 
 $(function() {
@@ -49,6 +10,18 @@ $(function() {
   //cardSize = 's12 m12 l12',
   selector;
 
+  //Check for @franciscan.edu address
+
+  setTimeout(function(){
+    $('.auth0-lock-submit').attr('disabled', 'disabled');
+    $('.auth0-lock-input').on('keyup', function(){
+      let email = $(this).val();
+      if (email.toLowerCase().indexOf('@franciscan.edu') !== -1) {
+        $('.auth0-lock-submit').removeAttr('disabled');
+        console.log('!');
+      }
+    });
+  }, 500);
 
   //Date filter
   function dateFilter() {
@@ -140,114 +113,9 @@ $(function() {
   }
 
   function isotopeizeInit() {
-
     isotopeize();
-
-    // // Category filter (sidebar)
-    // $('#mobile-demo .category').click(function(){
-    //   selector = $(this).attr('catid');
-    //   $('.button-collapse').sideNav('hide');
-    //   $container.isotope({
-    //       filter: selector,
-    //       animationOptions: {
-    //           duration: 750,
-    //           easing: 'linear',
-    //           queue: false
-    //       }
-    //   });
-    //   return false;
-    // });
-
-    //Init category card filtering from the category name displayed on the cards
-    initCatCardFilters();
-
-    //Init tags filtering
-  //  initTagFilters();
   }
 
-function initCatCardFilters() {
-  // Category filter (in card)
-  $('.cat-name').click(function(){
-     var selector = $(this).attr('data-filter');
-      $container.isotope({
-          filter: selector,
-          animationOptions: {
-              duration: 750,
-              easing: 'linear',
-              queue: false
-          }
-      });
-      return false;
-  });
-}
-
-// function initTagFilters () {
-//   // Tag filter (in card)
-//   $('.tag-name').click(function(){
-//
-//      var selector = $(this).attr('data-filter');
-//       $container.isotope({
-//           filter: selector,
-//           animationOptions: {
-//               duration: 750,
-//               easing: 'linear',
-//               queue: false
-//           }
-//       });
-//       return false;
-//   });
-// }
-
-  //More button on post cards
-//   var currentPath;
-//   function expandCard() {
-//
-//   $('.expand-card').click(function(){
-//
-//     currentPath = window.location.hash;
-//     //console.log(currentPath);
-//     // $('#post-modal .modal-content h4').text($(this).parent().parent().find('.card-title').text());
-//     // $('#post-modal .modal-content p').html($(this).parent().parent().find('.full-content').html());
-//     // $('#post-modal .full-content, #post-modal .tag-name').show();
-//     //$('#post-modal').openModal();
-//     let slug = $(this).attr('slug');
-//     let currentView = $('.isotope-container').html();
-//     getPosts(`filter[name]=${slug}&`, 1, false);
-//     let stateObj = {foo: 'bar'};
-//
-//     $('.isotope-container').html('');
-//
-//     window.location.hash = slug;
-//     initCatCardFilters();
-//     initTagFilters();
-//
-//     $('.modal-content h4').text($(this).parent().parent().find('.card-title').text());
-//     $('.modal-content p').html($(this).parent().parent().find('.full-content').html());
-//     $('.full-content, .tag-name').show();
-//     });
-//
-//     //Card Images
-//     $('.card-image img').click(function(){
-//       $(this).parent().parent().find('.expand-card').trigger('click');
-//       console.log($(this).parent().parent().find('.expand-card'));
-//     });
-//   }
-//
-// $('#post-modal .modal-close, .lean-overlay').click(function(){
-//   $('#post-modal').closeModal();
-//   let stateObj = {old: 'state'};
-//   window.location.hash = currentPath;
-// });
-
-// $('.expand-card').leanModal({
-//   ready: function() { alert('Ready'); },
-//   complete: function() {console.log('closed');}
-// });
-
-//   //On modal close
-// $('.modal-close').click(function(){
-//
-// });
 
 //API Calls
 	var i, t,
@@ -259,12 +127,12 @@ function initCatCardFilters() {
   posts, postTitle, postContent, postCatagories, postTags, categoryName, categoryID, categorySlug, tagName, tagID, tagSlug, catName;
 
 
-
-  // function get(url) {
-  //   return fetch(url, {
-  //     method: 'get'
-  //   });
-  // }
+if (globalToken) {
+  function get(url) {
+    return fetch(url, {
+      method: 'get'
+    });
+  }
 
   function getJSON(url) {
     return get(url).then(function(response) {
@@ -364,15 +232,6 @@ function initCatCardFilters() {
   .catch(function(error) {
     console.log(error);
   });
-
-// Fetch and render posts when images are ready
-  // function tryAgain() {
-  //   if (Object.keys(images).length !== 0) {
-  //     getPosts();
-  //   } else {
-  //     setTimeout(tryAgain, 200);
-  //   }
-  // }
 
   //Check if the view is single post and add or remove container classes
   if ($('.single-post') > 0) {
@@ -520,39 +379,6 @@ function infiniteScroll() {
   });
 }
 
-    // Get Images
-    // function getImages() {
-    //   getJSON(`${wpURL}wp-json/wp/v2/media?per_page=100`)
-    //   .then(function(data){
-    //     testImgArr = data;
-    //     // This function is now unnecessary, but still here because getPosts wont run until the image var has data
-    //
-    //     for(let thisImage of data){
-    //       if(thisImage.media_type === 'image') {
-    //         images[thisImage.id] = {
-    //           thumb: thisImage.media_details.sizes.thumbnail.source_url || "",
-    //           medium: thisImage.media_details.sizes.medium.source_url || "",
-    //           'medium-large': thisImage.media_details.sizes.medium_large.source_url || "",
-    //           large: thisImage.media_details.sizes.large.source_url || "",
-    //           // 'post-thumb': (function(){if(thisImage.media_details.sizes.hasOwnProperty('post-thumbnail')){return thisImage.media_details.sizes['post-thumbnail'].source_url !== undefined}else{return ""}})(),
-    //           full: thisImage.media_details.sizes.full.source_url || ""
-    //         };
-    //       }
-    //     }
-    //   })
-    //   .catch(function(error) {
-    //     console.log(error);
-    //   });
-    // }
-
-  // function checkUndefined(objName, keyName, valPath){
-  //   if (valPath.hasOwnProperty(keyName)) {
-  //     objName[]
-  //   } else {
-  //     ""
-  //   }
-  // }
-
   function renderCards(data, isotopeInit=true, isInfinite) {
     let i = 0;
     let cardImgArr;
@@ -648,55 +474,6 @@ function infiniteScroll() {
              isotopeize();
            }
          });
-
-      //  $('.isotope-container').imagesLoaded(function(){
-      //    setTimeout(function(){
-      //      if (isotopeInit === true) {
-      //       isotopeizeInit();
-      //      } else {
-      //        isotopeizeInit();
-      //        $container.isotope('destroy');
-      //        isotopeizeInit();
-      //      }
-      //    }, 100);
-      //  });
-
-
-      //
-      //  function waitForComputedSrcset (images, timeout, $dfd) {
-      //     $dfd = $dfd || $.Deferred();
-      //     console.log('waitForComputedSrcset');
-      //     var computed = 0,
-      //         length = images.length;
-      //
-      //     for (var i = 0; i < length; i++) {
-      //         if (images[i].hasOwnProperty('currentSrc') && !! !images[i].currentSrc) {
-      //             window.setTimeout(this.waitForComputedSrcset.bind(this, images, timeout, $dfd), timeout);
-      //             return $dfd;
-      //         }
-      //         computed++;
-      //     }
-      //     return (length === computed) ? $dfd.resolve(images) : $dfd;
-      // }
-      //
-      // var images = document.getElementsByTagName('img');
-      //
-      // $.when(waitForComputedSrcset(images, 50))
-      //   .done(function(computedImages){
-      //
-      //   var length = images.length;
-      //     for (var i = 0; i < length; i++) {
-      //      if (images[i].hasOwnProperty('currentSrc') && !! !images[i].currentSrc) {
-      //       images[i].src = images[i].currentSrc;
-      //    }
-      //   }
-      //
-      //   console.info('imagesComputed', computedImages);
-      //   imagesLoaded(images,function(instance){
-      //      console.info('imagesLoaded', instance);
-      //   });
-      // });
-
      }
      i++;
    }
@@ -939,5 +716,7 @@ console.log('3chars');
 			return 27 == key || 37 == key || 38 == key || 39 == key || 40 == key;
 
 		}
+
+  }
 
 });
