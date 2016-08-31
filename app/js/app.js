@@ -10,8 +10,14 @@ $(function() {
   //cardSize = 's12 m12 l12',
   selector;
 
-  //Check for @franciscan.edu address
 
+
+  //Get current year and add to footer
+  let dateToday = new Date();
+  let currentYear = dateToday.getFullYear();
+  $('#copyright-date').text(currentYear);
+
+  //Check for @franciscan.edu address
   setTimeout(function(){
     $('.auth0-lock-submit').attr('disabled', 'disabled');
     $('.auth0-lock-input').on('keyup', function(){
