@@ -4,10 +4,10 @@
       AUTH0_CLIENT_ID,
       AUTH0_DOMAIN
     );
-
+    var globalToken;
     $(document).ready(function() {
      var globalProfile = localStorage.getItem('profile') || JSON.parse(localStorage.getItem('profile'));
-      var globalToken = localStorage.getItem('id_token');
+    globalToken = localStorage.getItem('id_token');
 
 
 
@@ -49,9 +49,10 @@
           localStorage.removeItem('id_token');
           localStorage.removeItem('profile');
           localStorage.removeItem('magiclinkCred');
-          window.location.href = "/";
+          window.location.href = "/#bulletin";
         });
         $('.isotope-container, .related-posts-row').css('visibility', 'visible');
+        $('.isotope-container').html('');
 
       }
 
@@ -64,7 +65,7 @@
         } else {
           lock.magiclink(options);
         }
-      }, 200);
+      }, 300);
 
 
     });
