@@ -49,10 +49,10 @@
           localStorage.removeItem('id_token');
           localStorage.removeItem('profile');
           localStorage.removeItem('magiclinkCred');
-          window.location.href = "/#bulletin";
+          window.location.href = "/bulletin";
         });
         $('.isotope-container, .related-posts-row').css('visibility', 'visible');
-        $('.isotope-container').html('');
+        //$('.isotope-container').html('');
 
       }
 
