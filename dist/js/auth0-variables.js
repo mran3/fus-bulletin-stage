@@ -1,5 +1,5 @@
-var AUTH0_CLIENT_ID='UVkcQQBwjXbfyTHXeUrzXiCr20i2pasT';
-var AUTH0_DOMAIN='jesseweigel.auth0.com';
+var AUTH0_CLIENT_ID='vjl1DA4FQD0nC2HdheWzJBqLoxbyHAhu';
+var AUTH0_DOMAIN='jweigel-fus.auth0.com';
 var AUTH0_CALLBACK_URL=location.href;
 var options = {
   "icon":"https://franciscan.university/ma-theology/img/side-nav-logo.jpg",
