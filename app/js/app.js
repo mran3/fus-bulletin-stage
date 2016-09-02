@@ -3,7 +3,7 @@
 var testImgArr, postType;
 
 $(function() {
-  var wpURL = 'https://franciscan.university/fus-bulletin/';
+  var wpURL = 'https://franciscan.university/HfjGnJUHz77wyWm5S8/';
 //  getImages();
 
   var $container = $('.isotope-container'),

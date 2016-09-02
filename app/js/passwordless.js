@@ -38,7 +38,7 @@
         window.location.hash = 'lol';
         setTimeout(function(){
           window.location.hash = '';
-        }, 200);
+        }, 300);
 
 
 
