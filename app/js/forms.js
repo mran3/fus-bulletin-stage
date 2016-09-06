@@ -45,7 +45,7 @@ $("#modal1 #announcement-submit").click(function(event){
       }
 
     $.each($uploads, function(key, value) {
-      fileNames = fileNames + path + value.name + ' , ';
+      fileNames = fileNames + path + value.name + '  ';
     });
 
     console.log(fileNames);
@@ -90,10 +90,12 @@ $("#modal1 #announcement-submit").click(function(event){
              $("#announcement-form input, #announcement-form textarea").val("");
              //$("#announcement-form input:checkbox").prop('checked', "");
              $('#modal1 .modal-content').hide();
+             $('#announcement-submit').hide();
              $('#modal1 .success').show();
          }).catch(function(e) {
              console.log('File Upload Error',e);
              $('#modal1 modal-content').hide();
+             $('#announcement-submit').hide();
              $('#modal1 .failure').show();
          });
        } else {
@@ -105,6 +107,7 @@ $("#modal1 #announcement-submit").click(function(event){
          $("#announcement-form input, #announcement-form textarea").val("");
          //$("#announcement-form input:checkbox").prop('checked', "");
          $('#modal1 .modal-content').hide();
+         $('#announcement-submit').hide();
          $('#modal1 .success').show();
        }
 
