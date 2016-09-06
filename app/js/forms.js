@@ -33,7 +33,7 @@ $("#modal1 #announcement-submit").click(function(event){
     //var serializedCheckboxData = '';
     var serializedData = '';
     var fileNames = '';
-    var path = ''; //This need to be the path to the uploads folder
+    var path = 'https://franciscan.university/bulletin/uploadedFiles/';
     var email = JSON.parse(localStorage.profile).email;
     var announcementContent = $('#announcementText').val();
 
