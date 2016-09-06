@@ -77,7 +77,7 @@ $("#modal1 #announcement-submit").click(function(event){
              formData.append('ajax', true);
 
 
-         fetch('https://franciscan.university/bulletin/upload.php', {
+         fetch('https://franciscan.university/bulletin/uploads.php', {
              method:'POST',
              body:formData
          }).then(function(res) {
