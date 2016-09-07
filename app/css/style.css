@@ -263,6 +263,11 @@ header, main, footer {
   display: block;
   font-size: 18px; }
 
+.card .card-content ul {
+  padding-left: 25px; }
+  .card .card-content ul li {
+    list-style-type: disc; }
+
 .card .cat-name, .card .tag-name {
   color: #ffc658;
   text-transform: uppercase;
@@ -306,6 +311,9 @@ header, main, footer {
 
 .single-post .card .card-image {
   cursor: default; }
+
+.single-post .card .video-container {
+  margin-top: 25px; }
 
 .fourths {
   width: 23%; }

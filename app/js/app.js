@@ -547,7 +547,7 @@ function infiniteScroll() {
               <div class="card-title">
               ${categoryTemplate}
                 <a href="#${post.slug}">${post.title.rendered}</a>
-                <span class="post-date">${thisDate.getMonth()}/${thisDate.getDate()}/${thisDate.getFullYear()}</span>
+                <span class="post-date">${thisDate.getMonth() + 1}/${thisDate.getDate()}/${thisDate.getFullYear()}</span>
               </div>
               <div class="content excerpt">
 

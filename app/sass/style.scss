@@ -413,6 +413,13 @@ header, main, footer {
     //   max-height:200px;
     //   overflow: hidden;
     // }
+
+    ul {
+      padding-left: 25px;
+      li {
+        list-style-type: disc;
+      }
+    }
   }
   .cat-name, .tag-name {
     color: $fus-yellow;
@@ -489,6 +496,10 @@ header, main, footer {
 
     .card-image {
       cursor: default;
+    }
+
+    .video-container {
+      margin-top: 25px;
     }
   }
 }
