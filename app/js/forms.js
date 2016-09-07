@@ -45,7 +45,7 @@ $("#modal1 #announcement-submit").click(function(event){
       }
 
     $.each($uploads, function(key, value) {
-      fileNames = fileNames + path + value.name + '  ';
+      fileNames = fileNames + path + ' ' + value.name + ',';
     });
 
     console.log(fileNames);
