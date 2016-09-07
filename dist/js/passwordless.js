@@ -37,6 +37,7 @@
 
         window.location.hash = 'lol';
         setTimeout(function(){
+          $('.isotope-container').html('');
           window.location.hash = '';
         }, 300);
 

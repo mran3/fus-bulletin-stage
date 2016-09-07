@@ -65,7 +65,7 @@ gulp.task('imgmin', function() {
 		.pipe(gulp.dest('dist/img'));
 });
 
-gulp.task('watch', ['browserSync', 'sass'], function (){
+gulp.task('watch', ['browserSync', 'sass', 'dist'], function (){
   gulp.watch('app/sass/**/*.scss', ['sass']);
   // Reloads the browser whenever HTML or JS files change
   gulp.watch('app/*.html', browserSync.reload);
