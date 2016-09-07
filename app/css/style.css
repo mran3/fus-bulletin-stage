@@ -224,6 +224,9 @@ header, main, footer {
   transform: translateY(0);
   transition: transform 500ms ease-in-out; }
 
+.isotope-container .col {
+  width: 100%; }
+
 @media screen and (min-width: 2000px) {
   .isotope-container .col.l4 {
     width: 25%; } }

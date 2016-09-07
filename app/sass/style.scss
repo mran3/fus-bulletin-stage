@@ -338,6 +338,11 @@ header, main, footer {
 }
 
 .isotope-container {
+
+  .col {
+    width: 100%;
+  }
+
   .col.l4 {
     @media screen and (min-width: 2000px) {
       width: 25%;
