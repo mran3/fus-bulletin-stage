@@ -482,7 +482,7 @@ function infiniteScroll() {
                console.log('it ran ');
                $('.isotope-container').isotope('destroy');
                isotopeize();
-             }, 100);
+             }, 200);
 
            }
          });
