@@ -394,7 +394,7 @@ function infiniteScroll() {
     // Check to see if multiple posts will be rendered
     if (window.location.hash.indexOf('/') >= 0 || window.location.hash.split('#')[1] === "" || window.location.hash === "") {
 
-      if (data[0] === undefined && isInfinite === false) {
+      if (data[0] === undefined && isInfinite === false && window.location.hash !== '') {
         $('.preloader-wrapper').hide();
         $('.isotope-container').html('<h3>No matching posts</h3>');
       } else {
