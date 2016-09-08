@@ -66,10 +66,10 @@ gulp.task('imgmin', function() {
 });
 
 gulp.task('watch', ['browserSync', 'sass', 'dist'], function (){
-  gulp.watch('app/sass/**/*.scss', ['sass']);
+  gulp.watch('app/sass/**/*.scss', ['sass'], ['dist']);
   // Reloads the browser whenever HTML or JS files change
-  gulp.watch('app/*.html', browserSync.reload);
-  gulp.watch('app/js/**/*.js', browserSync.reload);
+  gulp.watch('app/*.html', browserSync.reload, ['dist']);
+  gulp.watch('app/js/**/*.js', browserSync.reload, ['dist']);
 
 });
 

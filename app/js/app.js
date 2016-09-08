@@ -478,8 +478,12 @@ function infiniteScroll() {
 
          $('.isotope.container').imagesLoaded(function(){
            if ($('.isMasonry').length > 0) {
-             $('.isotope-container').isotope('destroy');
-             isotopeize();
+             setTimeout(function(){
+               console.log('it ran ');
+               $('.isotope-container').isotope('destroy');
+               isotopeize();
+             }, 100);
+
            }
          });
      }
