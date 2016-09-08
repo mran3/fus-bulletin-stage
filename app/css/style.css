@@ -197,7 +197,7 @@ header, main, footer {
 .container {
   max-width: 5000px; }
   .container .row.notMasonry {
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto; }
   .container .load-more-row {
     text-align: center; }
