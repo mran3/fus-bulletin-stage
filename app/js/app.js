@@ -572,6 +572,7 @@ function infiniteScroll() {
            $('.preloader-wrapper').hide();
            $('.container').addClass('single');
            $('.grid-btn, .list-btn').css('visibility', 'hidden');
+           $('.single .content a').attr('target', '_blank');
      }
      i++;
 

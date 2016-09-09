@@ -280,7 +280,8 @@ header, main, footer {
     cursor: pointer; }
 
 .card .card-action .tag-link {
-  margin-right: 4px !important; }
+  margin-right: 4px !important;
+  margin-top: 8px; }
   .card .card-action .tag-link .tag-name {
     color: rgba(0, 0, 0, 0.6); }
 
