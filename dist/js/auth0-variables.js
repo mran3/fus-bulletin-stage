@@ -5,11 +5,15 @@ var options = {
   "icon":"https://franciscan.university/ma-theology/img/side-nav-logo.jpg",
   "primaryColor":"#21412a",
   "responseType":"token",
+  "rememberLastLogin": false,
   "autoclose":true,
   "closable":false,
   "focusInput":false,
   "popup":false,
   "dict":{
+    emailSent: {
+      success: "A link has been sent to {email}. Please use this link within the next 5 minutes to sign in."
+    },
     title:"",
     email: {
       emailInputPlaceholder: "you@franciscan.edu",
