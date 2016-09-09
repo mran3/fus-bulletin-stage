@@ -271,16 +271,18 @@ header, main, footer {
   .card .card-content ul li {
     list-style-type: disc; }
 
-.card .cat-name, .card .tag-name {
+.card .cat-name {
   color: #ffc658;
   text-transform: uppercase;
   font-size: 16px;
   font-weight: 400; }
-  .card .cat-name:hover, .card .tag-name:hover {
+  .card .cat-name:hover {
     cursor: pointer; }
 
 .card .card-action .tag-link {
-  margin-right: 8px !important; }
+  margin-right: 4px !important; }
+  .card .card-action .tag-link .tag-name {
+    color: rgba(0, 0, 0, 0.6); }
 
 .card .card-image {
   cursor: pointer; }

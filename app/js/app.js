@@ -450,7 +450,7 @@ function infiniteScroll() {
      let thisDate = new Date(post.date);
 
      $( '.isotope-container' ).append(
-       `<div class="col ${post.categories}${tagIds}">
+       `<div class="col ${tagIds}">
          <div class="card isotope-item ${tagIds}">
             ${cardImgTemp}
             <div class="card-content" post-id=${post.id}>
@@ -538,13 +538,13 @@ function infiniteScroll() {
          tagNames = tagNames + " " + tag.name;
          tagIds = `${tagIds} t${tag.term_id}`;
          tagTemplate = `
-          ${tagTemplate} <a href="#tag/${tag.slug}" class="tag-link"><span class="tag-name" data-filter=.t${tag.term_id}>${tag.name},</span></a>`;
+          ${tagTemplate} <a href="#tag/${tag.slug}" class="tag-link chip"><span class="tag-name" data-filter=.t${tag.term_id}>${tag.name}</span></a>`;
        }
      }
      let thisDate = new Date(post.date);
 
      $( '.isotope-container' ).append(
-       `<div class="col ${post.categories}${tagIds} single-post">
+       `<div class="col ${tagIds} single-post">
          <div class="card isotope-item ${tagIds}">
             ${cardImgTemp}
             <div class="card-content" post-id=${post.id}>
