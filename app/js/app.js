@@ -607,7 +607,7 @@ function infiniteScroll() {
          </div>
          `;
          $('#related-posts').append(relatedPostsTemp);
-         $('.related-posts-row h3').text('You may also be interested in...');
+         $('.related-posts-row h3').text(`More from "${post.pure_taxonomies.categories[0].name}"`);
        }
      })
      .catch(function(error) {
