@@ -151,6 +151,13 @@ if (globalToken) {
 
   getJSON(`${wpURL}wp-json/wp/v2/categories?per_page=100&fields=id,name,slug`)
   .then(function(data){
+    $('#mobile-demo').append(
+      `
+      <li><a class="category" href="#all">All</a></li>
+      `
+
+    );
+
     let i = 0;
     for(let category of data) {
       categories[category.id] = category.name;
@@ -293,7 +300,11 @@ if (globalToken) {
         }
 
       } else if (window.location.hash !== "") {
-        getPosts(`filter[name]=${path}&`, 1, false);
+        if(path.toLowerCase() === "all") {
+          getPosts();
+        } else {
+          getPosts(`filter[name]=${path}&`, 1, false);
+        }
       } else {
         getPosts();
       }
@@ -315,7 +326,11 @@ if (globalToken) {
       }
 
     } else if (window.location.hash !== "") {
-      getPosts(`filter[name]=${path}&`, 1, false);
+      if(path.toLowerCase() === "all") {
+        getPosts();
+      } else {
+        getPosts(`filter[name]=${path}&`, 1, false);
+      }
     } else {
       getPosts();
     }
@@ -394,7 +409,7 @@ function infiniteScroll() {
     let cardImgArr;
 
     // Check to see if multiple posts will be rendered
-    if (window.location.hash.indexOf('/') >= 0 || window.location.hash.split('#')[1] === "" || window.location.hash === "") {
+    if (window.location.hash.toLowerCase() === "#all" || window.location.hash.indexOf('/') >= 0 || window.location.hash.split('#')[1] === "" || window.location.hash === "") {
 
       if (data[0] === undefined && isInfinite === false && window.location.hash !== '') {
         $('.preloader-wrapper').hide();
