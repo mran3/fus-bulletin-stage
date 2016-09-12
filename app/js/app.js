@@ -156,11 +156,13 @@ if (globalToken) {
       categories[category.id] = category.name;
       $( '.filters' ).append( `<option value=".${category.id}" catID="${category.id}">${category.name}</option>` );
 
-      $('#mobile-demo').append(
-        `
-          <li><a class="category" catID=".${category.id}" href="#category_name/${category.slug}">${category.name}</a></li>
-        `
-      );
+      if (category.id !== 1) {
+        $('#mobile-demo').append(
+          `
+            <li><a class="category" catID=".${category.id}" href="#category_name/${category.slug}">${category.name}</a></li>
+          `
+        );
+      }
 
       if (i === data.length - 1) {
         //Add the rest of the side nav items
