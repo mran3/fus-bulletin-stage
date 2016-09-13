@@ -301,7 +301,7 @@ if (globalToken) {
 
       } else if (window.location.hash !== "") {
         if(path.toLowerCase() === "all") {
-          getPosts();
+          getPosts('', 15, true, true);
         } else {
           getPosts(`filter[name]=${path}&`, 1, false);
         }
@@ -336,7 +336,7 @@ if (globalToken) {
     }
 
   // Get Posts
-  function getPosts(filterOpts='', perPage=10, isotopeInit=true, isInfinite=false) {
+  function getPosts(filterOpts='', perPage=15, isotopeInit=true, isInfinite=false) {
     getJSON(`${wpURL}wp-json/wp/v2/posts?${filterOpts}per_page=${perPage}&fields=id,title,better_featured_image,slug,pure_taxonomies,date,excerpt,content,featured_media`)
     .then(function(data){
       renderCards(data, isotopeInit, isInfinite);
@@ -347,7 +347,7 @@ if (globalToken) {
   }
 
 //Infinite scroll
-  let offsetCount = 10;
+  let offsetCount = 15;
 function infiniteScroll() {
   $(window).scroll(function() {
      if($(window).scrollTop() + $(window).height() > $(document).height() - 500) {
@@ -369,34 +369,41 @@ function infiniteScroll() {
              let year = viewTypePath;
              let month = path.split("/")[2];
 
-             getPosts(`filter[year]=${year}&filter[monthnum]=${month}&offset=${offsetCount}&`, 10, true, true);
+             getPosts(`filter[year]=${year}&filter[monthnum]=${month}&offset=${offsetCount}&`, 15, true, true);
            } else {
              // $('.isotope-container').html(`<h3>${viewTypePath}</h3>`);
-             getPosts(`filter[${viewType}]=${viewTypePath}&offset=${offsetCount}&`, 10, true, true);
+             getPosts(`filter[${viewType}]=${viewTypePath}&offset=${offsetCount}&`, 15, true, true);
            }
 
-           offsetCount = offsetCount + 10;
+           offsetCount = offsetCount + 15;
 
          } else {
-          //  getPosts(`offset=${offsetCount}&`, 10, true, true);
-          //  offsetCount = offsetCount + 10;
-          if($('.load-more').length === 0) {
-          $('.isotope-container').after(`
-            <div class="row load-more-row">
-              <div class="btn btn-large load-more">Load More</div>
-            </div>
-            `);
-          }
-          $('.load-more').click(function(){
-            getPosts(`offset=${offsetCount}&`, 10, true, true);
-            offsetCount = offsetCount + 10;
-            $(this).parent().remove();
-            if ($('.isMasonry').length > 0) {
-              $('.isotope-container').isotope('destroy');
-              isotopeize();
-            }
 
-          });
+           if (window.location.hash === '#all') {
+             getPosts(`offset=${offsetCount}&`, 15, true, true);
+             offsetCount = offsetCount + 15;
+           } else {
+             //  getPosts(`offset=${offsetCount}&`, 10, true, true);
+             //  offsetCount = offsetCount + 10;
+             if($('.load-more').length === 0) {
+             $('.isotope-container').after(`
+               <div class="row load-more-row">
+                 <div class="btn btn-large load-more">Load More</div>
+               </div>
+               `);
+             }
+             $('.load-more').click(function(){
+               getPosts(`offset=${offsetCount}&`, 15, true, true);
+               offsetCount = offsetCount + 15;
+               $(this).parent().remove();
+               if ($('.isMasonry').length > 0) {
+                 $('.isotope-container').isotope('destroy');
+                 isotopeize();
+               }
+
+             });
+           }
+
          }
        }, 200);
 
