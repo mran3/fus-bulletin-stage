@@ -306,7 +306,7 @@ if (globalToken) {
           getPosts(`filter[name]=${path}&`, 1, false);
         }
       } else {
-        getPosts();
+        getPosts('', 50, true, false);
       }
     };
 
@@ -332,12 +332,12 @@ if (globalToken) {
         getPosts(`filter[name]=${path}&`, 1, false);
       }
     } else {
-      getPosts();
+      getPosts('', 50, true, false);
     }
 
   // Get Posts
   function getPosts(filterOpts='', perPage=15, isotopeInit=true, isInfinite=false) {
-    getJSON(`${wpURL}wp-json/wp/v2/posts?${filterOpts}per_page=${perPage}&fields=id,title,better_featured_image,slug,pure_taxonomies,date,excerpt,content,featured_media`)
+    getJSON(`${wpURL}wp-json/wp/v2/posts?${filterOpts}per_page=${perPage}&fields=id,title,better_featured_image,slug,pure_taxonomies,date,excerpt,content,featured_media,acf`)
     .then(function(data){
       renderCards(data, isotopeInit, isInfinite);
     })
@@ -473,24 +473,44 @@ function infiniteScroll() {
 
      let thisDate = new Date(post.date);
 
-     $( '.isotope-container' ).append(
-       `<div class="col ${tagIds}">
-         <div class="card isotope-item ${tagIds}">
-            ${cardImgTemp}
-            <div class="card-content" post-id=${post.id}>
-              <div class="card-title">
-              ${categoryTemplate}
-                <a href="#${post.slug}">${post.title.rendered}</a>
-                  <span class="post-date">${thisDate.getMonth() + 1}/${thisDate.getDate()}/${thisDate.getFullYear()}</span>
-              </div>
-              <div class="content excerpt">
-
-                ${post.excerpt.rendered}
-              </div>
+     let cardTemplate = `<div class="col ${tagIds}">
+       <div class="card isotope-item ${tagIds}">
+          ${cardImgTemp}
+          <div class="card-content" post-id=${post.id}>
+            <div class="card-title">
+            ${categoryTemplate}
+              <a href="#${post.slug}">${post.title.rendered}</a>
+                <span class="post-date">${thisDate.getMonth() + 1}/${thisDate.getDate()}/${thisDate.getFullYear()}</span>
             </div>
+            <div class="content excerpt">
 
+              ${post.excerpt.rendered}
+            </div>
           </div>
-        </div>` );
+
+        </div>
+      </div>`;
+
+
+      //If loading home view, exclude posts that do not fit the date range
+      if (window.location.hash === '' && typeof post.acf.bulletin_date !== undefined) {
+        console.log(post.acf.bulletin_date);
+        let rawBulletinDate = post.acf.bulletin_date.split();
+        let formattedBulletinDate =  rawBulletinDate.splice(6, 0, ', ');
+        formattedBulletinDate = formattedBulletinDate.splice(4, 0, ', ');
+        formattedBulletinDate = formattedBulletinDate.join('');
+        let bulletinDate = window.bulletinDate = new Date(formattedBulletinDate);
+        let maxDate = window.maxDate = new Date();
+        let minDate = window.minDate = new Date();
+        minDate.setDate(minDate.getDate() - 7);
+
+        if (post.acf.bulletin_date >= minDate && post.acf.bulletin_date <= maxDate) {
+          $( '.isotope-container' ).append(cardTemplate);
+        }
+
+      } else {
+        $( '.isotope-container' ).append(cardTemplate);
+      }
 
         $(`div[post-id="${post.id}"] .more-link`).attr('href', `#${post.slug}`);
 
