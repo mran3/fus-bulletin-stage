@@ -276,7 +276,7 @@ if (globalToken) {
       $('.load-more-row').remove();
       $('.b-header').remove();
       //Add title for home page
-      if (window.location.hash === '') {
+      if (window.location.hash === '' || window.location.hash === '#') {
         $('.preloader-wrapper').before(`<h2 class="b-header">Current Bulletin<h2>`);
       }
 
@@ -393,7 +393,7 @@ function infiniteScroll() {
              if($('.load-more').length === 0) {
 
                //Add View All Posts btn that links to 'all' category view
-               if(window.location.hash === '') {
+               if(window.location.hash === '' || window.location.hash === '#') {
                  $('.isotope-container').after(`
                    <div class="row load-more-row">
                      <a class="btn btn-large" href="#all">View All Posts</a>
@@ -515,7 +515,7 @@ function infiniteScroll() {
 
       //If loading home view, exclude posts that do not fit the date range
       let acfObj = post.acf;
-      if (window.location.hash === '') {
+      if (window.location.hash === '' || window.location.hash === '#') {
 
         if (acfObj.hasOwnProperty('bulletin_date') !== false) {
           let rawBulletinDate = post.acf.bulletin_date.split('');
@@ -687,7 +687,7 @@ function infiniteScroll() {
  }
 
  //Add title for home page
- if (window.location.hash === '') {
+ if (window.location.hash === '' || window.location.hash === '#') {
    $('.preloader-wrapper').before(`<h2 class="b-header">Current Bulletin<h2>`);
  }
 
