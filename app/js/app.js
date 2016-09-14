@@ -274,6 +274,11 @@ if (globalToken) {
       $('.isotope-container').html('');
       window.scrollTo(0,0);
       $('.load-more-row').remove();
+      $('.b-header').remove();
+      //Add title for home page
+      if (window.location.hash === '') {
+        $('.preloader-wrapper').before(`<h2 class="b-header">Current Bulletin<h2>`);
+      }
 
       //Reset offset for infinite scroll
       offsetCount = 10;
@@ -386,11 +391,23 @@ function infiniteScroll() {
              //  getPosts(`offset=${offsetCount}&`, 10, true, true);
              //  offsetCount = offsetCount + 10;
              if($('.load-more').length === 0) {
+
+               //Add View All Posts btn that links to 'all' category view
+               if(window.location.hash === '') {
+                 $('.isotope-container').after(`
+                   <div class="row load-more-row">
+                     <a class="btn btn-large" href="#all">View All Posts</a>
+                   </div>
+                   `);
+                 } else {
+
+            // This was the original btn for the home view. Keep it, it may be needed later.
              $('.isotope-container').after(`
                <div class="row load-more-row">
                  <div class="btn btn-large load-more">Load More</div>
                </div>
                `);
+             }
              }
              $('.load-more').click(function(){
                getPosts(`offset=${offsetCount}&`, 15, true, true);
@@ -415,12 +432,16 @@ function infiniteScroll() {
     let i = 0;
     let cardImgArr;
 
+    $('.load-more-row .btn').remove();
+
     // Check to see if multiple posts will be rendered
     if (window.location.hash.toLowerCase() === "#all" || window.location.hash.indexOf('/') >= 0 || window.location.hash.split('#')[1] === "" || window.location.hash === "") {
 
       if (data[0] === undefined && isInfinite === false && window.location.hash !== '') {
         $('.preloader-wrapper').hide();
         $('.isotope-container').html('<h3>No matching posts</h3>');
+        //Remove load more btn
+        $('.load-more-row .btn').remove();
       } else {
 
       //if so, then render post cards
@@ -493,21 +514,23 @@ function infiniteScroll() {
 
 
       //If loading home view, exclude posts that do not fit the date range
-      if (window.location.hash === '' && typeof post.acf.bulletin_date !== undefined) {
-        console.log(post.acf.bulletin_date);
-        let rawBulletinDate = post.acf.bulletin_date.split();
-        let formattedBulletinDate =  rawBulletinDate.splice(6, 0, ', ');
-        formattedBulletinDate = formattedBulletinDate.splice(4, 0, ', ');
-        formattedBulletinDate = formattedBulletinDate.join('');
-        let bulletinDate = window.bulletinDate = new Date(formattedBulletinDate);
-        let maxDate = window.maxDate = new Date();
-        let minDate = window.minDate = new Date();
-        minDate.setDate(minDate.getDate() - 7);
+      let acfObj = post.acf;
+      if (window.location.hash === '') {
 
-        if (post.acf.bulletin_date >= minDate && post.acf.bulletin_date <= maxDate) {
-          $( '.isotope-container' ).append(cardTemplate);
+        if (acfObj.hasOwnProperty('bulletin_date') !== false) {
+          let rawBulletinDate = post.acf.bulletin_date.split('');
+          rawBulletinDate.splice(6, 0, ', ');
+          rawBulletinDate.splice(4, 0, ', ');
+          let formattedBulletinDate = rawBulletinDate.join('');
+          let bulletinDate = window.bulletinDate = new Date(formattedBulletinDate);
+          let maxDate = window.maxDate = new Date();
+          let minDate = window.minDate = new Date();
+          minDate.setDate(minDate.getDate() - 7);
+
+          if (bulletinDate >= minDate && bulletinDate <= maxDate) {
+            $( '.isotope-container' ).append(cardTemplate);
+          }
         }
-
       } else {
         $( '.isotope-container' ).append(cardTemplate);
       }
@@ -537,7 +560,7 @@ function infiniteScroll() {
   } else {
 
     //Remove load more btn
-    $('.load-more').remove();
+    $('.load-more-row .btn').remove();
 
     //if data contained only one post, render single post view
     postType = 'single';
@@ -661,6 +684,11 @@ function infiniteScroll() {
 
      }
    }
+ }
+
+ //Add title for home page
+ if (window.location.hash === '') {
+   $('.preloader-wrapper').before(`<h2 class="b-header">Current Bulletin<h2>`);
  }
 
  // Close side nav on tap for mobile but not wide screens
