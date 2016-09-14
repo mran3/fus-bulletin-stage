@@ -15,6 +15,8 @@
 
       if (hash && hash.error) {
         alert('There was an error: ' + hash.error + '\n' + hash.error_description);
+        window.location.hash('l');
+        window.location.hash('');
       }
       else if (hash && hash.id_token) {
         //save the token in local storage:
@@ -35,7 +37,7 @@
           }
         });
 
-        window.location.hash = 'lol';
+        window.location.hash = 'l';
         setTimeout(function(){
           $('.isotope-container').html('');
           window.location.hash = '';
@@ -55,7 +57,7 @@
           localStorage.removeItem('id_token');
           localStorage.removeItem('profile');
           localStorage.removeItem('magiclinkCred');
-          window.location.href = "/bulletin";
+          window.location = '/';
         });
         $('.isotope-container, .related-posts-row').css('visibility', 'visible');
       //  $('.isotope-container').html('');
@@ -69,7 +71,13 @@
         if (globalToken && globalProfile){
           loggedIn(globalProfile, globalToken);
         } else {
-          lock.magiclink(options);
+          setTimeout(function() {
+            if (globalToken && globalProfile) {
+              loggedIn(globalProfile, globalToken);
+            } else {
+              lock.magiclink(options);
+            }
+          }, 200);
         }
       }, 300);
 
