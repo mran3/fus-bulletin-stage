@@ -304,11 +304,13 @@ if (globalToken) {
           getPosts(`filter[${viewType}]=${viewTypePath}&`, 10, false);
         }
 
-      } else if (window.location.hash !== "" || window.location.hash !== "#") {
-        if(path.toLowerCase() === "all") {
-          getPosts('', 15, true, true);
-        } else {
-          getPosts(`filter[name]=${path}&`, 1, false);
+      } else if (window.location.hash !== "") {
+        if (window.location.hash !== "#") {
+          if(path.toLowerCase() === "all") {
+            getPosts('', 15, true, true);
+          } else {
+            getPosts(`filter[name]=${path}&`, 1, false);
+          }
         }
       } else {
         getPosts('', 50, true, false);
@@ -330,12 +332,14 @@ if (globalToken) {
         getPosts(`filter[${viewType}]=${viewTypePath}&`, 10, false);
       }
 
-    } else if (window.location.hash !== "" || window.location.hash !== "#") {
-      if(path.toLowerCase() === "all") {
-        getPosts();
-      } else {
-        getPosts(`filter[name]=${path}&`, 1, false);
-      }
+    } else if (window.location.hash !== "") {
+      if (window.location.hash !== "#") {
+        if(path.toLowerCase() === "all") {
+          getPosts('', 15, true, true);
+        } else {
+          getPosts(`filter[name]=${path}&`, 1, false);
+        }
+      } 
     } else {
       getPosts('', 50, true, false);
     }
