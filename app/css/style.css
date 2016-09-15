@@ -270,13 +270,16 @@ header, main, footer {
   display: block;
   font-size: 18px; }
 
+.card .card-content p a {
+  font-weight: 500; }
+
 .card .card-content ul {
   padding-left: 25px; }
   .card .card-content ul li {
     list-style-type: disc; }
 
 .card .cat-name {
-  color: #ffc658;
+  color: #ffac0c;
   text-transform: uppercase;
   font-size: 16px;
   font-weight: 400; }

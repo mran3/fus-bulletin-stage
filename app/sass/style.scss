@@ -424,6 +424,12 @@ header, main, footer {
     //   overflow: hidden;
     // }
 
+    p {
+      a {
+        font-weight: 500;
+      }
+    }
+
     ul {
       padding-left: 25px;
       li {
@@ -432,7 +438,7 @@ header, main, footer {
     }
   }
   .cat-name {
-    color: $fus-yellow;
+    color: darken($fus-yellow, 15%);
     text-transform: uppercase;
     font-size: 16px;
     font-weight: 400;
