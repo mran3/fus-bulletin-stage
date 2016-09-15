@@ -304,7 +304,7 @@ if (globalToken) {
           getPosts(`filter[${viewType}]=${viewTypePath}&`, 10, false);
         }
 
-      } else if (window.location.hash !== "") {
+      } else if (window.location.hash !== "" || window.location.hash !== "#") {
         if(path.toLowerCase() === "all") {
           getPosts('', 15, true, true);
         } else {
@@ -330,7 +330,7 @@ if (globalToken) {
         getPosts(`filter[${viewType}]=${viewTypePath}&`, 10, false);
       }
 
-    } else if (window.location.hash !== "") {
+    } else if (window.location.hash !== "" || window.location.hash !== "#") {
       if(path.toLowerCase() === "all") {
         getPosts();
       } else {
