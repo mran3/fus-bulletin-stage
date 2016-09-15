@@ -311,6 +311,7 @@ if (globalToken) {
           } else {
             getPosts(`filter[name]=${path}&`, 1, false);
           }
+          getPosts('', 50, true, false);
         }
       } else {
         getPosts('', 50, true, false);
@@ -339,7 +340,8 @@ if (globalToken) {
         } else {
           getPosts(`filter[name]=${path}&`, 1, false);
         }
-      } 
+        getPosts('', 50, true, false);
+      }
     } else {
       getPosts('', 50, true, false);
     }
