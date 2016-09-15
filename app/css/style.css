@@ -259,6 +259,9 @@ header, main, footer {
   margin: 50px auto;
   display: block; }
 
+.b-header {
+  font-weight: 300; }
+
 .card .card-content .card-title {
   line-height: 30px;
   margin-bottom: 15px; }

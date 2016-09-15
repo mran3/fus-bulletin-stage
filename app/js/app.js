@@ -688,7 +688,7 @@ function infiniteScroll() {
 
  //Add title for home page
  if (window.location.hash === '' || window.location.hash === '#') {
-   $('.preloader-wrapper').before(`<h2 class="b-header">Current Bulletin<h2>`);
+   $('.preloader-wrapper').before(`<h4 class="b-header">This Week's Bulletin<h4>`);
  }
 
  // Close side nav on tap for mobile but not wide screens
