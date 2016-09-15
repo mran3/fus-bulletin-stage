@@ -277,7 +277,7 @@ if (globalToken) {
       $('.b-header').remove();
       //Add title for home page
       if (window.location.hash === '' || window.location.hash === '#') {
-        $('.preloader-wrapper').before(`<h2 class="b-header">Current Bulletin<h2>`);
+        $('.preloader-wrapper').before(`<h2 class="b-header">This Week's Bulletin<h2>`);
       }
 
       //Reset offset for infinite scroll
@@ -311,7 +311,8 @@ if (globalToken) {
           } else {
             getPosts(`filter[name]=${path}&`, 1, false);
           }
-          getPosts('', 50, true, false);
+        } else {
+            getPosts('', 50, true, false);
         }
       } else {
         getPosts('', 50, true, false);
@@ -340,7 +341,8 @@ if (globalToken) {
         } else {
           getPosts(`filter[name]=${path}&`, 1, false);
         }
-        getPosts('', 50, true, false);
+      } else {
+          getPosts('', 50, true, false);
       }
     } else {
       getPosts('', 50, true, false);
