@@ -271,13 +271,14 @@ if (globalToken) {
 
   // Fires when the url changes
     window.onhashchange = function(event) {
+      $('.load-more-row').remove();
       $('.isotope-container').html('');
       window.scrollTo(0,0);
-      $('.load-more-row').remove();
       $('.b-header').remove();
       //Add title for home page
       if (window.location.hash === '' || window.location.hash === '#') {
-        $('.preloader-wrapper').before(`<h2 class="b-header">This Week's Bulletin<h2>`);
+        $('.preloader-wrapper').before(`<h4 class="b-header">This Week's Bulletin<h4>`);
+          // $('.isotope-container').prepend(`<h4 class="b-header">This Week's Bulletin<h4>`);
       }
 
       //Reset offset for infinite scroll
@@ -402,6 +403,7 @@ function infiniteScroll() {
 
                //Add View All Posts btn that links to 'all' category view
                if(window.location.hash === '' || window.location.hash === '#') {
+                 $('.load-more-row').remove();
                  $('.isotope-container').after(`
                    <div class="row load-more-row">
                      <a class="btn btn-large" href="#all">View All Posts</a>

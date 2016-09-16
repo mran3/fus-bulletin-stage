@@ -75,7 +75,7 @@
 $images_arr = array();
    foreach($_FILES['upload']['name'] as $key=>$val){
        //upload and stored upload
-       $target_dir = "uploadedFiles/";
+       $target_dir = "q1zEx3KPMg8BoGwVmd/";
        $target_file = $target_dir.$_FILES['upload']['name'][$key];
        if(move_uploaded_file($_FILES['upload']['tmp_name'][$key],$target_file)){
            $images_arr[] = $target_file;
