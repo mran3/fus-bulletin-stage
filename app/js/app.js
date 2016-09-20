@@ -36,9 +36,9 @@ $(function() {
     $('.date-filter select').on('change', function() {
       month = $('.month select').val();
       year = $('.year select').val();
-      console.log('change' + month + year);
+
       if( month !== null && year !== null) {
-        console.log('notnull');
+
         window.location.hash = `date/${year}/${month}`;
       }
     });
@@ -367,13 +367,12 @@ function infiniteScroll() {
      if($(window).scrollTop() + $(window).height() > $(document).height() - 500) {
        $(window).unbind('scroll');
        scrollToTop(); //Must call this here to keep it working after the unbind
-       console.log(`before timeout ${postType}`);
+
        setTimeout(function(){
-         console.log(postType);
-           path = window.location.hash.split("#")[1];
+          path = window.location.hash.split("#")[1];
 
           if (postType === 'single') {
-            console.log('is single');
+
           } else if (path !== undefined && path.indexOf('/') >= 0) {
            viewType = path.split("/")[0];
            viewTypePath = path.split("/")[1];
@@ -542,7 +541,7 @@ function infiniteScroll() {
             $( '.isotope-container' ).append(cardTemplate);
           }
         }
-        console.log(post.acf.time_sensitive !== undefined);
+
         if (post.acf.time_sensitive !== undefined && post.acf.time_sensitive !== "") {
           let rawDueDate = post.acf.bulletin_date.split('');
           rawDueDate.splice(6, 0, ', ');
@@ -582,7 +581,6 @@ function infiniteScroll() {
          $('.isotope.container').imagesLoaded(function(){
            if ($('.isMasonry').length > 0) {
              setTimeout(function(){
-               console.log('it ran ');
                $('.isotope-container').isotope('destroy');
                isotopeize();
              }, 200);
@@ -676,6 +674,8 @@ function infiniteScroll() {
            $('.container').addClass('single');
            $('.grid-btn, .list-btn').css('visibility', 'hidden');
            $('.single .content a').attr('target', '_blank');
+           $('.card .content img').addClass('responsive-img');
+           $('.card .content iframe').wrap(`<div class="video-container"></div>`);
      }
      i++;
 
@@ -789,21 +789,20 @@ $(".button-collapse").sideNav({
 
     // 600ms delay so we dont exectute excessively
     timer = setTimeout(function(){
-      console.log('timer');
       // don't proceed if the value is empty or not equal to itself
 				if ( !valEqual && !notEmpty )
 					return false;
-          console.log(val);
+
 				// what if the user only types two characters?
 				if ( val.length == 2 && !$(helper).length ) {
-          console.log('2chars');
+
 					// $( input ).after( helperSpan );
         }
 
         // if we have more than 3 characters
         if ( val.length >= 3 || val.length >= 3 && 13 == key ) {
           //TODO: after the || should be >= 1 maybe? want search to work with less than 3 on enter
-console.log('3chars');
+
           // dont run on escape or arrow keys
 					if( blacklistedKeys( key ) )
 						return false;

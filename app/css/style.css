@@ -276,6 +276,10 @@ header, main, footer {
   display: block;
   font-size: 18px; }
 
+.card .card-content .content img.responsive-img {
+  width: 100%;
+  margin: 16px 0; }
+
 .card .card-content p a {
   font-weight: 500; }
 
