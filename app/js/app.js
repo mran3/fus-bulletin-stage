@@ -271,6 +271,8 @@ if (globalToken) {
 
   // Fires when the url changes
     window.onhashchange = function(event) {
+      $('body').removeClass('classic');
+      $('.classic-mode').remove();
       $('.load-more-row').remove();
       $('.isotope-container').html('');
       window.scrollTo(0,0);
@@ -566,6 +568,7 @@ function infiniteScroll() {
              $('.isotope-container').prepend(actionCardTemp);
            }
         }
+
       } else {
         $( '.isotope-container' ).append(cardTemplate);
       }
@@ -577,6 +580,21 @@ function infiniteScroll() {
         $('.container').removeClass('single');
         $('.grid-btn, .list-btn').css('visibility', 'visible');
        infiniteScroll();
+
+
+       if (window.location.hash === '' || window.location.hash === '#') {
+         $('.side-nav').append(`<li class="classic-mode"><a>Classic Mode</a></li>`);
+         // ******* CLASSIC MODE ***********
+         $('.classic-mode').click(function () {
+           if ($('body').hasClass('classic') === true) {
+              $('body').removeClass('classic');
+              $('.b-header').replaceWith(`<h4 class="b-header">This Week's Bulletin</h4>`);
+           } else {
+             $('body').addClass('classic');
+             $('.b-header').replaceWith(`<img class="b-header classic-banner" src="img/bulletin-banner.png" />`);
+           }
+         });
+       }
 
          $('.isotope.container').imagesLoaded(function(){
            if ($('.isMasonry').length > 0) {

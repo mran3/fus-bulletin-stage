@@ -399,3 +399,30 @@ footer {
 
 .footer-copyright a {
   margin-right: 10px; }
+
+.classic {
+  background-color: #fff; }
+  .classic .card {
+    box-shadow: none;
+    border: none;
+    font-family: "Times New Roman", serif !important; }
+    .classic .card img {
+      display: none; }
+    .classic .card .card-title {
+      color: #000 !important;
+      font-weight: bold;
+      margin-bottom: 0;
+      text-decoration: underline; }
+      .classic .card .card-title .cat-name {
+        display: none; }
+      .classic .card .card-title a {
+        color: #000; }
+      .classic .card .card-title .post-date {
+        display: none; }
+    .classic .card p {
+      font-size: 18px; }
+    .classic .card .content {
+      font-weight: normal; }
+      .classic .card .content a {
+        color: blue;
+        text-decoration: underline; }

@@ -642,3 +642,53 @@ footer {
     margin-right: 10px;
   }
 }
+
+
+// ***** CLASSIC MODE **********
+
+.classic {
+  background-color: #fff;
+
+  .card {
+    box-shadow: none;
+    border: none;
+    font-family: "Times New Roman", serif !important;
+
+    img {
+      display: none;
+    }
+
+    .card-title {
+      color: #000 !important;
+      font-weight: bold;
+      margin-bottom: 0;
+      text-decoration: underline;
+
+      .cat-name {
+        display: none;
+      }
+
+      a {
+        color: #000;
+      }
+
+      .post-date {
+        display: none;
+      }
+    }
+
+    p {
+      font-size: 18px;
+    }
+
+    .content {
+      font-weight: normal;
+
+      a {
+        color: rgb(0, 0, 255);
+        text-decoration: underline;
+      }
+    }
+
+  }
+}
