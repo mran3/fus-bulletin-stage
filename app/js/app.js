@@ -503,12 +503,14 @@ function infiniteScroll() {
      }
 
      let thisDate = new Date(post.date);
+     let dueDateTemp = "";
 
      let cardTemplate = `<div class="col ${tagIds}">
        <div class="card isotope-item ${tagIds}">
           ${cardImgTemp}
           <div class="card-content" post-id=${post.id}>
             <div class="card-title">
+            ${dueDateTemp}
             ${categoryTemplate}
               <a href="#${post.slug}">${post.title.rendered}</a>
                 <span class="post-date">${thisDate.getMonth() + 1}/${thisDate.getDate()}/${thisDate.getFullYear()}</span>
@@ -521,7 +523,6 @@ function infiniteScroll() {
 
         </div>
       </div>`;
-
 
       //If loading home view, exclude posts that do not fit the date range
       let acfObj = post.acf;
@@ -540,6 +541,31 @@ function infiniteScroll() {
           if (bulletinDate >= minDate && bulletinDate <= maxDate) {
             $( '.isotope-container' ).append(cardTemplate);
           }
+        }
+        console.log(post.acf.time_sensitive !== undefined);
+        if (post.acf.time_sensitive !== undefined && post.acf.time_sensitive !== "") {
+          let rawDueDate = post.acf.bulletin_date.split('');
+          rawDueDate.splice(6, 0, ', ');
+          rawDueDate.splice(4, 0, ', ');
+          let formattedDueDate = rawDueDate.join('');
+          let dueDate = new Date(formattedDueDate);
+          dueDateTemp = `<div class="due-date valign-wrapper"><i class="material-icons valign">alarm</i><span class="valign">Take action by ${dueDate.getMonth() + 1}/${dueDate.getDate()}/${dueDate.getFullYear()}</span></div>`;
+
+          let actionCardTemp = `<div class="col ${tagIds}">
+            <div class="card isotope-item ${tagIds}">
+               <div class="card-content" post-id=${post.id}>
+                 <div class="card-title">
+                  ${dueDateTemp}
+                  <a href="#${post.slug}">${post.title.rendered}</a>
+                 </div>
+
+               </div>
+             </div>
+           </div>`;
+           let todayDate = new Date();
+           if (dueDate >= todayDate) {
+             $('.isotope-container').prepend(actionCardTemp);
+           }
         }
       } else {
         $( '.isotope-container' ).append(cardTemplate);

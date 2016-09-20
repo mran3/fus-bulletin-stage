@@ -26,4 +26,5 @@ plan.local(function(local) {
 plan.remote(function(remote) {
   remote.log('Move folder to site root');
   remote.exec('cp -fRu ~/www/bulletin-dist/dist/* ~/www/bulletin/');
+  remote.exec('rm -rf ~/www/bulletin-dist/dist/*');
 });

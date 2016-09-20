@@ -266,6 +266,12 @@ header, main, footer {
   line-height: 30px;
   margin-bottom: 15px; }
 
+.card .card-content .due-date {
+  margin-bottom: 8px; }
+  .card .card-content .due-date i {
+    font-size: 32px;
+    margin-right: 8px; }
+
 .card .card-content .post-date {
   display: block;
   font-size: 18px; }
