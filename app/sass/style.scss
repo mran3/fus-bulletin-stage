@@ -649,6 +649,11 @@ footer {
 .classic {
   background-color: #fff;
 
+  .classic-banner {
+    width: 100%;
+    height: auto;
+  }
+
   .card {
     box-shadow: none;
     border: none;

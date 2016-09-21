@@ -402,6 +402,9 @@ footer {
 
 .classic {
   background-color: #fff; }
+  .classic .classic-banner {
+    width: 100%;
+    height: auto; }
   .classic .card {
     box-shadow: none;
     border: none;
