@@ -75,6 +75,9 @@ gulp.task('watch', ['browserSync', 'sass', 'dist'], function (){
 
 gulp.task('browserSync', function() {
   browserSync.init({
+    ui: {
+      port: 3002
+    },
     server: {
       baseDir: 'app'
     },

@@ -531,8 +531,8 @@ function infiniteScroll() {
 
         if (acfObj.hasOwnProperty('bulletin_date') !== false) {
           let rawBulletinDate = post.acf.bulletin_date.split('');
-          rawBulletinDate.splice(6, 0, ', ');
-          rawBulletinDate.splice(4, 0, ', ');
+          rawBulletinDate.splice(6, 0, '/');
+          rawBulletinDate.splice(4, 0, '/');
           let formattedBulletinDate = rawBulletinDate.join('');
           let bulletinDate = window.bulletinDate = new Date(formattedBulletinDate);
           let maxDate = window.maxDate = new Date();
@@ -546,8 +546,8 @@ function infiniteScroll() {
 
         if (post.acf.time_sensitive !== undefined && post.acf.time_sensitive !== "") {
           let rawDueDate = post.acf.bulletin_date.split('');
-          rawDueDate.splice(6, 0, ', ');
-          rawDueDate.splice(4, 0, ', ');
+          rawDueDate.splice(6, 0, '/');
+          rawDueDate.splice(4, 0, '/');
           let formattedDueDate = rawDueDate.join('');
           let dueDate = new Date(formattedDueDate);
           dueDateTemp = `<div class="due-date valign-wrapper"><i class="material-icons valign">alarm</i><span class="valign">Take action by ${dueDate.getMonth() + 1}/${dueDate.getDate()}/${dueDate.getFullYear()}</span></div>`;
