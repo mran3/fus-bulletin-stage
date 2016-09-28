@@ -92,33 +92,34 @@ nav {
   nav .dropdown-content li:hover {
     background-color: transparent; }
 
-.side-nav .logo {
-  height: 110px; }
-  .side-nav .logo a {
-    padding: 10px 10px 0px 10px;
-    width: 100%; }
-    .side-nav .logo a:hover {
-      background-color: #fff; }
-  .side-nav .logo img {
-    width: 100%; }
-
-.side-nav li {
-  line-height: 48px; }
-  .side-nav li a {
-    height: 48px;
+.side-nav {
+  max-width: 85%; }
+  .side-nav .logo {
+    height: 110px; }
+    .side-nav .logo a {
+      padding: 10px 10px 0px 10px;
+      width: 100%; }
+      .side-nav .logo a:hover {
+        background-color: #fff; }
+    .side-nav .logo img {
+      width: 100%; }
+  .side-nav li {
     line-height: 48px; }
-    .side-nav li a i {
+    .side-nav li a {
       height: 48px;
-      line-height: 48px;
-      float: left;
-      margin-right: 8px; }
-  .side-nav li .input-field .select-wrapper input.select-dropdown {
-    color: rgba(0, 0, 0, 0.57); }
-  .side-nav li .input-field label {
-    top: 0.8rem;
-    left: 0.75rem;
-    font-size: 1rem;
-    display: none; }
+      line-height: 48px; }
+      .side-nav li a i {
+        height: 48px;
+        line-height: 48px;
+        float: left;
+        margin-right: 8px; }
+    .side-nav li .input-field .select-wrapper input.select-dropdown {
+      color: rgba(0, 0, 0, 0.57); }
+    .side-nav li .input-field label {
+      top: 0.8rem;
+      left: 0.75rem;
+      font-size: 1rem;
+      display: none; }
 
 header, main, footer {
   padding-left: 300px; }
