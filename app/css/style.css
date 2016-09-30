@@ -371,6 +371,9 @@ header, main, footer {
 .modal.bottom-sheet {
   max-height: 80%; }
 
+#announcement-submit {
+  margin-top: 8px; }
+
 .preloader-wrapper.big .spinner-blue {
   border-color: #1f2a44; }
 

@@ -6,6 +6,13 @@ $(function() {
 var request, checkLength;
 
 $('#modal1 .success, #modal1 .failure').hide();
+
+//New Submission btn
+$('.new-sub').click(function() {
+  $('#modal1 .modal-content').show();
+  $('#modal1 .success, #modal1 .failure').hide();
+
+});
 // Bind to the submit event of our form
 $("#modal1 #announcement-submit").click(function(event){
 
@@ -49,9 +56,11 @@ $("#modal1 #announcement-submit").click(function(event){
       fileNames = fileNames + path + ' ' + fileName + ',';
     });
 
-    console.log(fileNames);
     serializedData = 'announcementText=' + announcementContent + '&email=' + email + '&uploads=' + fileNames;  //Concat all form input serialized data
     console.log(serializedData);
+    if(serializedData === 'announcementText=&email=jweigel@franciscan.edu&uploads=') {
+      return;
+    }
 
     // Let's disable the inputs for the duration of the Ajax request.
     // Note: we disable elements AFTER the form data has been serialized.
