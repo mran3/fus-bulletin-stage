@@ -133,6 +133,7 @@ $(function() {
 
 
 if (globalToken) {
+  $('body').addClass('is-authenticated');
   function get(url) {
     return fetch(url, {
       method: 'get'

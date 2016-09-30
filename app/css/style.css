@@ -13,6 +13,9 @@
 .fus-gold {
   background-color: #998643; }
 
+.is-authenticated .auth0-lock-container {
+  display: none; }
+
 .auth0-lock.auth0-lock .auth0-lock-widget {
   border-radius: 3px; }
 

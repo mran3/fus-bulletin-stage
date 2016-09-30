@@ -58,6 +58,7 @@
           localStorage.removeItem('profile');
           localStorage.removeItem('magiclinkCred');
           window.location = '/';
+          $('body').removeClass('is-authenticated');
         });
         $('.isotope-container, .related-posts-row').css('visibility', 'visible');
       //  $('.isotope-container').html('');
