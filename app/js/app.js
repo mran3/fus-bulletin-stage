@@ -96,7 +96,7 @@ $(function() {
 
   //  $('.isotope-container .col').not('.single-post').addClass(cardSize);
     $('.container').removeClass('w90');
-    $('.isotope-container').masonry('reloadItems');
+    $('.isotope-container').masonry('destroy');
   });
 
   //Isotope
@@ -685,7 +685,7 @@ function infiniteScroll() {
         $(`div[post-id="${post.id}"] .more-link`).attr('href', `#${post.slug}`);
 
      if (i === data.length - 1) {
-           $container.masonry('reloadItems');
+           $container.masonry('destroy');
            $('.preloader-wrapper').hide();
            $('.container').addClass('single');
            $('.grid-btn, .list-btn').css('visibility', 'hidden');

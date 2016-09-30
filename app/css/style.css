@@ -374,6 +374,11 @@ header, main, footer {
 #announcement-submit {
   margin-top: 8px; }
 
+.modal .preloader-wrapper {
+  vertical-align: middle;
+  width: 24px;
+  height: 24px; }
+
 .preloader-wrapper.big .spinner-blue {
   border-color: #1f2a44; }
 

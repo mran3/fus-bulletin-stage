@@ -608,6 +608,12 @@ header, main, footer {
   margin-top: 8px;
 }
 
+.modal .preloader-wrapper {
+  vertical-align: middle;
+  width: 24px;
+  height: 24px;
+}
+
 // Preloader
 .preloader-wrapper.big {
   .spinner-blue {

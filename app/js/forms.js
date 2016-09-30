@@ -10,6 +10,7 @@ $('#modal1 .success, #modal1 .failure').hide();
 //New Submission btn
 $('.new-sub').click(function() {
   $('#modal1 .modal-content').show();
+  $('.modal .preloader-wrapper').hide();
   $('#modal1 .success, #modal1 .failure').hide();
 
 });
@@ -62,6 +63,8 @@ $("#modal1 #announcement-submit").click(function(event){
       return;
     }
 
+    $('.modal .preloader-wrapper').show();
+
     // Let's disable the inputs for the duration of the Ajax request.
     // Note: we disable elements AFTER the form data has been serialized.
     // Disabled form elements will not be serialized.
@@ -100,12 +103,10 @@ $("#modal1 #announcement-submit").click(function(event){
              $("#announcement-form input, #announcement-form textarea").val("");
              //$("#announcement-form input:checkbox").prop('checked', "");
              $('#modal1 .modal-content').hide();
-             $('#announcement-submit').hide();
              $('#modal1 .success').show();
          }).catch(function(e) {
              console.log('File Upload Error',e);
              $('#modal1 modal-content').hide();
-             $('#announcement-submit').hide();
              $('#modal1 .failure').show();
          });
        } else {
@@ -117,7 +118,6 @@ $("#modal1 #announcement-submit").click(function(event){
          $("#announcement-form input, #announcement-form textarea").val("");
          //$("#announcement-form input:checkbox").prop('checked', "");
          $('#modal1 .modal-content').hide();
-         $('#announcement-submit').hide();
          $('#modal1 .success').show();
        }
 
@@ -183,11 +183,9 @@ $("#modal1 #announcement-submit").click(function(event){
         // HACK - check if browser is Safari - and redirect even if fail b/c we know the form submits.
         if (navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0){
           $('#modal1 modal-content').hide();
-          $('#announcement-submit').hide();
           $('#modal1 .success').show();
         } else {
           $('#modal1 modal-content').hide();
-          $('#announcement-submit').hide();
           $('#modal1 .failure').show();
         }
     });
