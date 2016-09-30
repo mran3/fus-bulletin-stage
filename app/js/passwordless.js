@@ -57,7 +57,7 @@
           localStorage.removeItem('id_token');
           localStorage.removeItem('profile');
           localStorage.removeItem('magiclinkCred');
-          window.location = 'bulletin';
+          window.location.pathname = 'bulletin';
           $('body').removeClass('is-authenticated');
         });
         $('.isotope-container, .related-posts-row').css('visibility', 'visible');
