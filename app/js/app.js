@@ -572,7 +572,7 @@ function infiniteScroll() {
                <div class="card-content" post-id=${post.id}>
                  <div class="card-title">
                   ${dueDateTemp}
-                  <a href="#${post.slug}">${post.title.rendered}</a>
+                  <a href="#${post.slug}" class="modal-trigger" data-target="post-modal">${post.title.rendered}</a>
                  </div>
 
                </div>
@@ -623,6 +623,10 @@ function infiniteScroll() {
              }, 200);
 
            }
+         });
+
+         $('modal-trigger').click(function(e) {
+           e.preventDefault();
          });
      }
      i++;
