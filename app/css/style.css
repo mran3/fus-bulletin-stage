@@ -420,6 +420,8 @@ footer {
   .classic .classic-banner {
     width: 100%;
     height: auto; }
+  .classic .time-sensitive {
+    display: none; }
   .classic .card {
     box-shadow: none;
     border: none;

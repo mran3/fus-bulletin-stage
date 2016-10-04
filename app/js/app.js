@@ -567,7 +567,7 @@ function infiniteScroll() {
           let dueDate = new Date(formattedDueDate);
           dueDateTemp = `<div class="due-date valign-wrapper"><i class="material-icons valign">alarm</i><span class="valign">Take action by ${dueDate.getMonth() + 1}/${dueDate.getDate()}/${dueDate.getFullYear()}</span></div>`;
 
-          let actionCardTemp = `<div class="col ${tagIds}">
+          let actionCardTemp = `<div class="col ${tagIds} time-sensitive">
             <div class="card isotope-item ${tagIds}">
                <div class="card-content" post-id=${post.id}>
                  <div class="card-title">
@@ -606,6 +606,10 @@ function infiniteScroll() {
               $('.b-header').replaceWith(`<h4 class="b-header">This Week's Bulletin</h4>`);
            } else {
              $('body').addClass('classic');
+             $('container').removeClass('w90');
+             $('.isotope-container').removeClass('isMasonry');
+             $('.isotope-container').addClass('notMasonry');
+             $('.isotope-container').masonry('destroy');
              $('.b-header').replaceWith(`<img class="b-header classic-banner" src="img/bulletin-banner.png" />`);
            }
          });
