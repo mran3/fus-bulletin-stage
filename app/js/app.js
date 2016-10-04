@@ -464,8 +464,7 @@ function infiniteScroll() {
       let medium = post.better_featured_image.media_details.sizes.medium.source_url;
       let mediumLarge = post.better_featured_image.media_details.sizes.medium_large.source_url;
       let large = post.better_featured_image.media_details.sizes.large.source_url;
-        //This was were the image url initially came from
-       //images[post.featured_media].large;
+
       cardImgTemp = `<div class="card-image">
                        <a href="#${post.slug}"><img sizes="(max-width: 600px) 95vw, 50vw" srcset="${thumb} 150w, ${medium} 300w, ${mediumLarge} 700w, ${large} 1000w"  src="${medium}"/></a>
                     </div>`;
@@ -543,7 +542,7 @@ function infiniteScroll() {
         }
 
         if (post.acf.time_sensitive !== undefined && post.acf.time_sensitive !== "") {
-          let rawDueDate = post.acf.bulletin_date.split('');
+          let rawDueDate = post.acf.time_sensitive.split('');
           rawDueDate.splice(6, 0, '/');
           rawDueDate.splice(4, 0, '/');
           let formattedDueDate = rawDueDate.join('');
