@@ -456,18 +456,36 @@ function infiniteScroll() {
       //if so, then render post cards
 
       postType = 'multiple';
+      let thumb = '',
+        medium = '',
+        mediumLarge = '',
+        large = '';
     for(let post of data) {
       // Get media url for this post from data saved as cardImgArr
      if(post.featured_media !== 0) {
+       thumb = '';
+       medium = '';
+       mediumLarge = '';
+       large = '';
 
-      let thumb = post.better_featured_image.media_details.sizes.thumbnail.source_url;
-      let medium = post.better_featured_image.media_details.sizes.medium.source_url;
-      let mediumLarge = post.better_featured_image.media_details.sizes.medium_large.source_url;
-      let large = post.better_featured_image.media_details.sizes.large.source_url;
+      if (post.better_featured_image.media_details.sizes.thumbnail !== undefined && post.better_featured_image.media_details.sizes.thumbnail !== "") {
+        thumb = `${post.better_featured_image.media_details.sizes.thumbnail.source_url} 150w`;}
 
-      cardImgTemp = `<div class="card-image">
-                       <a href="#${post.slug}"><img sizes="(max-width: 600px) 95vw, 50vw" srcset="${thumb} 150w, ${medium} 300w, ${mediumLarge} 700w, ${large} 1000w"  src="${medium}"/></a>
-                    </div>`;
+      if (post.better_featured_image.media_details.sizes.medium !== undefined && post.better_featured_image.media_details.sizes.medium !== "") {
+        medium = `${post.better_featured_image.media_details.sizes.medium.source_url} 300w`;}
+
+      if (post.better_featured_image.media_details.sizes.medium_large !== undefined && post.better_featured_image.media_details.sizes.medium_large !== "") {
+        mediumLarge = `${post.better_featured_image.media_details.sizes.medium_large.source_url} 700w`;}
+
+      if (post.better_featured_image.media_details.sizes.large !== undefined && post.better_featured_image.media_details.sizes.large !== "") {
+        large = `${post.better_featured_image.media_details.sizes.large.source_url} 1000w`;}
+
+      if (large !== '') {
+        cardImgTemp = `<div class="card-image">
+                         <a href="#${post.slug}"><img sizes="(max-width: 600px) 95vw, 50vw" srcset="${thumb}, ${medium}, ${mediumLarge}, ${large}"  src="${post.better_featured_image.media_details.sizes.medium.source_url}"/></a>
+                      </div>`;
+      }
+
      } else {
        cardImgTemp = '';
      }
@@ -613,18 +631,36 @@ function infiniteScroll() {
 
     //if data contained only one post, render single post view
     postType = 'single';
+    let thumb = '',
+      medium = '',
+      mediumLarge = '',
+      large = '';
     for(let post of data) {
       // Get media url for this post from data saved as cardImgArr
      if(post.featured_media !== 0) {
-       let thumb = post.better_featured_image.media_details.sizes.thumbnail.source_url;
-       let medium = post.better_featured_image.media_details.sizes.medium.source_url;
-       let mediumLarge = post.better_featured_image.media_details.sizes.medium_large.source_url;
-       let large = post.better_featured_image.media_details.sizes.large.source_url;
-         //This was were the image url initially came from
-        //images[post.featured_media].large;
-       cardImgTemp = `<div class="card-image">
-                        <img  sizes="(max-width: 993px) 95vw, 75vw" srcset="${thumb} 150w, ${medium} 300w, ${mediumLarge} 700w, ${large} 1000w" src="${thumb}" />
-                     </div>`;
+       thumb = '';
+       medium = '';
+       mediumLarge = '';
+       large = '';
+
+      if (post.better_featured_image.media_details.sizes.thumbnail !== undefined && post.better_featured_image.media_details.sizes.thumbnail !== "") {
+        thumb = `${post.better_featured_image.media_details.sizes.thumbnail.source_url} 150w`;}
+
+      if (post.better_featured_image.media_details.sizes.medium !== undefined && post.better_featured_image.media_details.sizes.medium !== "") {
+        medium = `${post.better_featured_image.media_details.sizes.medium.source_url} 300w`;}
+
+      if (post.better_featured_image.media_details.sizes.medium_large !== undefined && post.better_featured_image.media_details.sizes.medium_large !== "") {
+        mediumLarge = `${post.better_featured_image.media_details.sizes.medium_large.source_url} 700w`;}
+
+      if (post.better_featured_image.media_details.sizes.large !== undefined && post.better_featured_image.media_details.sizes.large !== "") {
+        large = `${post.better_featured_image.media_details.sizes.large.source_url} 1000w`;}
+
+        if (large !== '') {
+          cardImgTemp = `<div class="card-image">
+                           <a href="#${post.slug}"><img sizes="(max-width: 600px) 95vw, 50vw" srcset="${thumb}, ${medium}, ${mediumLarge}, ${large}"  src="${post.better_featured_image.media_details.sizes.medium.source_url}"/></a>
+                        </div>`;
+        }
+
      } else {
        cardImgTemp = '';
      }
