@@ -659,6 +659,16 @@ function infiniteScroll() {
      }
      let thisDate = new Date(post.date);
 
+     let attachmentTemp = '';
+     if (post.acf.attachment !== undefined && post.acf.atachment !== "") {
+       attachmentTemp = `
+       <h6>Attachment</h6>
+       <span>
+        <a href="${post.acf.attachment.url}"><i class="material-icons">attachment</i> ${post.acf.attachment.title}</a>
+       <span>
+       `;
+     }
+
      $( '.isotope-container' ).append(
        `<div class="col ${tagIds} single-post">
          <div class="card isotope-item ${tagIds}">
@@ -675,6 +685,7 @@ function infiniteScroll() {
               </div>
             </div>
             <div class="card-action">
+              ${attachmentTemp}
               <h6>Tags</h6>
               ${tagTemplate}
             </div>

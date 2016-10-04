@@ -345,6 +345,9 @@ header, main, footer {
 .single-post .card .video-container {
   margin-top: 25px; }
 
+.single-post .card .card-action i {
+  vertical-align: bottom; }
+
 .fourths {
   width: 23%; }
 

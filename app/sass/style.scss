@@ -546,6 +546,12 @@ header, main, footer {
     .video-container {
       margin-top: 25px;
     }
+
+    .card-action {
+      i {
+        vertical-align: bottom;
+      }
+    }
   }
 }
 
