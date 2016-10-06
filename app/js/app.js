@@ -10,8 +10,6 @@ $(function() {
   //cardSize = 's12 m12 l12',
   selector;
 
-
-
   //Get current year and add to footer
   let dateToday = new Date();
   let currentYear = dateToday.getFullYear();
@@ -42,7 +40,6 @@ $(function() {
         window.location.hash = `date/${year}/${month}`;
       }
     });
-
   }
 
   //Scroll to top btn
@@ -118,7 +115,6 @@ $(function() {
     isotopeize();
   }
 
-
 //API Calls
 	var i, t,
   categories = {},
@@ -143,8 +139,6 @@ if (globalToken) {
     });
   }
 
-
-
   //Get Categories
 
   getJSON(`${wpURL}wp-json/wp/v2/categories?per_page=100&fields=id,name,slug`)
@@ -153,7 +147,6 @@ if (globalToken) {
       `
       <li><a class="category" href="#all">All</a></li>
       `
-
     );
 
     let i = 0;
@@ -315,6 +308,7 @@ if (globalToken) {
             newViewInit();
             getPosts('', 15, true, true);
           } else {
+            console.log('single post');
             getPosts(`filter[name]=${path}&`, 1, false);
           }
         } else {
@@ -637,7 +631,11 @@ function infiniteScroll() {
   }
   } else {
 
-    $('#post-modal').openModal();
+    $('#post-modal').openModal({
+      complete: function() {
+        $('#post-modal .modal-content').html('');
+       }
+    });
     //Remove load more btn
     $('.load-more-row .btn').remove();
 
