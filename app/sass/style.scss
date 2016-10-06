@@ -665,6 +665,18 @@ footer {
   }
 }
 
+// Post modal
+#post-modal {
+  .modal-content {
+    padding: 0;
+
+    .card {
+      margin: 0;
+    }
+  }
+}
+
+
 
 // ***** CLASSIC MODE **********
 

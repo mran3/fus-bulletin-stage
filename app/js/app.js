@@ -267,14 +267,17 @@ if (globalToken) {
 
   }
 
+  function newViewInit() {
+    $('body').removeClass('classic');
+    $('.classic-mode').remove();
+    $('.load-more-row').remove();
+    $('.isotope-container').html('');
+    window.scrollTo(0,0);
+    $('.b-header').remove();
+  }
   // Fires when the url changes
     window.onhashchange = function(event) {
-      $('body').removeClass('classic');
-      $('.classic-mode').remove();
-      $('.load-more-row').remove();
-      $('.isotope-container').html('');
-      window.scrollTo(0,0);
-      $('.b-header').remove();
+
       //Add title for home page
       if (window.location.hash === '' || window.location.hash === '#') {
         $('.preloader-wrapper').before(`<h4 class="b-header">This Week's Bulletin<h4>`);
@@ -298,24 +301,28 @@ if (globalToken) {
         if (viewType.toLowerCase() === 'date') {
           let year = viewTypePath;
           let month = path.split("/")[2];
-
+          newViewInit();
           getPosts(`filter[year]=${year}&filter[monthnum]=${month}&`, 10, false);
         } else {
           // $('.isotope-container').html(`<h3>${viewTypePath}</h3>`);
+          newViewInit();
           getPosts(`filter[${viewType}]=${viewTypePath}&`, 10, false);
         }
 
       } else if (window.location.hash !== "") {
         if (window.location.hash !== "#") {
           if(path.toLowerCase() === "all") {
+            newViewInit();
             getPosts('', 15, true, true);
           } else {
             getPosts(`filter[name]=${path}&`, 1, false);
           }
         } else {
+          newViewInit();
             getPosts('', 50, true, false);
         }
       } else {
+        newViewInit();
         getPosts('', 50, true, false);
       }
     };
@@ -624,16 +631,13 @@ function infiniteScroll() {
 
            }
          });
-
-         $('modal-trigger').click(function(e) {
-           e.preventDefault();
-         });
      }
      i++;
    }
   }
   } else {
 
+    $('#post-modal').openModal();
     //Remove load more btn
     $('.load-more-row .btn').remove();
 
@@ -713,7 +717,7 @@ function infiniteScroll() {
        `;
      }
 
-     $( '.isotope-container' ).append(
+     $( '#post-modal .modal-content').append(
        `<div class="col ${tagIds} single-post">
          <div class="card isotope-item ${tagIds}">
             ${cardImgTemp}

@@ -415,6 +415,11 @@ footer {
 .footer-copyright a {
   margin-right: 10px; }
 
+#post-modal .modal-content {
+  padding: 0; }
+  #post-modal .modal-content .card {
+    margin: 0; }
+
 .classic {
   background-color: #fff; }
   .classic .classic-banner {
