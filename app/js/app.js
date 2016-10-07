@@ -261,6 +261,7 @@ if (globalToken) {
   }
 
   function newViewInit() {
+    console.log('newViewInit');
     $('body').removeClass('classic');
     $('.classic-mode').remove();
     $('.load-more-row').remove();
@@ -282,7 +283,7 @@ if (globalToken) {
 
       $('.preloader-wrapper').show();
       path = window.location.hash.split("#")[1];
-      $('.isotope-container, #related-posts, .related-posts-row h3').html('');
+      // $('.isotope-container, #related-posts, .related-posts-row h3').html('');
 
       if (path !== undefined && path.indexOf('/') >= 0) {
 
@@ -590,6 +591,8 @@ function infiniteScroll() {
       }
 
         $(`div[post-id="${post.id}"] .more-link`).attr('href', `#${post.slug}`);
+        $(`div[post-id="${post.id}"] .more-link`).addClass('modal-trigger');
+        $(`div[post-id="${post.id}"] .more-link`).attr('data-target', `post-modal`);
 
      if (i === data.length - 1) {
        $('.preloader-wrapper').hide();
@@ -738,7 +741,7 @@ function infiniteScroll() {
           </div>
         </div>` );
 
-        $(`div[post-id="${post.id}"] .more-link`).attr('href', `#${post.slug}`);
+    $(`div[post-id="${post.id}"] .more-link`).attr('href', `#${post.slug}`);
 
      if (i === data.length - 1) {
            $container.masonry('destroy');
