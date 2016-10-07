@@ -26,6 +26,19 @@ $(function() {
     });
   }, 500);
 
+  //Post link
+  function postLink() {
+    $('.post-link').click(function() {
+    //  e.preventDefault();
+
+    if(window.location.hash === $(this).attr('href')) {
+      console.log('post link');
+      getPosts(`filter[name]=${window.location.hash.split("#")[1]}&`, 1, false);
+    }
+    });
+  }
+
+
   //Date filter
   function dateFilter() {
     let month;
@@ -268,6 +281,7 @@ if (globalToken) {
     $('.isotope-container').html('');
     window.scrollTo(0,0);
     $('.b-header').remove();
+    $('#post-modal').closeModal();
   }
   // Fires when the url changes
     window.onhashchange = function(event) {
@@ -309,7 +323,6 @@ if (globalToken) {
             newViewInit();
             getPosts('', 15, true, true);
           } else {
-            console.log('single post');
             getPosts(`filter[name]=${path}&`, 1, false);
           }
         } else {
@@ -530,7 +543,7 @@ function infiniteScroll() {
             <div class="card-title">
             ${dueDateTemp}
             ${categoryTemplate}
-              <a href="#${post.slug}">${post.title.rendered}</a>
+              <a class="post-link" href="#${post.slug}">${post.title.rendered}</a>
                 <span class="post-date">${thisDate.getMonth() + 1}/${thisDate.getDate()}/${thisDate.getFullYear()}</span>
             </div>
             <div class="content excerpt">
@@ -628,6 +641,8 @@ function infiniteScroll() {
 
            }
          });
+
+         postLink();
      }
      i++;
    }
@@ -725,7 +740,7 @@ function infiniteScroll() {
             <div class="card-content" post-id=${post.id}>
               <div class="card-title">
               ${categoryTemplate}
-                <a href="#${post.slug}">${post.title.rendered}</a>
+                <a class="post-link" href="#${post.slug}">${post.title.rendered}</a>
                 <span class="post-date">${thisDate.getMonth() + 1}/${thisDate.getDate()}/${thisDate.getFullYear()}</span>
               </div>
               <div class="content excerpt">
