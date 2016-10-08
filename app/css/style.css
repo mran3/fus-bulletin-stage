@@ -364,9 +364,9 @@ header, main, footer {
     #post-modal .cat-name:hover, #post-modal .tag-name:hover {
       cursor: pointer; }
   #post-modal .tag-name {
-    color: #8e9fbc; }
+    color: #1f2a44; }
     #post-modal .tag-name:hover {
-      color: #ced5e2; }
+      color: #3f558a; }
 
 @media screen and (max-width: 992px) {
   .material-tooltip {

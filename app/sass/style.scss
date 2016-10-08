@@ -593,9 +593,9 @@ header, main, footer {
   }
 
   .tag-name {
-    color: $fus-light-blue;
+    color: $fus-dark-blue;
     &:hover {
-      color: lighten($fus-light-blue, 20%);
+      color: lighten($fus-dark-blue, 20%);
     }
   }
 
