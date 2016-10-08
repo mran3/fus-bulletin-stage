@@ -357,15 +357,16 @@ header, main, footer {
 .fullish {
   width: 98.5%; }
 
-#post-modal .cat-name, #post-modal .tag-name {
-  color: #ffc658; }
-  #post-modal .cat-name:hover, #post-modal .tag-name:hover {
-    cursor: pointer; }
-
-#post-modal .tag-name {
-  color: #8e9fbc; }
-  #post-modal .tag-name:hover {
-    color: #ced5e2; }
+#post-modal {
+  z-index: 1001 !important; }
+  #post-modal .cat-name, #post-modal .tag-name {
+    color: #ffc658; }
+    #post-modal .cat-name:hover, #post-modal .tag-name:hover {
+      cursor: pointer; }
+  #post-modal .tag-name {
+    color: #8e9fbc; }
+    #post-modal .tag-name:hover {
+      color: #ced5e2; }
 
 @media screen and (max-width: 992px) {
   .material-tooltip {

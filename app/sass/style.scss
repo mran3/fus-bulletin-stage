@@ -584,6 +584,7 @@ header, main, footer {
 }
 
 #post-modal {
+  z-index: 1001 !important;
   .cat-name, .tag-name {
     color: $fus-yellow;
     &:hover {
