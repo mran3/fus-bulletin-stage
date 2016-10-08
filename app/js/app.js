@@ -26,19 +26,6 @@ $(function() {
     });
   }, 500);
 
-  //Post link
-  function postLink() {
-    $('.post-link').click(function() {
-    //  e.preventDefault();
-
-    if(window.location.hash === $(this).attr('href')) {
-      console.log('post link');
-      getPosts(`filter[name]=${window.location.hash.split("#")[1]}&`, 1, false);
-    }
-    });
-  }
-
-
   //Date filter
   function dateFilter() {
     let month;
@@ -372,6 +359,18 @@ if (globalToken) {
     })
     .catch(function(error) {
       console.log(error);
+    });
+  }
+
+  //Post link
+  function postLink() {
+    $('.post-link').click(function() {
+    //  e.preventDefault();
+
+    if(window.location.hash === $(this).attr('href')) {
+      console.log('post link');
+      getPosts(`filter[name]=${window.location.hash.split("#")[1]}&`, 1, false);
+    }
     });
   }
 
