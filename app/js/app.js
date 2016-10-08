@@ -762,7 +762,7 @@ function infiniteScroll() {
            $('.preloader-wrapper').hide();
            $('.container').addClass('single');
            $('.grid-btn, .list-btn').css('visibility', 'hidden');
-           $('.single .content a').attr('target', '_blank');
+           $('.card .content a').not('.more-link').attr('target', '_blank');
            $('.card .content img').addClass('responsive-img');
            $('.card .content iframe').wrap(`<div class="video-container"></div>`);
      }
