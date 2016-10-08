@@ -710,6 +710,7 @@ function infiniteScroll() {
     let tagNames = "";
     let tagIds = "";
     let tagTemplate = "";
+    let tagHeader = '';
     if (post.pure_taxonomies.tags !== undefined) {
        let tagData = post.pure_taxonomies.tags;
 
@@ -719,6 +720,7 @@ function infiniteScroll() {
          tagTemplate = `
           ${tagTemplate} <a href="#tag/${tag.slug}" class="tag-link chip"><span class="tag-name" data-filter=.t${tag.term_id}>${tag.name}</span></a>`;
        }
+        tagHeader = `<h6>Tags</h6>`;
      }
      let thisDate = new Date(post.date);
 
@@ -749,7 +751,7 @@ function infiniteScroll() {
             </div>
             <div class="card-action">
               ${attachmentTemp}
-              <h6>Tags</h6>
+              ${tagHeader}
               ${tagTemplate}
             </div>
           </div>
