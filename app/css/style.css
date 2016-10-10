@@ -358,7 +358,7 @@ header, main, footer {
   width: 98.5%; }
 
 #post-modal {
-  z-index: 1001 !important; }
+  z-index: 9999 !important; }
   #post-modal .cat-name, #post-modal .tag-name {
     color: #ffc658; }
     #post-modal .cat-name:hover, #post-modal .tag-name:hover {
