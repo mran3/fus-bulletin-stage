@@ -725,13 +725,18 @@ function infiniteScroll() {
      let thisDate = new Date(post.date);
 
      let attachmentTemp = '';
+    if (post.acf.atachment !== 'false' && post.acf.attachment !== false) {
      if (post.acf.attachment !== undefined && post.acf.atachment !== "") {
-       attachmentTemp = `
-       <h6>Attachment</h6>
-       <span>
-        <a href="${post.acf.attachment.url}"><i class="material-icons">attachment</i> ${post.acf.attachment.title}</a>
-       <span>
-       `;
+
+         console.log(post.acf.attachment);
+         attachmentTemp = `
+         <h6>Attachment</h6>
+         <span>
+          <a href="${post.acf.attachment.url}"><i class="material-icons">attachment</i> ${post.acf.attachment.title}</a>
+         <span>
+         `;
+       }
+
      }
 
      $( '#post-modal .modal-content').append(
