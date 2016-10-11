@@ -275,13 +275,6 @@ if (globalToken) {
   }
   // Fires when the url changes
     window.onhashchange = function(event) {
-
-      //Add title for home page
-      if (window.location.hash === '' || window.location.hash === '#') {
-        $('.preloader-wrapper').before(`<h4 class="b-header">This Week's Bulletin<h4>`);
-          // $('.isotope-container').prepend(`<h4 class="b-header">This Week's Bulletin<h4>`);
-      }
-
       //Reset offset for infinite scroll
       offsetCount = 10;
 
@@ -326,6 +319,11 @@ if (globalToken) {
       } else {
         newViewInit();
         getPosts('', 50, true, false);
+      }
+
+      //Add title for home page
+      if (window.location.hash === '' || window.location.hash === '#') {
+        $('.preloader-wrapper').not('#modal1 .preloader-wrapper').before(`<h4 class="b-header">This Week's Bulletin<h4>`);
       }
     };
 
@@ -853,7 +851,7 @@ function infiniteScroll() {
 
  //Add title for home page
  if (window.location.hash === '' || window.location.hash === '#') {
-   $('.preloader-wrapper').before(`<h4 class="b-header">This Week's Bulletin<h4>`);
+   $('.preloader-wrapper').not('#modal1 .preloader-wrapper').before(`<h4 class="b-header">This Week's Bulletin<h4>`);
  }
 
  // Close side nav on tap for mobile but not wide screens
