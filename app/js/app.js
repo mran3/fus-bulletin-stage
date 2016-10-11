@@ -145,6 +145,9 @@ if (globalToken) {
   .then(function(data){
     $('#mobile-demo').append(
       `
+      <li><a class="category" href="#">Current Bulletin</a></li>
+      <li><a class="category" href="#time-sensitive"><i class="material-icons valign">alarm</i>Take Action</a></li>
+      <li><div class="divider"></div></li>
       <li><a class="category" href="#all">All</a></li>
       `
     );
@@ -309,9 +312,13 @@ if (globalToken) {
           if(path.toLowerCase() === "all") {
             newViewInit();
             getPosts('', 15, true, true);
-          } else {
-            getPosts(`filter[name]=${path}&`, 1, false);
-          }
+          } else if (path === 'time-sensitive') {
+              newViewInit();
+              console.log('time-sensitive');
+              getPosts('', 100, true, false);
+            } else {
+              getPosts(`filter[name]=${path}&`, 1, false);
+            }
         } else {
           newViewInit();
             getPosts('', 50, true, false);
@@ -341,9 +348,12 @@ if (globalToken) {
       if (window.location.hash !== "#") {
         if(path.toLowerCase() === "all") {
           getPosts('', 15, true, true);
-        } else {
-          getPosts(`filter[name]=${path}&`, 1, false);
-        }
+        } else if (path === 'time-sensitive'){
+            console.log('time-sensitive');
+            getPosts('', 100, true, false);
+          } else {
+            getPosts(`filter[name]=${path}&`, 1, false);
+          }
       } else {
           getPosts('', 50, true, false);
       }
@@ -425,11 +435,11 @@ function infiniteScroll() {
                  } else {
 
             // This was the original btn for the home view. Keep it, it may be needed later.
-             $('.isotope-container').after(`
-               <div class="row load-more-row">
-                 <div class="btn btn-large load-more">Load More</div>
-               </div>
-               `);
+            //  $('.isotope-container').after(`
+            //    <div class="row load-more-row">
+            //      <div class="btn btn-large load-more">Load More</div>
+            //    </div>
+            //    `);
              }
              }
              $('.load-more').click(function(){
@@ -458,7 +468,7 @@ function infiniteScroll() {
     $('.load-more-row .btn').remove();
 
     // Check to see if multiple posts will be rendered
-    if (window.location.hash.toLowerCase() === "#all" || window.location.hash.indexOf('/') >= 0 || window.location.hash.split('#')[1] === "" || window.location.hash === "") {
+    if (window.location.hash.toLowerCase() === "#all" || window.location.hash.indexOf('/') >= 0 || window.location.hash.split('#')[1] === "" || window.location.hash === "" || path === 'time-sensitive') {
 
       if (data[0] === undefined && isInfinite === false && window.location.hash !== '') {
         $('.preloader-wrapper').hide();
@@ -598,8 +608,33 @@ function infiniteScroll() {
            }
         }
 
+      } else if (path === 'time-sensitive') {
+        if (post.acf.time_sensitive !== undefined && post.acf.time_sensitive !== "") {
+          let rawDueDate = post.acf.time_sensitive.split('');
+          rawDueDate.splice(6, 0, '/');
+          rawDueDate.splice(4, 0, '/');
+          let formattedDueDate = rawDueDate.join('');
+          let dueDate = new Date(formattedDueDate);
+          dueDateTemp = `<div class="due-date valign-wrapper"><i class="material-icons valign">alarm</i><span class="valign">Take action by ${dueDate.getMonth() + 1}/${dueDate.getDate()}/${dueDate.getFullYear()}</span></div>`;
+
+          let actionCardTemp = `<div class="col ${tagIds} time-sensitive">
+            <div class="card isotope-item ${tagIds}">
+               <div class="card-content" post-id=${post.id}>
+                 <div class="card-title">
+                  ${dueDateTemp}
+                  <a href="#${post.slug}" class="modal-trigger" data-target="post-modal">${post.title.rendered}</a>
+                 </div>
+
+               </div>
+             </div>
+           </div>`;
+           let todayDate = new Date();
+           if (dueDate >= todayDate) {
+             $('.isotope-container').append(actionCardTemp);
+           }
+        }
       } else {
-        $( '.isotope-container' ).append(cardTemplate);
+          $( '.isotope-container' ).append(cardTemplate);
       }
 
         $(`div[post-id="${post.id}"] .more-link`).attr('href', `#${post.slug}`);
