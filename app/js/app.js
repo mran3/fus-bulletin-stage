@@ -264,7 +264,6 @@ if (globalToken) {
   }
 
   function newViewInit() {
-    console.log('newViewInit');
     $('body').removeClass('classic');
     $('.classic-mode').remove();
     $('.load-more-row').remove();
@@ -275,6 +274,10 @@ if (globalToken) {
   }
   // Fires when the url changes
     window.onhashchange = function(event) {
+      //Send analytics data
+      ga('set', 'page', window.location.hash);
+      ga('send', 'pageview');
+
       //Reset offset for infinite scroll
       offsetCount = 10;
 
