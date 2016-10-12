@@ -22,7 +22,6 @@
         //save the token in local storage:
         localStorage.setItem('id_token', hash.id_token);
         globalToken = hash.id_token;
-        console.log('hash',hash);
         $('.login-box').hide();
         $('.logged-in-box').show();
         //retrieve profile
@@ -41,10 +40,7 @@
         setTimeout(function(){
           $('.isotope-container').html('');
           window.location.hash = '';
-        }, 300);
-
-
-
+        }, 400);
       }
 
       function loggedIn (profile, token) {

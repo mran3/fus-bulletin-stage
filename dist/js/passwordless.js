@@ -41,7 +41,7 @@
         setTimeout(function(){
           $('.isotope-container').html('');
           window.location.hash = '';
-        }, 300);
+        }, 400);
 
 
 
