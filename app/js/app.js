@@ -132,6 +132,7 @@ if (globalToken) {
       method: 'get'
     });
   }
+}
 
   function getJSON(url) {
     return get(url).then(function(response) {
@@ -275,8 +276,11 @@ if (globalToken) {
   // Fires when the url changes
     window.onhashchange = function(event) {
       //Send analytics data
-      ga('set', 'page', window.location.hash);
-      ga('send', 'pageview');
+      if (typeof ga !== 'undefined') {
+        ga('set', 'page', window.location.hash);
+        ga('send', 'pageview');
+      }
+
 
       //Reset offset for infinite scroll
       offsetCount = 10;
@@ -484,7 +488,8 @@ function infiniteScroll() {
       let thumb = '',
         medium = '',
         mediumLarge = '',
-        large = '';
+        large = '',
+        cardImgTemp = '';
     for(let post of data) {
       // Get media url for this post from data saved as cardImgArr
      if(post.featured_media !== 0) {
@@ -492,6 +497,7 @@ function infiniteScroll() {
        medium = '';
        mediumLarge = '';
        large = '';
+       cardImgTemp = '';
 
       if (post.better_featured_image.media_details.sizes.thumbnail !== undefined && post.better_featured_image.media_details.sizes.thumbnail !== "") {
         thumb = `${post.better_featured_image.media_details.sizes.thumbnail.source_url} 150w`;}
@@ -697,7 +703,8 @@ function infiniteScroll() {
     let thumb = '',
       medium = '',
       mediumLarge = '',
-      large = '';
+      large = '',
+      cardImgTemp = '';
     for(let post of data) {
       // Get media url for this post from data saved as cardImgArr
      if(post.featured_media !== 0) {
@@ -705,6 +712,7 @@ function infiniteScroll() {
        medium = '';
        mediumLarge = '';
        large = '';
+       cardImgTemp = '';
 
       if (post.better_featured_image.media_details.sizes.thumbnail !== undefined && post.better_featured_image.media_details.sizes.thumbnail !== "") {
         thumb = `${post.better_featured_image.media_details.sizes.thumbnail.source_url} 150w`;}
@@ -967,6 +975,6 @@ $(".button-collapse").sideNav({
 
 		}
 
-  }
+
 
 });
