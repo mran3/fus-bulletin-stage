@@ -128,8 +128,33 @@ $(function() {
 if (globalToken) {
   $('body').addClass('is-authenticated');
   function get(url) {
+    //Caching from Peter Bengtsson https://www.sitepoint.com/cache-fetched-ajax-requests/?utm_source=sitepoint&utm_medium=relatedsidebar&utm_term=javascript
+    let expiry = 10 * 60; //10 min
+    let cacheKey = url;
+    let cached = sessionStorage.getItem(cacheKey);
+    let whenCached = sessionStorage.getItem(cacheKey + ':ts');
+    if (cached !== null) {
+      let age = (Date.now() - whenCached) / 1000;
+      if (age < expiry) {
+        let response = new Response(new Blob([cached]));
+        return Promise.resolve(response);
+      } else {
+        sessionStorage.removeItem(cacheKey);
+        sessionStorage.removeItem(cacheKey + ':ts');
+      }
+
+    }
+
     return fetch(url, {
       method: 'get'
+    }).then(response => {
+      if (response.status === 200) {
+        response.clone().text().then(content => {
+          sessionStorage.setItem(cacheKey, content);
+          sessionStorage.setItem(cacheKey + ':ts', Date.now());
+        });
+      }
+      return response;
     });
   }
 
