@@ -132,7 +132,6 @@ if (globalToken) {
       method: 'get'
     });
   }
-}
 
   function getJSON(url) {
     return get(url).then(function(response) {
@@ -974,7 +973,5 @@ $(".button-collapse").sideNav({
 			return 27 == key || 37 == key || 38 == key || 39 == key || 40 == key;
 
 		}
-
-
-
+  }
 });
