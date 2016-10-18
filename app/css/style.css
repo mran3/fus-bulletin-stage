@@ -284,8 +284,10 @@ header, main, footer {
   display: block;
   margin: 16px auto; }
 
-.card .card-content p a {
-  font-weight: 500; }
+.card .card-content p {
+  margin: 15px 0; }
+  .card .card-content p a {
+    font-weight: 500; }
 
 .card .card-content ul {
   padding-left: 25px; }
