@@ -12,7 +12,7 @@ var options = {
   "popup":false,
   "dict":{
     emailSent: {
-      success: "A link will be sent to {email}. Please use this link within the next two hours to sign in."
+      success: "A link will be sent to {email}. Please use this link within the next two days to sign in."
     },
     title:"",
     email: {
