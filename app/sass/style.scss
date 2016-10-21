@@ -447,7 +447,7 @@ header, main, footer {
     }
     p {
       margin:15px 0;
-      
+
       a {
         font-weight: 500;
       }
@@ -587,6 +587,8 @@ header, main, footer {
 
 #post-modal {
   z-index: 9999 !important;
+  max-height: 85%;
+  width: 80%;
   .cat-name, .tag-name {
     color: $fus-yellow;
     &:hover {

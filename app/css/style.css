@@ -360,7 +360,9 @@ header, main, footer {
   width: 98.5%; }
 
 #post-modal {
-  z-index: 9999 !important; }
+  z-index: 9999 !important;
+  max-height: 85%;
+  width: 80%; }
   #post-modal .cat-name, #post-modal .tag-name {
     color: #ffc658; }
     #post-modal .cat-name:hover, #post-modal .tag-name:hover {
