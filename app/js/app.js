@@ -669,7 +669,7 @@ function infiniteScroll() {
       }
 
         $(`div[post-id="${post.id}"] .more-link`).attr('href', `#${post.slug}`);
-        $(`div[post-id="${post.id}"] .more-link`).addClass('modal-trigger');
+        $(`div[post-id="${post.id}"] .more-link`).addClass('modal-trigger post-link');
         $(`div[post-id="${post.id}"] .more-link`).attr('data-target', `post-modal`);
 
      if (i === data.length - 1) {
