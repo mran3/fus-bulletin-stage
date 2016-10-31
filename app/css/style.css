@@ -284,6 +284,10 @@ header, main, footer {
   display: block;
   margin: 16px auto; }
 
+.card .card-content .content .wp-caption {
+  margin: 0 auto;
+  text-align: center; }
+
 .card .card-content p {
   margin: 15px 0; }
   .card .card-content p a {
@@ -307,6 +311,9 @@ header, main, footer {
   margin-top: 8px; }
   .card .card-action .tag-link .tag-name {
     color: rgba(0, 0, 0, 0.6); }
+
+.card .card-action i {
+  vertical-align: bottom; }
 
 .card .card-image {
   cursor: pointer; }
@@ -456,3 +463,15 @@ footer {
       .classic .card .content a {
         color: blue;
         text-decoration: underline; }
+
+.list-view .card .content.excerpt {
+  display: none; }
+
+.grid-view .card .content.excerpt {
+  display: block; }
+
+.grid-view .card .content.full {
+  display: none; }
+
+.grid-view #post-modal .card .content.full {
+  display: block; }

@@ -444,6 +444,11 @@ header, main, footer {
         display: block;
         margin: 16px auto;
       }
+
+      .wp-caption {
+        margin: 0 auto;
+        text-align: center;
+      }
     }
     p {
       margin:15px 0;
@@ -479,6 +484,10 @@ header, main, footer {
       .tag-name {
         color: rgba(0,0,0,0.6);
       }
+    }
+
+    i {
+      vertical-align: bottom;
     }
   }
 
@@ -738,5 +747,33 @@ footer {
       }
     }
 
+  }
+}
+
+// ***** View Modes **********
+.list-view {
+  .card {
+    .content.excerpt {
+      display: none;
+    }
+  }
+}
+
+.grid-view {
+  .card {
+    .content.excerpt {
+      display: block;
+    }
+    .content.full {
+      display: none;
+    }
+  }
+
+  #post-modal {
+    .card {
+      .content.full {
+        display: block;
+      }
+    }
   }
 }
