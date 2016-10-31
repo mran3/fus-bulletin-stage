@@ -338,7 +338,6 @@ if (globalToken) {
             getPosts('', 15, true, true);
           } else if (path === 'time-sensitive') {
               newViewInit();
-              console.log('time-sensitive');
               getPosts('', 100, true, false);
             } else {
               getPosts(`filter[name]=${path}&`, 1, false);
@@ -407,7 +406,6 @@ if (globalToken) {
     //  e.preventDefault();
 
     if(window.location.hash === $(this).attr('href')) {
-      console.log('post link');
       getPosts(`filter[name]=${window.location.hash.split("#")[1]}&`, 1, false);
     }
     });
@@ -717,6 +715,8 @@ function infiniteScroll() {
     $('#post-modal').openModal({
       complete: function() {
         $('#post-modal .modal-content').html('');
+        $('.isotope-container').masonry('reloadItems');
+        isotopeize();
        }
     });
     //Remove load more btn
@@ -795,8 +795,6 @@ function infiniteScroll() {
      let attachmentTemp = '';
     if (post.acf.atachment !== 'false' && post.acf.attachment !== false) {
      if (post.acf.attachment !== undefined && post.acf.atachment !== "") {
-
-         console.log(post.acf.attachment);
          attachmentTemp = `
          <h6>Attachment</h6>
          <span>
@@ -804,7 +802,6 @@ function infiniteScroll() {
          <span>
          `;
        }
-
      }
 
      $( '#post-modal .modal-content').append(
@@ -838,6 +835,7 @@ function infiniteScroll() {
            $('.card .content a').not('.more-link').attr('target', '_blank');
            $('.card .content img').addClass('responsive-img');
            $('.card .content iframe').wrap(`<div class="video-container"></div>`);
+           $('.isotope-container').masonry('reloadItems');
      }
      i++;
 
