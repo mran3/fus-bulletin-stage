@@ -96,7 +96,8 @@ nav {
     background-color: transparent; }
 
 .side-nav {
-  max-width: 85%; }
+  max-width: 85%;
+  z-index: 998; }
   .side-nav .logo {
     height: 110px; }
     .side-nav .logo a {
@@ -343,10 +344,8 @@ header, main, footer {
   background-color: #1f2a44;
   color: #fff; }
 
-.single {
-  max-width: 1000px; }
-  .single .isMasonry .single-post {
-    width: 100%; }
+.single .isMasonry .single-post {
+  width: 100%; }
 
 .single-post .card .card-image {
   cursor: default; }

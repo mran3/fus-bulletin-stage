@@ -136,6 +136,7 @@ nav {
 
 .side-nav {
   max-width: 85%;
+  z-index: 998;
 
   .logo {
   height: 110px;
@@ -538,7 +539,6 @@ header, main, footer {
 }
 
 .single {
-  max-width: 1000px;
     .isMasonry {
       .single-post {
         width: 100%;
