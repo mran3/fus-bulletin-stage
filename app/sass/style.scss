@@ -740,3 +740,23 @@ footer {
 
   }
 }
+
+// ***** View Modes **********
+.list-view {
+  .card {
+    .content.excerpt {
+      display: none;
+    }
+  }
+}
+
+.grid-view {
+  .card {
+    .content.excerpt {
+      display: block;
+    }
+    .content.full {
+      display: none;
+    }
+  }
+}

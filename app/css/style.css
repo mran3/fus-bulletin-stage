@@ -456,3 +456,12 @@ footer {
       .classic .card .content a {
         color: blue;
         text-decoration: underline; }
+
+.list-view .card .content.excerpt {
+  display: none; }
+
+.grid-view .card .content.excerpt {
+  display: block; }
+
+.grid-view .card .content.full {
+  display: none; }

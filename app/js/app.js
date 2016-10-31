@@ -73,6 +73,8 @@ $(function() {
   $('.list-btn').hide();
   $('.grid-btn').click(function(){
     $(this).hide();
+    $('body').removeClass('list-view');
+    $('body').addClass('grid-view');
     $('.list-btn').show();
     //$('.isotope-container .col').not('.single-post').removeClass(cardSize);
     $('.isotope-container').removeClass('notMasonry');
@@ -86,6 +88,8 @@ $(function() {
 
   $('.list-btn').click(function(){
     $(this).hide();
+    $('body').removeClass('grid-view');
+    $('body').addClass('list-view');
     $('.grid-btn').show();
     //$('.isotope-container .col').not('.single-post').removeClass(cardSize);
     $('.isotope-container').removeClass('isMasonry');
@@ -590,6 +594,10 @@ function infiniteScroll() {
 
               ${post.excerpt.rendered}
             </div>
+            <div class="content full">
+
+              ${post.content.rendered}
+            </div>
           </div>
 
         </div>
@@ -676,6 +684,9 @@ function infiniteScroll() {
        $('.preloader-wrapper').hide();
         $('.container').removeClass('single');
         $('.grid-btn, .list-btn').css('visibility', 'visible');
+        $('.card .content a').not('.more-link').attr('target', '_blank');
+        $('.card .content img').addClass('responsive-img');
+        $('.card .content iframe').wrap(`<div class="video-container"></div>`);
        infiniteScroll();
 
 
@@ -817,7 +828,7 @@ function infiniteScroll() {
                 <a class="post-link" href="#${post.slug}">${post.title.rendered}</a>
                 <span class="post-date">${thisDate.getMonth() + 1}/${thisDate.getDate()}/${thisDate.getFullYear()}</span>
               </div>
-              <div class="content excerpt">
+              <div class="content full">
 
                 ${post.content.rendered}
               </div>
