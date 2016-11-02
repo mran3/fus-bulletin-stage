@@ -111,9 +111,9 @@ nav {
     margin-left: 16px;
   }
 
-  .grid-btn, .list-btn {
+  .grid-btn, .list-btn, .print-btn {
     cursor: pointer;
-    margin-right: 8px;
+    margin-right: 16px;
 
     @media screen and (max-width: 600px) {
       display: none!important;
@@ -201,7 +201,7 @@ header, main, footer {
 
 .search-icon {
   cursor: pointer;
-  padding-right: 16px;
+  margin-right: 16px;
 }
 
 .search-nav {
@@ -775,5 +775,80 @@ footer {
         display: block;
       }
     }
+  }
+}
+
+.print {
+
+  .close-print-btn {
+    float: right;
+    padding: 8px;
+    height: 48px;
+    width: 48px;
+    font-size: 30px;
+    cursor: pointer;
+  }
+
+  header {
+    display: none;
+  }
+
+  main {
+    padding-left: 0px;
+  }
+
+  .container {
+    width: 90% !important;
+  }
+
+  .isotope-container {
+    max-width: 99999px !important;
+  }
+
+  .col {
+    .card {
+      margin-bottom: 0;
+
+      .card-content {
+        padding-bottom: 0;
+
+        p {
+          font-size: 16px;
+
+          &:first-of-type {
+            margin-top: 8px;
+          }
+
+          &:last-of-type {
+            margin-bottom: 0;
+          }
+        }
+
+      }
+    }
+  }
+
+  img {
+    display: none !important;
+  }
+
+  iframe {
+    display: none;
+  }
+
+  .btn-floating {
+    display: none;
+  }
+
+  .scroll-to-top {
+    display: none;
+  }
+
+  .load-more-row {
+    display: none;
+  }
+
+  footer {
+    display: none;
   }
 }

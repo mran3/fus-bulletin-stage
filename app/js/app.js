@@ -100,6 +100,29 @@ $(function() {
     $('.isotope-container').masonry('destroy');
   });
 
+  //Print Buttons
+  $('.print-btn').click(function() {
+    $('body').addClass('print classic');
+    $('main').prepend(`<i class="material-icons close-print-btn tooltipped" data-position="left" data-delay="50" data-tooltip="Exit Print View">close</i>`)
+
+    $('.close-print-btn').click(function() {
+      $('body').removeClass('print classic');
+      $('.close-print-btn').remove();
+    });
+  });
+
+  //Remove spaces
+  function removeSpaces() {
+    let $spaces = $("p").filter(function() {
+      return $.trim($(this).html()) == '&nbsp;';
+    });
+
+    $spaces.remove();
+  }
+
+
+
+
   //Isotope
 
   function isotopeize() {
@@ -700,6 +723,7 @@ function infiniteScroll() {
         $('.card .content a').not('.more-link').attr('target', '_blank');
         $('.card .content img').addClass('responsive-img');
         $('.card .content iframe').wrap(`<div class="video-container"></div>`);
+        removeSpaces();
        infiniteScroll();
 
 
@@ -862,6 +886,7 @@ function infiniteScroll() {
            $('.card .content img').addClass('responsive-img');
            $('.card .content iframe').wrap(`<div class="video-container"></div>`);
            $('.isotope-container').masonry('reloadItems');
+           removeSpaces();
      }
      i++;
 

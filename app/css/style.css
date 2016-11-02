@@ -81,11 +81,11 @@ nav {
     margin-left: 25px; }
   nav .button-collapse {
     margin-left: 16px; }
-  nav .grid-btn, nav .list-btn {
+  nav .grid-btn, nav .list-btn, nav .print-btn {
     cursor: pointer;
-    margin-right: 8px; }
+    margin-right: 16px; }
     @media screen and (max-width: 600px) {
-      nav .grid-btn, nav .list-btn {
+      nav .grid-btn, nav .list-btn, nav .print-btn {
         display: none !important; } }
   nav .more-btn {
     cursor: pointer;
@@ -134,7 +134,7 @@ header, main, footer {
 
 .search-icon {
   cursor: pointer;
-  padding-right: 16px; }
+  margin-right: 16px; }
 
 .search-nav .nav-wrapper {
   overflow: visible; }
@@ -474,3 +474,52 @@ footer {
 
 .grid-view #post-modal .card .content.full {
   display: block; }
+
+.print .close-print-btn {
+  float: right;
+  padding: 8px;
+  height: 48px;
+  width: 48px;
+  font-size: 30px;
+  cursor: pointer; }
+
+.print header {
+  display: none; }
+
+.print main {
+  padding-left: 0px; }
+
+.print .container {
+  width: 90% !important; }
+
+.print .isotope-container {
+  max-width: 99999px !important; }
+
+.print .col .card {
+  margin-bottom: 0; }
+  .print .col .card .card-content {
+    padding-bottom: 0; }
+    .print .col .card .card-content p {
+      font-size: 16px; }
+      .print .col .card .card-content p:first-of-type {
+        margin-top: 8px; }
+      .print .col .card .card-content p:last-of-type {
+        margin-bottom: 0; }
+
+.print img {
+  display: none !important; }
+
+.print iframe {
+  display: none; }
+
+.print .btn-floating {
+  display: none; }
+
+.print .scroll-to-top {
+  display: none; }
+
+.print .load-more-row {
+  display: none; }
+
+.print footer {
+  display: none; }
