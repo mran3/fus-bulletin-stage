@@ -102,8 +102,13 @@ $(function() {
 
   //Print Buttons
   $('.print-btn').click(function() {
-    $('body').addClass('print classic');
-    $('main').prepend(`<i class="material-icons close-print-btn tooltipped" data-position="left" data-delay="50" data-tooltip="Exit Print View">close</i>`)
+    $('body').addClass('print classic list-view');
+    $('main').prepend(`<i class="material-icons close-print-btn tooltipped" data-position="left" data-delay="50" data-tooltip="Exit Print View">close</i>`);
+    $('container').removeClass('w90');
+    $('body').removeClass('grid-view');
+    $('.isotope-container').removeClass('isMasonry');
+    $('.isotope-container').addClass('notMasonry');
+    $('.isotope-container').masonry('destroy');
 
     $('.close-print-btn').click(function() {
       $('body').removeClass('print classic');
