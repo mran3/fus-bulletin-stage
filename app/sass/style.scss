@@ -605,6 +605,19 @@ header, main, footer {
     }
   }
 
+  .card-title {
+    i {
+      float: right;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .post-link {
+      display: block;
+      width: 90%;
+    }
+  }
+
   .tag-name {
     color: $fus-dark-blue;
     &:hover {
@@ -850,5 +863,23 @@ footer {
 
   footer {
     display: none;
+  }
+}
+
+.print-single {
+  .container {
+    display: none;
+  }
+
+  #post-modal {
+    width: 100%;
+    max-height: none;
+    top: 0 !important;
+
+    .card {
+      width: 100%;
+      min-height: 100vh;
+      height: 100vh;
+    }
   }
 }

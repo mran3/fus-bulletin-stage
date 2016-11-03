@@ -9,6 +9,7 @@ var minifyCss = require('gulp-minify-css');
 var inject = require('gulp-inject'); //Start by adding the plugin to your gulpfile
 var htmlmin = require('gulp-htmlmin');
 var babel = require("gulp-babel");
+var uncache = require('gulp-uncache');
 
 gulp.task('dist', function() {
    gulp.src('app/index.html')
@@ -42,7 +43,8 @@ gulp.task('dist', function() {
               useShortDoctype: true
              }) ]
         }))
-      .pipe(gulp.dest('dist')); // This is the destination of the final product
+        .pipe(uncache())
+        .pipe(gulp.dest('dist')); // This is the destination of the final product
 });
 
 gulp.task('sass', function(){

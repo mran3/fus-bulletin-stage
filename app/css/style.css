@@ -373,6 +373,13 @@ header, main, footer {
     color: #ffc658; }
     #post-modal .cat-name:hover, #post-modal .tag-name:hover {
       cursor: pointer; }
+  #post-modal .card-title i {
+    float: right;
+    cursor: pointer;
+    padding: 8px; }
+  #post-modal .card-title .post-link {
+    display: block;
+    width: 90%; }
   #post-modal .tag-name {
     color: #1f2a44; }
     #post-modal .tag-name:hover {
@@ -523,3 +530,15 @@ footer {
 
 .print footer {
   display: none; }
+
+.print-single .container {
+  display: none; }
+
+.print-single #post-modal {
+  width: 100%;
+  max-height: none;
+  top: 0 !important; }
+  .print-single #post-modal .card {
+    width: 100%;
+    min-height: 100vh;
+    height: 100vh; }

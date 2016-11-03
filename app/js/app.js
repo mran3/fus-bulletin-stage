@@ -116,6 +116,21 @@ $(function() {
     });
   });
 
+function addPrintBtn() {
+  $('.print-single-btn').click(function() {
+    $('body').addClass('print classic print-single');
+    $('#post-modal .card').prepend(`<i class="material-icons close-print-btn tooltipped" data-position="left" data-delay="50" data-tooltip="Exit Print View">close</i>`);
+    $('.print-single-btn').hide();
+
+
+    $('.close-print-btn').click(function() {
+      $('body').removeClass('print classic print-single');
+      $('.close-print-btn').remove();
+      $('.print-single-btn').show();
+    });
+  });
+}
+
   //Remove spaces
   function removeSpaces() {
     let $spaces = $("p").filter(function() {
@@ -825,7 +840,7 @@ function infiniteScroll() {
        for(let category of categoryData) {
          categoryNames = categoryNames + " " + category.name;
          categoryIds = `${categoryIds} .${category.cat_ID}`;
-         categoryTemplate = `${categoryTemplate} <a href="#category_name/${category.slug}"> <div class="cat-name" data-filter=".${category.cat_ID}">${category.name}</div></a>`;
+         categoryTemplate = `${categoryTemplate} <a class="cat-name" data-filter=".${category.cat_ID}" href="#category_name/${category.slug}">${category.name}</a>`;
        }
      }
 
@@ -865,9 +880,11 @@ function infiniteScroll() {
             ${cardImgTemp}
             <div class="card-content" post-id=${post.id}>
               <div class="card-title">
+              <i class="material-icons print-single-btn tooltipped" data-position="left" data-delay="50" data-tooltip="Print">print</i>
               ${categoryTemplate}
                 <a class="post-link" href="#${post.slug}">${post.title.rendered}</a>
                 <span class="post-date">${thisDate.getMonth() + 1}/${thisDate.getDate()}/${thisDate.getFullYear()}</span>
+
               </div>
               <div class="content full">
 
@@ -892,6 +909,7 @@ function infiniteScroll() {
            $('.card .content iframe').wrap(`<div class="video-container"></div>`);
            $('.isotope-container').masonry('reloadItems');
            removeSpaces();
+           addPrintBtn();
      }
      i++;
 
