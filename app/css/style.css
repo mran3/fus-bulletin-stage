@@ -531,6 +531,12 @@ footer {
 .print footer {
   display: none; }
 
+.print.ff .isotope-container {
+  position: absolute; }
+
+.print.ff .drag-target {
+  position: absolute; }
+
 .print-single .container {
   display: none; }
 

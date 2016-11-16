@@ -864,6 +864,18 @@ footer {
   footer {
     display: none;
   }
+
+
+}
+
+.print.ff {
+  .isotope-container {
+    position: absolute;
+  }
+
+  .drag-target {
+    position: absolute;
+  }
 }
 
 .print-single {

@@ -109,9 +109,12 @@ $(function() {
     $('.isotope-container').removeClass('isMasonry');
     $('.isotope-container').addClass('notMasonry');
     $('.isotope-container').masonry('destroy');
+    if (typeof InstallTrigger !== 'undefined') {
+      $('body').addClass('ff');
+    }
 
     $('.close-print-btn').click(function() {
-      $('body').removeClass('print classic');
+      $('body').removeClass('print classic ff');
       $('.close-print-btn').remove();
     });
   });
