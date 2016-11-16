@@ -36,7 +36,7 @@
               loggedIn();
             }
           });
-        }, 200),
+        }, 200);
 
 
         window.location.hash = 'l';
