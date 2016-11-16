@@ -22,20 +22,22 @@
         //save the token in local storage:
         localStorage.setItem('id_token', hash.id_token);
         globalToken = hash.id_token;
-        console.log('hash',hash);
         $('.login-box').hide();
         $('.logged-in-box').show();
         //retrieve profile
-        lock.getProfile(hash.id_token, function (err, profile) {
-          if (err){
-            console.log('err',err);
-            alert('There was an error retrieving your profile: ' + err.message);
-          } else {
-            localStorage.setItem('profile', JSON.stringify(profile));
-            globalProfile = profile;
-            loggedIn();
-          }
-        });
+        setTimeout(function(){
+          lock.getProfile(globalToken, function (err, profile) {
+            if (err){
+              console.log('err',err);
+              alert('There was an error retrieving your profile: ' + err.message);
+            } else {
+              localStorage.setItem('profile', JSON.stringify(profile));
+              globalProfile = profile;
+              loggedIn();
+            }
+          });
+        }, 200),
+
 
         window.location.hash = 'l';
         setTimeout(function(){
@@ -43,9 +45,6 @@
           window.location.hash = '';
           document.location.reload(true);
         }, 400);
-
-
-
       }
 
       function loggedIn (profile, token) {
