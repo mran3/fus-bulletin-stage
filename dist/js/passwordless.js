@@ -26,7 +26,7 @@
         $('.logged-in-box').show();
         //retrieve profile
         setTimeout(function(){
-          lock.getProfile(globalToken, function (err, profile) {
+          lock.getProfile(localStorage.id_token, function (err, profile) {
             if (err){
               console.log('err',err);
               alert('There was an error retrieving your profile: ' + err.message);
@@ -45,6 +45,19 @@
           window.location.hash = '';
           document.location.reload(true);
         }, 400);
+      }
+
+      if (typeof localStorage.profile === 'undefined') {
+        lock.getProfile(localStorage.id_token, function (err, profile) {
+          if (err){
+            console.log('err',err);
+            alert('There was an error retrieving your profile: ' + err.message);
+          } else {
+            localStorage.setItem('profile', JSON.stringify(profile));
+            globalProfile = profile;
+            loggedIn();
+          }
+        });
       }
 
       function loggedIn (profile, token) {
