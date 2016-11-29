@@ -4,8 +4,9 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
   <script src="https://cdn.ravenjs.com/3.8.1/raven.min.js"></script>
   <script>
+    var profileJSON = JSON.parse(localStorage.profile);
     Raven.config('https://8d550b928d23419f80fd3f95e11d9056@sentry.io/118016').install();
-    Raven.setExtraContext({ profile: localStorage.profile });
+    Raven.setExtraContext({ 'email': profileJSON.email  });
   </script>
 
     <script src="js/auth0-variables.js"> </script>
