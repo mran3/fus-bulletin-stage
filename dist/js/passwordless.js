@@ -15,8 +15,7 @@
 
       if (hash && hash.error) {
         alert('There was an error: ' + hash.error + '\n' + hash.error_description + ' You may have clicked on the login email more than once. The login email link only works once. Please go directly to https://franciscan.university/bulletin . If you still are seeing this message, please contact Jesse Weigel (jweigel@franciscan.edu) and include the name of your browser and device in your email.');
-        window.location.hash('l');
-        window.location.hash('');
+        window.location.hash = '';
       }
       else if (hash && hash.id_token) {
         //save the token in local storage:
