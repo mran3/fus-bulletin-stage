@@ -20,8 +20,12 @@
         errorMsg = new Error('Error: ' + hash.error + ' Description: ' + hash.error_description);
 
         function reloadPage() {
-            window.location.hash = '';
-            document.location.reload(true);
+
+            setTimeout(function() {
+              window.location.hash = '';
+              document.location.reload(true);
+            }, 500);
+
         }
 
         function throwError() {
