@@ -65,18 +65,20 @@
         }, 400);
       }
 
-      // if (typeof localStorage.profile === 'undefined') {
-      //   lock.getProfile(localStorage.id_token, function (err, profile) {
-      //     if (err){
-      //       console.log('err',err);
-      //       alert('There was an error retrieving your profile: ' + err.message);
-      //     } else {
-      //       localStorage.setItem('profile', JSON.stringify(profile));
-      //       globalProfile = profile;
-      //       loggedIn();
-      //     }
-      //   });
-      // }
+      // Checks to see if profile is saved in localStorage, if not it get the profile and saves it to localStorage.
+      //TODO: Always update profile and push profile updates to auth0 to keep user prefs in sync
+      if (typeof localStorage.profile === 'undefined') {
+        lock.getProfile(localStorage.id_token, function (err, profile) {
+          if (err){
+            console.log('err',err);
+            alert('There was an error retrieving your profile: ' + err.message);
+          } else {
+            localStorage.setItem('profile', JSON.stringify(profile));
+            globalProfile = profile;
+            loggedIn();
+          }
+        });
+      }
 
       function loggedIn (profile, token) {
         if(!token || !profile) {
