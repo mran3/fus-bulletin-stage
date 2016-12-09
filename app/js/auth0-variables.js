@@ -12,12 +12,12 @@ var options = {
   "popup":false,
   "dict":{
     emailSent: {
-      success: "A link will be sent to {email}. Please use this link within the next two days to sign in."
+      success: "A link will be sent to {email}. Please use this link within the next two days to sign in.<br /> <a href='https://franciscan.university/bulletin/help' title='Bulletin Help' target='_blank'>Need help?</a>"
     },
     title:"",
     email: {
       emailInputPlaceholder: "you@franciscan.edu",
-      footerText: "",
+      footerText: "<a href='https://franciscan.university/bulletin/help' title='Bulletin Help' target='_blank'>Need help?</a>",
       headerText: "Please enter your @franciscan.edu email address to view the Bulletin."
     }
   }};

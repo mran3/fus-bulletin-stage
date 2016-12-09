@@ -143,9 +143,6 @@ function addPrintBtn() {
     $spaces.remove();
   }
 
-
-
-
   //Isotope
 
   function isotopeize() {
@@ -768,6 +765,9 @@ function infiniteScroll() {
          });
        }
 
+       // Append help link
+       $('.side-nav').append(`<li><a href="https://franciscan.university/bulletin/help" title="help" target="_blank" >Help</a></li>`);
+
          $('.isotope.container').imagesLoaded(function(){
            if ($('.isMasonry').length > 0) {
              setTimeout(function(){
@@ -976,7 +976,6 @@ $(".button-collapse").sideNav({
   closeOnClick: closeOnClickVal,
   menuWidth: 300
 });
-
 
  //Search input
   var $searchInput;
