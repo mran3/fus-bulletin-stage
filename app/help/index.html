@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <script src="https://cdn.ravenjs.com/3.8.1/raven.min.js"></script>
+  <script>
+    var profileJSON = JSON.parse(localStorage.profile);
+    Raven.config('https://8d550b928d23419f80fd3f95e11d9056@sentry.io/118016').install();
+    Raven.setExtraContext({ 'email': profileJSON.email  });
+  </script>
+  <script>
+var $buoop = {
+      vs:{i:11,f:-2,o:-4,s:9,c:-2},
+      api:4,
+      test: false,
+      text: 'Your browser (%s) is out of date. Please <a%s>update</a> or contact OIT (<a href="mailto:helpdesk@franciscan.edu">helpdesk@franciscan.edu</a> / 740-284-7033) to update your browser. This will provide more security, comfort, and a better user experinece. Note: This site may not function properly on an outdated browser.'
+    };
+function $buo_f(){
+ var e = document.createElement("script");
+ e.src = "//browser-update.org/update.min.js";
+ document.body.appendChild(e);
+};
+try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
+catch(e){window.attachEvent("onload", $buo_f)}
+</script>
+<style>
+  body .buorg {
+    background: #ffc658;
+    border-bottom: none;
+    font-family: Roboto;
+    font-size: 16px;
+    padding: 10px;
+    color: #fff;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  body #buorgclose #buorga {
+    color: #fff;
+    font-size: 22px;
+  }
+
+  body .buorg>div>a, body .buorg>div>a:visited {
+      color: #039be5;
+    text-decoration: none;
+  }
+
+  ol {
+  margin-bottom: 25px;
+  }
+</style>
+  <title>Bulletin Help</title>
+  <meta name="description" content="The help page for the official employee bulletin for Franciscan University of Steubenville">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- <link rel="shortcut icon" href="favicon.ico"> -->
+
+</head>
+<body class="list-view">
+  <header>
+    <nav class="main-nav search-nav">
+        <div class="nav-wrapper">
+          <a href="#" class="page-title">Bulletin Help</a>
+          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+          <ul class="side-nav fixed" id="mobile-demo" style="width: 300px;">
+            <li class="logo">
+              <a id="logo-container" href="#" class="brand-logo">
+                <img src="../img/side-nav-logo.jpg">
+              </a>
+            </li>
+            <li>
+              <a class="slow-nav" href="#tutorial" title="Tutorial">Tutorial</a>
+            </li>
+            <li>
+              <a class="slow-nav" href="#problems" title="Common Problems">Common Problems</a>
+            </li>
+            <li>
+              <a class="slow-nav" href="#suggestions" title="Suggestions">Suggestions</a>
+            </li>
+            <li>
+              <a class="slow-nav" href="#video" title="Video Tutorials">Video Tutorials</a>
+            </li>
+          </ul>
+        </div>
+    </nav>
+  </header>
+  <main>
+    <div class="container">
+      <div class="section" id="tutorial">
+        <h2>Tutorial</h2>
+        <p class="flow-text">
+          To view the bulletin:
+        </p>
+        <ol>
+          <li class="flow-text">
+            Go to <a href="https://franciscan.university/bulletin" target="_blank" title="Franciscan University Bulletin">https://franciscan.university/bulletin</a>
+          </li>
+          <li class="flow-text">
+            If prompted, enter your @franciscan.edu email address.
+          </li>
+          <li class="flow-text">
+            You will receive a login email from “FUS Bulletin” with the subject of “Welcome to FUS-Bulletin”. Open the email and click on the green button that says “Sign In to the Bulletin” If your email does not look like the one in the image below, please switch to HTML view. (Some versions of Groupwise show only the plain text version of emails by default.)
+            <img class="responsive-img materialboxed" src="bulletin-login-email.png" title="Bulletin Login Email"/>
+          </li>
+        </ol>
+        <p class="flow-text">
+          The bulletin website will open in your default browser. If you would like to open it in a different browser, please copy and paste the provided url into the address bar of your browser of choice. (If you have already clicked the green button, the url will not work. Please go back to <a href="https://franciscan.university/bulletin" target="_blank" title="Franciscan University Bulletin">https://franciscan.university/bulletin</a> and enter your email address again. You will receive another email. Use the url in that email to paste into your preferred browser’s address bar.)
+        </p>
+        <p class="flow-text">
+          You are now logged in to the bulletin and will see the latest announcements. If you receive an error message, please make note of it or take a screenshot and press “OK”. The page may refresh and show the correct screen. If it does not, please send an email to <a href="mailto:jweigel@franciscan.edu" title="Email Jesse Weigel">jweigel@franciscan.edu</a>. Include the error message, and any helpfule screenshots as well as what browser (version number too if possible), operating system, and device you were using when you received the error message. I will get back to you as soon as I can. Please report all errors. Repeating the login process with a different browser may work.
+        </p>
+      </div>
+      <div class="section" id="problems">
+        <h2>Common Problems</h2>
+
+        <h5>I got an error message saying: Wrong Email or Verification Code</h5>
+        <p class="flow-text">
+          Did you click or copy and paste the login link more than once? Using the same link more than once will result in this error. Please request another link by going to <a href="https://franciscan.university/bulletin" target="_blank" title="Franciscan University Bulletin">https://franciscan.university/bulletin</a> and entering your email address.
+        </p>
+        <h5>I got an error message saying: Wrong Email or Verification Code</h5>
+
+        <p class="flow-text">
+          There are several ways that you could be getting logged out inadvertently.
+          <ol>
+            <li class="flow-text">
+              Your browser may be set to delete data every time you close and reopen it. Please check the settings or prefrences section for your browser of choice. Turn off any options that have to do with erasing browser data. If you are not sure where to locate these options please contact me (<a href="mailto:jweigel@franciscan.edu" title="Email Jesse Weigel">jweigel@franciscan.edu</a>) and include the name and version number of your browser and operating system.
+              <!-- Your browser may be set to delete data every time you close and reopen it. Here are instructions on how to fix this for the most popular browsers (these instructions apply only to up to date versions of these browsers, for better security and user experience, please keep your browsers updated):
+              <ul>
+                <li class="flow-text">
+                  Internet Explorer 11
+                </li>
+                <li class="flow-text">
+                  Firefox
+                </li>
+                <li class="flow-text">
+                  Chrome
+                </li>
+                <li class="flow-text">
+                  Safari
+                </li>
+                <li class="flow-text">
+                  Safari for iOS (mobile)
+                </li>
+              </ul> -->
+            </li>
+            <li class="flow-text">
+              You may have a program that clears your browser data. CCleaner is a program that may be installed on your computer. You can check your desktop for an icon titled "CCleaner" to see if it is installed. Please follow these instructions to stop Bulletin login data from being erased: <a href="http://www.piriform.com/docs/ccleaner/ccleaner-settings/choosing-which-cookies-to-keep" title="CCleaner Whitelist Instructions" target="_blank">http://www.piriform.com/docs/ccleaner/ccleaner-settings/choosing-which-cookies-to-keep</a>. Look for “franciscan.university” on the list of sites to add to the whitelist. If prompted for a password to open CCleaner, please enter the password you use to log in to your computer. If that does not work contact OIT (<a href="tel:1740-284-7033">740-284-7033</a> / <a href="mailto:helpdesk@franciscan.edu">helpdesk@franciscan.edu</a>) and give them this information.
+            </li>
+            <li class="flow-text">
+              Your browser may be too old to correctly store your login information, please use another browser or update your browser (Keeping your browser up to date provides a better user experince and increased security). Find out if your browser is up to date: <a href="https://updatemybrowser.org/" title="Updatemybrowser.org" target="_blank">https://updatemybrowser.org/</a>. If you are unable to update your browser yourself, contact the OIT helpdesk (<a href="tel:1740-284-7033">740-284-7033</a> / <a href="mailto:helpdesk@franciscan.edu">helpdesk@franciscan.edu</a>).
+            </li>
+          </ol>
+        </p>
+        <h5>I entered my email address, but I never received the login email.</h5>
+        <p class="flow-text">
+          Please take the following steps:
+          <ol>
+            <li class="flow-text">
+              Check your spam folder.
+            </li>
+            <li class="flow-text">
+              Make sure you spelled your email address correctly (this is a common error).
+            </li>
+            <li class="flow-text">
+              If neither of those work, and you still have not received the email, please contact me (<a href="mailto:jweigel@franciscan.edu" title="Email Jesse Weigel">jweigel@franciscan.edu</a>) I can check to see the status of your login email and see if it was sent to the right address.
+
+            </li>
+          </ol>
+        </p>
+        <h5>Something doesn’t look right on the Bulletin site.</h5>
+        <p class="flow-text">
+          Please take a screenshot if possible and send it too (<a href="mailto:jweigel@franciscan.edu" title="Email Jesse Weigel">jweigel@franciscan.edu</a>), or describe it in as much detail as you can. Tell me exactly what you were looking at on which browser, device, and operating system. If on a phone, tell me if it was in portrait or landscape mode.
+        </p>
+      </div>
+      <div class="section" id="suggestions">
+        <h2>Suggestions</h2>
+        <p class="flow-text">
+          Suggestions for new Bulletin features are welcome. Please email your suggestions to me (<a href="mailto:jweigel@franciscan.edu" title="Email Jesse Weigel">jweigel@franciscan.edu</a>). I can’t guarantee that your suggestions will be implemented, but all suggestions are recorded and added to the Bulletin todo list. I review this list periodically and make updates based on it when I get a few spare moments between projects.
+        </p>
+        <p class="flow-text">
+          An example of a great suggestion that was implemented is the print version of the Bulletin. I had no idea that so many people printed the Bulletin. I received suggestions from several employees and implemented the update. If I get several people all asking for a similar feature, it usually moves up the todo list and gets implemented more quickly.
+        </p>
+      </div>
+      <div class="section" id="video">
+        <h2>Video Tutorials</h2>
+        <p class="flow-text">
+          Coming Soon!
+        </p>
+
+      </div>
+
+    </div>
+    <div class="scroll-to-top">
+      <i class="material-icons tooltipped" data-position="right" data-delay="50" data-tooltip="To Top">arrow_back</i>
+    </div>
+  </main>
+
+  <footer class="page-footer">
+   <div class="footer-copyright">
+     <div class="container">
+     © <span id="copyright-date">2016</span> Franciscan University of Steubenville
+     </div>
+   </div>
+ </footer>
+ <!--Import Google Icon Font-->
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+ <!--uncache-->
+ <!-- build:css css/style3.min.css -->
+ <link href="../css/materialize.css" rel="stylesheet">
+ <link href="../css/style.css" rel="stylesheet">
+ <!-- endbuild -->
+ <!--enduncache-->
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+
+<!--uncache-->
+<!-- build:js js/app3.min.js -->
+<script type="text/javascript" src="help.js"></script>
+<!-- endbuild -->
+<!--enduncache-->
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-5819863-10', 'auto');
+    ga('send', 'pageview', {
+     'page': location.pathname + location.search  + location.hash
+    });
+  </script>
+</body>
+</html>
