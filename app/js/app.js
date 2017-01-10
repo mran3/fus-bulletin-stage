@@ -20,7 +20,7 @@ $(function() {
     $('.auth0-lock-submit').attr('disabled', 'disabled');
     $('.auth0-lock-input').on('keyup', function(){
       let email = $(this).val();
-      if (email.toLowerCase().indexOf('@franciscan.edu') !== -1) {
+      if (email.toLowerCase().indexOf('@franciscan.edu') || email.toLowerCase().indexOf('RDavis@franciscanstor.org') || email.toLowerCase().indexOf('jesseweigel@gmail.com') !== -1) {
         $('.auth0-lock-submit').removeAttr('disabled');
       }
     });
