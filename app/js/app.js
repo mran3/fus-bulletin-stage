@@ -180,8 +180,9 @@ if (globalToken) {
     let cacheKey = url;
     let cached = sessionStorage.getItem(cacheKey);
     let whenCached = sessionStorage.getItem(cacheKey + ':ts');
-    if (cached !== null) {
+    if (cached !== null && whenCached !== null) {
       let age = (Date.now() - whenCached) / 1000;
+      console.log(`age: ${age}; whenCached: ${whenCached}; expiry: ${expiry}`);
       if (age < expiry) {
         let response = new Response(new Blob([cached]));
         return Promise.resolve(response);
@@ -189,7 +190,6 @@ if (globalToken) {
         sessionStorage.removeItem(cacheKey);
         sessionStorage.removeItem(cacheKey + ':ts');
       }
-
     }
 
     return fetch(url, {
