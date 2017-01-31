@@ -620,18 +620,41 @@ function infiniteScroll() {
 
      //Get attachments
      let attachmentTemp = '';
-    if (post.acf.atachment !== 'false' && post.acf.attachment !== false) {
+     if (post.acf.atachment !== 'false' && post.acf.attachment !== false) {
      if (post.acf.attachment !== undefined && post.acf.atachment !== "") {
-         attachmentTemp = `
-         <div class= "card-action">
-           <h6>Attachment</h6>
-           <span>
-            <a href="${post.acf.attachment.url}"><i class="material-icons">attachment</i> ${post.acf.attachment.title}</a>
-           <span>
-         </div>
-         `;
-       }
+       attachmentTemp = `
+       <div class= "card-action">
+         <h6>Attachment</h6>
+         <span>
+          <a href="${post.acf.attachment.url}"><i class="material-icons">attachment</i> ${post.acf.attachment.title}</a>
+         <span>
+       </div>
+       `;
      }
+   } else if (post.acf.hasOwnProperty('attachments')) {
+     if (post.acf.atachments !== 'false' && post.acf.attachments !== false) {
+      if (post.acf.attachments !== undefined && post.acf.atachments !== "") {
+         let singleAttachmentTemp = '';
+         let attachmentArr = post.acf.attachments;
+         for (let attachment of attachmentArr) {
+           singleAttachmentTemp = `
+            ${singleAttachmentTemp}
+               <a href="${attachment.attachment.url}"><i class="material-icons">attachment</i> ${attachment.attachment.title}</a>
+           `;
+         }
+
+          attachmentTemp = `
+          <div class= "card-action">
+            <h6>Attachments</h6>
+            <span>
+             ${singleAttachmentTemp}
+            <span>
+          </div>
+          `;
+        }
+      }
+   }
+
 
      let thisDate = new Date(post.date);
      let dueDateTemp = "";
@@ -868,17 +891,42 @@ function infiniteScroll() {
      }
      let thisDate = new Date(post.date);
 
+     //Get attachments
      let attachmentTemp = '';
-    if (post.acf.atachment !== 'false' && post.acf.attachment !== false) {
+     if (post.acf.atachment !== 'false' && post.acf.attachment !== false) {
      if (post.acf.attachment !== undefined && post.acf.atachment !== "") {
-         attachmentTemp = `
+       attachmentTemp = `
+
          <h6>Attachment</h6>
          <span>
           <a href="${post.acf.attachment.url}"><i class="material-icons">attachment</i> ${post.acf.attachment.title}</a>
          <span>
-         `;
-       }
+
+       `;
      }
+   } else if (post.acf.hasOwnProperty('attachments')) {
+     if (post.acf.atachments !== 'false' && post.acf.attachments !== false) {
+      if (post.acf.attachments !== undefined && post.acf.atachments !== "") {
+         let singleAttachmentTemp = '';
+         let attachmentArr = post.acf.attachments;
+         for (let attachment of attachmentArr) {
+           singleAttachmentTemp = `
+            ${singleAttachmentTemp}
+               <a href="${attachment.attachment.url}"><i class="material-icons">attachment</i> ${attachment.attachment.title}</a>
+           `;
+         }
+
+          attachmentTemp = `
+
+            <h6>Attachments</h6>
+            <span>
+             ${singleAttachmentTemp}
+            <span>
+
+          `;
+        }
+      }
+   }
 
      $( '#post-modal .modal-content').append(
        `<div class="col ${tagIds} single-post">

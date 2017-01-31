@@ -307,6 +307,10 @@ header, main, footer {
   .card .cat-name:hover {
     cursor: pointer; }
 
+.card .card-action span
+a {
+  display: block; }
+
 .card .card-action .tag-link {
   margin-right: 4px !important;
   margin-top: 8px; }

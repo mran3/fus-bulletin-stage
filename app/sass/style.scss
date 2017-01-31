@@ -478,6 +478,11 @@ header, main, footer {
   }
 
   .card-action {
+
+    span
+      a {
+        display: block;
+      }
     .tag-link {
       margin-right: 4px !important;
       margin-top: 8px;
