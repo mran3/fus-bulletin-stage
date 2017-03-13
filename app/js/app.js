@@ -193,7 +193,8 @@ if (globalToken) {
     }
 
     return fetch(url, {
-      method: 'get'
+      method: 'get',
+      cache: 'no-store'
     }).then(response => {
       if (response.status === 200) {
         response.clone().text().then(content => {
