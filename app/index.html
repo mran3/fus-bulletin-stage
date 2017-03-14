@@ -29,10 +29,10 @@
     var isBlink = (isChrome || isOpera) && !!window.CSS;
     //http://stackoverflow.com/questions/39120772/how-to-detect-safari-10-browser-in-javascript
     isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0 || !isChrome && !isOpera && window.webkitAudioContext !== undefined;
-    
+
     Raven.config('https://8d550b928d23419f80fd3f95e11d9056@sentry.io/118016').install();
 
-    if (!isSafari) {
+    if (!isSafari && localStorage.hasOwnProperty('profile') === true) {
       var profileJSON = JSON.parse(localStorage.profile);
       Raven.setExtraContext({ 'email': profileJSON.email  });
     }
@@ -355,7 +355,7 @@ catch(e){window.attachEvent("onload", $buo_f)}
 <script src="bower_components/es6-promise/es6-promise.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser-polyfill.min.js"></script>
 <!--uncache-->
-<!-- build:js js/app5.min.js -->
+<!-- build:js js/app6.min.js -->
 <script src="js/masonry.pkgd.min.js"></script>
 <script type="text/javascript" src="js/imagesLoaded.min.js"></script>
 <script src="bower_components/fetch/fetch.js"></script>
