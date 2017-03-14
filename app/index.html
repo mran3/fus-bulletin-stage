@@ -5,9 +5,37 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
   <script src="https://cdn.ravenjs.com/3.12.1/raven.min.js"></script>
   <script>
-    var profileJSON = JSON.parse(localStorage.profile);
+    //Check if browser is Mobile Safari 10
+    //http://stackoverflow.com/questions/9847580/how-to-detect-safari-chrome-ie-firefox-and-opera-browser
+    // Opera 8.0+
+    var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+
+    // Firefox 1.0+
+    var isFirefox = typeof InstallTrigger !== 'undefined';
+
+    // Safari 3.0+ "[object HTMLElementConstructor]"
+    var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || safari.pushNotification);
+
+    // Internet Explorer 6-11
+    var isIE = /*@cc_on!@*/false || !!document.documentMode;
+
+    // Edge 20+
+    var isEdge = !isIE && !!window.StyleMedia;
+
+    // Chrome 1+
+    var isChrome = !!window.chrome && !!window.chrome.webstore;
+
+    // Blink engine detection
+    var isBlink = (isChrome || isOpera) && !!window.CSS;
+    //http://stackoverflow.com/questions/39120772/how-to-detect-safari-10-browser-in-javascript
+    isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0 || !isChrome && !isOpera && window.webkitAudioContext !== undefined;
+    
     Raven.config('https://8d550b928d23419f80fd3f95e11d9056@sentry.io/118016').install();
-    Raven.setExtraContext({ 'email': profileJSON.email  });
+
+    if (!isSafari) {
+      var profileJSON = JSON.parse(localStorage.profile);
+      Raven.setExtraContext({ 'email': profileJSON.email  });
+    }
   </script>
   <script>
 var $buoop = {
