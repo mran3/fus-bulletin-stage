@@ -1,8 +1,8 @@
 $(function() {
 
   //Get current year and add to footer
-  let dateToday = new Date();
-  let currentYear = dateToday.getFullYear();
+  var dateToday = new Date();
+  var currentYear = dateToday.getFullYear();
   $('#copyright-date').text(currentYear);
 
   //Scroll to top btn
@@ -33,8 +33,8 @@ $(function() {
   scrollToTop();
 
   // Close side nav on tap for mobile but not wide screens
- let windowsize = $(window).width();
- let closeOnClickVal = false;
+ var windowsize = $(window).width();
+ var closeOnClickVal = false;
   if (windowsize < 992) {
     closeOnClickVal = true;
   }
