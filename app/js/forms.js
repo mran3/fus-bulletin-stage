@@ -43,7 +43,7 @@ $("#modal1 #announcement-submit").click(function(event){
     var fileNames = '';
     var path = '';
     var email = JSON.parse(localStorage.profile).email;
-    var announcementContent = $('#announcementText').val();
+    var announcementContent = $('#announcementText').val().replace('&', 'and');
 
     // Serialize other form data
       for (i = 0; i < $formElements.length; i++) {
