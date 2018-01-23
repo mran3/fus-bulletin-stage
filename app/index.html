@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <meta charset="utf-8">
+
 <head>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
   <script src="https://cdn.ravenjs.com/3.12.1/raven.min.js"></script>
@@ -34,144 +35,170 @@
 
     if (!isSafari && localStorage.hasOwnProperty('profile') === true) {
       var profileJSON = JSON.parse(localStorage.profile);
-      Raven.setExtraContext({ 'email': profileJSON.email  });
+      Raven.setExtraContext({ 'email': profileJSON.email });
     }
   </script>
   <script>
-var $buoop = {
-      vs:{i:11,f:-2,o:-4,s:9,c:-2},
-      api:4,
+    var $buoop = {
+      vs: { i: 11, f: -2, o: -4, s: 9, c: -2 },
+      api: 4,
       test: false,
-      text: "Your browser (%s) is out of date. Please <a%s>update</a> or contact OIT (<a href='mailto:helpdesk@franciscan.edu'>helpdesk@franciscan.edu</a> / 740-284-7033) to update your browser. This will provide more security, comfort, and a better user experinece. Note: This site may not function properly on an outdated browser."
+      text: "Your browser (%s) is out of date. Please <a%s>update</a> or contact OIT (<a href='mailto:helpdesk@franciscan.edu'>helpdesk@franciscan.edu</a> / 740-284-7033) to update your browser. This will provide more security, comfort, and a better user experience. Note: This site may not function properly on an outdated browser."
     };
-function $buo_f(){
- var e = document.createElement("script");
- e.src = "//browser-update.org/update.min.js";
- document.body.appendChild(e);
-}
-try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
-catch(e){window.attachEvent("onload", $buo_f)}
-</script>
-<style>
-  body .buorg {
-    background: #ffc658;
-    border-bottom: none;
-    font-family: Roboto;
-    font-size: 16px;
-    padding: 10px;
-    color: #fff;
-    font-weight: 400;
-    line-height: 1.5;
-  }
+    function $buo_f() {
+      var e = document.createElement("script");
+      e.src = "//browser-update.org/update.min.js";
+      document.body.appendChild(e);
+    }
+    try { document.addEventListener("DOMContentLoaded", $buo_f, false) }
+    catch (e) { window.attachEvent("onload", $buo_f) }
+  </script>
+  <style>
+    body .buorg {
+      background: #ffc658;
+      border-bottom: none;
+      font-family: Roboto;
+      font-size: 16px;
+      padding: 10px;
+      color: #fff;
+      font-weight: 400;
+      line-height: 1.5;
+    }
 
-  body #buorgclose #buorga {
-    color: #fff;
-    font-size: 22px;
-  }
+    body #buorgclose #buorga {
+      color: #fff;
+      font-size: 22px;
+    }
 
-  body .buorg>div>a, body .buorg>div>a:visited {
+    body .buorg>div>a,
+    body .buorg>div>a:visited {
       color: #039be5;
-    text-decoration: none;
-  }
-</style>
+      text-decoration: none;
+    }
+  </style>
 
-    <script src="js/auth0-variables.js"> </script>
-    <script src="https://cdn.auth0.com/js/lock-passwordless-2.2.3.min.js"></script>
-    <script src="js/passwordless-1.js"> </script>
+  <script src="js/auth0-variables.js"> </script>
+  <script src="https://cdn.auth0.com/js/lock-passwordless-2.2.3.min.js"></script>
+  <script src="js/passwordless-1.js"> </script>
 
 
 
   <title>Bulletin</title>
   <meta name="description" content="The official employee bulletin for Franciscan University of Steubenville">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- <link rel="shortcut icon" href="favicon.ico"> -->
 
 </head>
+
 <body class="list-view">
   <header>
     <ul id="dropdown1" class="dropdown-content">
-      <li><a class="logout">Logout</a></li>
+      <li>
+        <a class="logout">Logout</a>
+      </li>
       <!-- <li><a href="#!">two</a></li>
       <li class="divider"></li>
       <li><a href="#!">three</a></li> -->
     </ul>
     <nav class="main-nav search-nav">
-        <div class="nav-wrapper">
-          <a href="#" class="page-title">Bulletin</a>
-          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-          <ul class="right">
-            <li><i class="material-icons search-icon tooltipped" data-position="left" data-delay="50" data-tooltip="Search">search</i></li>
-            <li><i class="material-icons grid-btn tooltipped" data-position="left" data-delay="50" data-tooltip="Grid View">view_quilt</i></li>
-            <li><i class="material-icons list-btn tooltipped" data-position="left" data-delay="50" data-tooltip="List View">view_stream</i></li>
-            <li><i class="material-icons print-btn tooltipped" data-position="left" data-delay="50" data-tooltip="Print View">print</i></li>
-            <li><i class="material-icons more-btn dropdown-button" data-activates="dropdown1" style="display: none">more_vert</i></li>
-          </ul>
-          <div class="search-form">
-            <div class="row">
-              <div class="input-field search-field col s9">
-                <input id="search" type="search" required>
-                <label for="search"><i class="material-icons">search</i></label>
-              </div>
-              <i class="material-icons close-search">close</i>
+      <div class="nav-wrapper">
+        <a href="#" class="page-title">Bulletin</a>
+        <a href="#" data-activates="mobile-demo" class="button-collapse">
+          <i class="material-icons">menu</i>
+        </a>
+        <ul class="right">
+          <li>
+            <i class="material-icons search-icon tooltipped" data-position="left" data-delay="50" data-tooltip="Search">search</i>
+          </li>
+          <li>
+            <i class="material-icons grid-btn tooltipped" data-position="left" data-delay="50" data-tooltip="Grid View">view_quilt</i>
+          </li>
+          <li>
+            <i class="material-icons list-btn tooltipped" data-position="left" data-delay="50" data-tooltip="List View">view_stream</i>
+          </li>
+          <li>
+            <i class="material-icons print-btn tooltipped" data-position="left" data-delay="50" data-tooltip="Print View">print</i>
+          </li>
+          <li>
+            <i class="material-icons more-btn dropdown-button" data-activates="dropdown1" style="display: none">more_vert</i>
+          </li>
+        </ul>
+        <div class="search-form">
+          <div class="row">
+            <div class="input-field search-field col s9">
+              <input id="search" type="search" required>
+              <label for="search">
+                <i class="material-icons">search</i>
+              </label>
             </div>
+            <i class="material-icons close-search">close</i>
           </div>
-          <ul class="side-nav fixed" id="mobile-demo" style="width: 300px;">
-            <li class="logo">
-              <a id="logo-container" href="#" class="brand-logo">
-                <img src="img/side-nav-logo.jpg">
-              </a>
-            </li>
-            <!-- Filters go here too -->
-          </ul>
         </div>
+        <ul class="side-nav fixed" id="mobile-demo" style="width: 300px;">
+          <li class="logo">
+            <a id="logo-container" href="#" class="brand-logo">
+              <img src="img/side-nav-logo.jpg">
+            </a>
+          </li>
+          <!-- Filters go here too -->
+        </ul>
+      </div>
     </nav>
   </header>
   <main>
     <div class="container">
-    <div class="preloader-wrapper big active">
-      <div class="spinner-layer spinner-blue">
-        <div class="circle-clipper left">
-          <div class="circle"></div>
-        </div><div class="gap-patch">
-          <div class="circle"></div>
-        </div><div class="circle-clipper right">
-          <div class="circle"></div>
+      <div class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-blue">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div>
+          <div class="gap-patch">
+            <div class="circle"></div>
+          </div>
+          <div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
         </div>
-      </div>
 
-      <div class="spinner-layer spinner-red">
-        <div class="circle-clipper left">
-          <div class="circle"></div>
-        </div><div class="gap-patch">
-          <div class="circle"></div>
-        </div><div class="circle-clipper right">
-          <div class="circle"></div>
+        <div class="spinner-layer spinner-red">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div>
+          <div class="gap-patch">
+            <div class="circle"></div>
+          </div>
+          <div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
         </div>
-      </div>
 
-      <div class="spinner-layer spinner-yellow">
-        <div class="circle-clipper left">
-          <div class="circle"></div>
-        </div><div class="gap-patch">
-          <div class="circle"></div>
-        </div><div class="circle-clipper right">
-          <div class="circle"></div>
+        <div class="spinner-layer spinner-yellow">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div>
+          <div class="gap-patch">
+            <div class="circle"></div>
+          </div>
+          <div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
         </div>
-      </div>
 
-      <div class="spinner-layer spinner-green">
-        <div class="circle-clipper left">
-          <div class="circle"></div>
-        </div><div class="gap-patch">
-          <div class="circle"></div>
-        </div><div class="circle-clipper right">
-          <div class="circle"></div>
+        <div class="spinner-layer spinner-green">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div>
+          <div class="gap-patch">
+            <div class="circle"></div>
+          </div>
+          <div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
         </div>
       </div>
-    </div>
 
       <div class="row isotope-container notMasonry">
-          <!-- Posts load here -->
+        <!-- Posts load here -->
 
       </div>
       <!-- <div class="row related-posts-row" style="visibility: hidden">
@@ -185,11 +212,11 @@ catch(e){window.attachEvent("onload", $buo_f)}
       <i class="material-icons tooltipped" data-position="right" data-delay="50" data-tooltip="To Top">arrow_back</i>
     </div>
     <!-- Modal Structure -->
-   <div id="post-modal" class="modal">
-     <div class="modal-content">
-       <!-- Post loads here -->
-     </div>
-     <!-- <div class="modal-footer">
+    <div id="post-modal" class="modal">
+      <div class="modal-content">
+        <!-- Post loads here -->
+      </div>
+      <!-- <div class="modal-footer">
        <div class="row related-posts-row" style="visibility: hidden">
          <h3></h3>
          <div id="related-posts">
@@ -198,13 +225,15 @@ catch(e){window.attachEvent("onload", $buo_f)}
        </div>
        <a class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
      </div> -->
-   </div>
-  <!-- Submission Modal -->
+    </div>
+    <!-- Submission Modal -->
     <div id="modal1" class="modal bottom-sheet">
       <div class="modal-content">
         <h4 class="center">Submit Your Announcement</h4>
         <h6 class="center">New announcements are uploaded every Monday. The deadline for the next upload is Friday at 2:00 p.m.</h6>
-        <h6 class="center"><a class="special-bulletin modal-trigger" href="#special-bulletin-modal">Do you need to request a special bulletin?</a></h6>
+        <h6 class="center">
+          <a class="special-bulletin modal-trigger" href="#special-bulletin-modal">Do you need to request a special bulletin?</a>
+        </h6>
         <div class="row">
           <form id="announcement-form" class="col s12" enctype="multipart/form-data" action="upload.php" method="post">
             <div class="row">
@@ -214,62 +243,71 @@ catch(e){window.attachEvent("onload", $buo_f)}
                 <label for="announcementText">Announcement</label>
               </div>
               <div class="file-field input-field col s12">
-               <div class="btn">
-                 <span>File</span>
-                 <input id="uploads" name="upload[]" type="file" accept=".pdf,.doc,.docx,.odt,.jpg,.jpeg,.png,.gif,.ppt,.pptx,.xls,.xlsx,.txt,.rtf" multiple>
-               </div>
-               <div class="file-path-wrapper">
-                 <input class="file-path validate" type="text" placeholder="Upload one or more files">
-                 <input type="checkbox" id="checkbox-3">
-               </div>
-             </div>
-             <div class="center">
-               <div class="btn" id="announcement-submit">
-                 Submit
-                 <div class="preloader-wrapper active">
-                   <div class="spinner-layer spinner-blue">
-                     <div class="circle-clipper left">
-                       <div class="circle"></div>
-                     </div><div class="gap-patch">
-                       <div class="circle"></div>
-                     </div><div class="circle-clipper right">
-                       <div class="circle"></div>
-                     </div>
-                   </div>
+                <div class="btn">
+                  <span>File</span>
+                  <input id="uploads" name="upload[]" type="file" accept=".pdf,.doc,.docx,.odt,.jpg,.jpeg,.png,.gif,.ppt,.pptx,.xls,.xlsx,.txt,.rtf"
+                    multiple>
+                </div>
+                <div class="file-path-wrapper">
+                  <input class="file-path validate" type="text" placeholder="Upload one or more files">
+                  <input type="checkbox" id="checkbox-3">
+                </div>
+              </div>
+              <div class="center">
+                <div class="btn" id="announcement-submit">
+                  Submit
+                  <div class="preloader-wrapper active">
+                    <div class="spinner-layer spinner-blue">
+                      <div class="circle-clipper left">
+                        <div class="circle"></div>
+                      </div>
+                      <div class="gap-patch">
+                        <div class="circle"></div>
+                      </div>
+                      <div class="circle-clipper right">
+                        <div class="circle"></div>
+                      </div>
+                    </div>
 
-                   <div class="spinner-layer spinner-red">
-                     <div class="circle-clipper left">
-                       <div class="circle"></div>
-                     </div><div class="gap-patch">
-                       <div class="circle"></div>
-                     </div><div class="circle-clipper right">
-                       <div class="circle"></div>
-                     </div>
-                   </div>
+                    <div class="spinner-layer spinner-red">
+                      <div class="circle-clipper left">
+                        <div class="circle"></div>
+                      </div>
+                      <div class="gap-patch">
+                        <div class="circle"></div>
+                      </div>
+                      <div class="circle-clipper right">
+                        <div class="circle"></div>
+                      </div>
+                    </div>
 
-                   <div class="spinner-layer spinner-yellow">
-                     <div class="circle-clipper left">
-                       <div class="circle"></div>
-                     </div><div class="gap-patch">
-                       <div class="circle"></div>
-                     </div><div class="circle-clipper right">
-                       <div class="circle"></div>
-                     </div>
-                   </div>
+                    <div class="spinner-layer spinner-yellow">
+                      <div class="circle-clipper left">
+                        <div class="circle"></div>
+                      </div>
+                      <div class="gap-patch">
+                        <div class="circle"></div>
+                      </div>
+                      <div class="circle-clipper right">
+                        <div class="circle"></div>
+                      </div>
+                    </div>
 
-                   <div class="spinner-layer spinner-green">
-                     <div class="circle-clipper left">
-                       <div class="circle"></div>
-                     </div><div class="gap-patch">
-                       <div class="circle"></div>
-                     </div><div class="circle-clipper right">
-                       <div class="circle"></div>
-                     </div>
-                   </div>
-                 </div>
-               </div>
+                    <div class="spinner-layer spinner-green">
+                      <div class="circle-clipper left">
+                        <div class="circle"></div>
+                      </div>
+                      <div class="gap-patch">
+                        <div class="circle"></div>
+                      </div>
+                      <div class="circle-clipper right">
+                        <div class="circle"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-             </div>
+              </div>
             </div>
           </form>
         </div>
@@ -297,7 +335,8 @@ catch(e){window.attachEvent("onload", $buo_f)}
         <div class="row">
           <div class="col s12 center">
             <p class="flow-text">
-              Your submission was not sent. Please refresh the page and try again, or send an email directly to <a href="mailto:bulletin@franciscan.edu">bulletin@franciscan.edu</a>.
+              Your submission was not sent. Please refresh the page and try again, or send an email directly to
+              <a href="mailto:bulletin@franciscan.edu">bulletin@franciscan.edu</a>.
             </p>
             <div class="btn new-sub">
               New Submission
@@ -309,62 +348,68 @@ catch(e){window.attachEvent("onload", $buo_f)}
 
     <!-- Special Bulletin Modal -->
 
-  <div id="special-bulletin-modal" class="modal bottom-sheet">
-    <div class="modal-content">
-      <h4>Special Bulletins</h4>
-      <p>Special Bulletins will only be issued at the request of a major administrator or department chair and should be directed to <a href="mailto:lferguson@franciscan.edu">Lisa Ferguson</a> and <a href="mailto:tsofio@franciscan.edu">Tom Sofio</a> in Marketing and Communications.</p>
+    <div id="special-bulletin-modal" class="modal bottom-sheet">
+      <div class="modal-content">
+        <h4>Special Bulletins</h4>
+        <p>Special Bulletins will only be issued at the request of a major administrator or department chair and should be directed
+          to
+          <a href="mailto:lferguson@franciscan.edu">Lisa Ferguson</a> and
+          <a href="mailto:tsofio@franciscan.edu">Tom Sofio</a> in Marketing and Communications.</p>
+      </div>
+      <div class="modal-footer">
+        <a class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+      </div>
     </div>
-    <div class="modal-footer">
-      <a class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
-    </div>
-  </div>
 
     <!-- FAB -->
     <div class="fixed-action-btn" style="bottom: 30px; right: 24px;">
-     <a class="btn-floating btn-large">
-       <i class="large material-icons modal-trigger tooltipped" data-position="left" data-delay="50" data-tooltip="Submit Announcement" data-target="modal1">add</i>
-     </a>
-     <!-- <ul>
+      <a class="btn-floating btn-large">
+        <i class="large material-icons modal-trigger tooltipped" data-position="left" data-delay="50" data-tooltip="Submit Announcement"
+          data-target="modal1">add</i>
+      </a>
+      <!-- <ul>
        <li><a class="btn-floating red" ><i class="material-icons">insert_chart</i></a></li>
        <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
        <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
        <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
      </ul> -->
-   </div>
+    </div>
   </main>
 
   <footer class="page-footer">
-   <div class="footer-copyright">
-     <div class="container">
-     © <span id="copyright-date">2016</span> Franciscan University of Steubenville
-     </div>
-   </div>
- </footer>
- <!--Import Google Icon Font-->
- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
- <!--uncache-->
- <!-- build:css css/style3.min.css -->
- <link href="css/materialize.css" rel="stylesheet">
- <link href="css/style.css" rel="stylesheet">
- <!-- endbuild -->
- <!--enduncache-->
+    <div class="footer-copyright">
+      <div class="container">
+        ©
+        <span id="copyright-date">2016</span> Franciscan University of Steubenville
+      </div>
+    </div>
+  </footer>
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--uncache-->
+  <!-- build:css css/style3.min.css -->
+  <link href="css/materialize.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <!-- endbuild -->
+  <!--enduncache-->
 
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-<script src="bower_components/es6-promise/promise.min.js"></script>
-<script src="bower_components/es6-promise/es6-promise.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser-polyfill.min.js"></script>
-<!--uncache-->
-<!-- build:js js/app8.min.js -->
-<script src="js/masonry.pkgd.min.js"></script>
-<script type="text/javascript" src="js/imagesLoaded.min.js"></script>
-<script src="bower_components/fetch/fetch.js"></script>
-<script type="text/javascript" src="js/forms.js"></script>
-<script type="text/javascript" src="js/app.js"></script>
-<!-- endbuild -->
-<!--enduncache-->
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+  <script src="bower_components/es6-promise/promise.min.js"></script>
+  <script src="bower_components/es6-promise/es6-promise.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser-polyfill.min.js"></script>
+  <!--uncache-->
+  <!-- build:js js/app8.min.js -->
+  <script src="js/masonry.pkgd.min.js"></script>
+  <script type="text/javascript" src="js/imagesLoaded.min.js"></script>
+  <script src="bower_components/fetch/fetch.js"></script>
+  <script type="text/javascript" src="js/forms.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
+  <!-- endbuild -->
+  <!--enduncache-->
 
-<!-- inject:analytics -->
-<!-- endinject -->
+  <!-- inject:analytics -->
+  <!-- endinject -->
 </body>
+
 </html>
