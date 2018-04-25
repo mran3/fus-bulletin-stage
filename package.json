@@ -1,7 +1,7 @@
 {
-  "name": "wp-api-isotope",
+  "name": "fus-bulletin",
   "version": "1.0.0",
-  "description": "A simple way to pull posts from the WP-API and display them with isotope.",
+  "description": "A faculty and staff bulletin for Franciscan University of Steubenville.",
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
