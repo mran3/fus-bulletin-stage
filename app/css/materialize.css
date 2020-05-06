@@ -2352,7 +2352,8 @@ table {
 thead {
   border-bottom: 1px solid #d0d0d0; }
 
-td, th {
+td,
+th {
   padding: 15px 5px;
   display: table-cell;
   text-align: left;
@@ -3597,7 +3598,8 @@ small {
 .btn.disabled, .disabled.btn-large,
 .btn-floating.disabled,
 .btn-large.disabled,
-.btn:disabled .btn-large:disabled, .btn-large:disabled .btn-large:disabled,
+.btn:disabled .btn-large:disabled,
+.btn-large:disabled .btn-large:disabled,
 .btn-floating:disabled {
   background-color: #DFDFDF !important;
   box-shadow: none;
@@ -3606,13 +3608,15 @@ small {
   .btn.disabled *, .disabled.btn-large *,
   .btn-floating.disabled *,
   .btn-large.disabled *,
-  .btn:disabled .btn-large:disabled *, .btn-large:disabled .btn-large:disabled *,
+  .btn:disabled .btn-large:disabled *,
+  .btn-large:disabled .btn-large:disabled *,
   .btn-floating:disabled * {
     pointer-events: none; }
   .btn.disabled:hover, .disabled.btn-large:hover,
   .btn-floating.disabled:hover,
   .btn-large.disabled:hover,
-  .btn:disabled .btn-large:disabled:hover, .btn-large:disabled .btn-large:disabled:hover,
+  .btn:disabled .btn-large:disabled:hover,
+  .btn-large:disabled .btn-large:disabled:hover,
   .btn-floating:disabled:hover {
     background-color: #DFDFDF !important;
     color: #9F9F9F !important; }
