@@ -5,7 +5,7 @@ var browserSync = require('browser-sync').create();
 var imagemin = require('gulp-imagemin');
 var usemin = require('gulp-usemin');
 var uglify = require('gulp-uglify');
-var minifyCss = require('gulp-minify-css');
+var cleanCss = require('gulp-clean-css');
 var inject = require('gulp-inject'); //Start by adding the plugin to your gulpfile
 var htmlmin = require('gulp-htmlmin');
 var babel = require("gulp-babel");
@@ -21,13 +21,13 @@ gulp.task('dist', function() {
      }))
         .pipe(usemin({
             assetsDir: 'app',
-            css: [minifyCss(), 'concat'],
+            css: [cleanCss(), 'concat'],
             js: [babel(), uglify(), 'concat'],
             html: [ htmlmin({
               collapseBooleanAttributes: true,
               collapseWhitespace: true,
               decodeEntities: true,
-              minifyCSS: true,
+              cleanCss: true,
               minifyJS: true,
               processConditionalComments: true,
               removeAttributeQuotes: true,
@@ -65,16 +65,6 @@ gulp.task('imgmin', function() {
 		.pipe(gulp.dest('dist/img'));
 });
 
-gulp.task('watch', ['browserSync', 'sass', 'dist'], function (){
-  gulp.watch('app/sass/**/*.scss', ['sass'], ['dist']);
-  // Reloads the browser whenever HTML or JS files change
-  gulp.watch('app/*.html', browserSync.reload, ['dist']);
-  gulp.watch('app/js/**/*.js', browserSync.reload, ['dist']);
-  gulp.watch('app/help/*.html', browserSync.reload);
-
-
-});
-
 gulp.task('browserSync', function() {
   browserSync.init({
     ui: {
@@ -86,3 +76,13 @@ gulp.task('browserSync', function() {
     port: 3012
   });
 });
+
+gulp.task('watch', gulp.series('browserSync', 'sass', 'dist', function (){
+  gulp.watch('app/sass/**/*.scss', ['sass'], ['dist']);
+  // Reloads the browser whenever HTML or JS files change
+  gulp.watch('app/*.html', browserSync.reload, ['dist']);
+  gulp.watch('app/js/**/*.js', browserSync.reload, ['dist']);
+  gulp.watch('app/help/*.html', browserSync.reload);
+
+
+}));
